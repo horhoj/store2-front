@@ -4,10 +4,14 @@ export const GlobalStyle = createGlobalStyle`
   *,
   *::before,
   *::after {
-    font-family: DevCoder, monospace;
+    font-family: Roboto, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  }
+  
+  button {
+    cursor: pointer;
   }
 `;
 
