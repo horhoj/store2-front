@@ -1,5 +1,5 @@
 import { Home } from '../pages/Home';
-import { Login } from '../pages/Login';
+import { SignIn } from '../pages/SignIn';
 import { RouteNotFound } from '../pages/RouteNotFound/';
 import { RouteItem } from './types';
 
@@ -13,12 +13,12 @@ export const routes: RouteItem[] = [
     component: Home,
   },
   {
-    name: 'login',
-    path: '/login',
+    name: 'signIn',
+    path: '/sign-in',
     exact: true,
     private: false,
     always: false,
-    component: Login,
+    component: SignIn,
   },
   {
     name: 'routeNotFound',

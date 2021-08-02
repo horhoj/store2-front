@@ -23,7 +23,7 @@ export const RoutesStructure: React.FC = () => {
       if (userIsAuthenticated) {
         return <route.component />;
       }
-      return <Redirect to={getPathByName('login')} />;
+      return <Redirect to={getPathByName('signIn')} />;
     }
     //если нет, то то проверяем залогинены ли мы
     //и если да то делаем редирект на главную страницу
