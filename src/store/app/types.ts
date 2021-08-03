@@ -1,5 +1,6 @@
 export interface AppState {
   isAuthenticated: boolean;
+  isDarkMode: boolean;
 }
 
 export enum AppSagaWorkerType {
