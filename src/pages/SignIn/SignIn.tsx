@@ -20,27 +20,6 @@ import {
 import { StyledLink } from '../../theme/styled';
 import { SignInValidationSchema } from './types';
 
-const Wrap = styled(Box)`
-  margin-top: ${({ theme }) => theme.spacing(8)}px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const StyledAvatar = styled(Avatar)`
-  margin: ${({ theme }) => theme.spacing(1)}px;
-  background-color: ${({ theme }) => theme.palette.secondary.main};
-`;
-
-const Form = styled.form`
-  width: 100%;
-  margin-top: ${({ theme }) => theme.spacing(1)}px;
-`;
-
-const StyledButton = styled(Button)`
-  margin: ${({ theme }) => theme.spacing(3, 0, 2)};
-`;
-
 const initialFormValues: UserCredentials = {
   email: DEFAULT_SIGN_IN_EMAIL,
   password: DEFAULT_SIGN_IN_PASSWORD,
@@ -118,3 +97,24 @@ export const SignIn: React.FC = () => {
     </Container>
   );
 };
+
+const Wrap = styled(Box)`
+  margin-top: ${({ theme }) => theme.spacing(8)}px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const StyledAvatar = styled(Avatar)`
+  margin: ${({ theme }) => theme.spacing(1)}px;
+  background-color: ${({ theme }) => theme.palette.secondary.main};
+`;
+
+const Form = styled.form`
+  width: 100%;
+  margin-top: ${({ theme }) => theme.spacing(1)}px;
+`;
+
+const StyledButton = styled(Button)`
+  margin: ${({ theme }) => theme.spacing(3, 0, 2)};
+`;

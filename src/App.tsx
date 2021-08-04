@@ -4,7 +4,8 @@ import { MuiThemeProvider, StylesProvider } from '@material-ui/core';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { RoutesStructure } from './router';
 import { useAppTheme } from './theme/useAppTheme';
-import { ThemeModeSwitch } from './components/ThemeModeSwitch';
+import { ProgressBar } from './components/ProgressBar';
+import { AppHeader } from './components/AppHeader';
 
 const GlobalStyle = createGlobalStyle``;
 
@@ -16,9 +17,10 @@ export const App: React.FC = () => {
       <StylesProvider injectFirst>
         <MuiThemeProvider theme={theme}>
           <ThemeProvider theme={theme}>
-            <ThemeModeSwitch />
             <CssBaseline />
             <GlobalStyle />
+            <ProgressBar />
+            <AppHeader />
             <RoutesStructure />
           </ThemeProvider>
         </MuiThemeProvider>
