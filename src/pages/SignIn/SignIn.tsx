@@ -29,6 +29,7 @@ const formikConfig: FormikConfig<UserCredentials> = {
   enableReinitialize: false,
   initialValues: initialFormValues,
   onSubmit: (values) => {
+    // eslint-disable-next-line no-console
     console.log('values', values);
   },
   validationSchema: SignInValidationSchema,

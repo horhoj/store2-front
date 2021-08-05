@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { useAppSelector } from '../store/hooks';
-import { appSelectors } from '../store/app';
+import { authSelectors } from '../store/auth';
 import { routes } from './routes';
 import { RouteItem } from './types';
 import { getPathByName } from './helpers';
 
 export const RoutesStructure: React.FC = () => {
-  const userIsAuthenticated = useAppSelector(appSelectors.getIsAuthenticated);
+  const userIsAuthenticated = useAppSelector(authSelectors.getIsAuthenticated);
 
   const getRouteAction = (route: RouteItem) => {
     //вся конфигурация роутов задана в router/routes

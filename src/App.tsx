@@ -7,8 +7,6 @@ import { useAppTheme } from './theme/useAppTheme';
 import { ProgressBar } from './components/ProgressBar';
 import { AppHeader } from './components/AppHeader';
 
-const GlobalStyle = createGlobalStyle``;
-
 export const App: React.FC = () => {
   const theme = useAppTheme();
 
@@ -28,3 +26,5 @@ export const App: React.FC = () => {
     </>
   );
 };
+
+const GlobalStyle = createGlobalStyle``;
