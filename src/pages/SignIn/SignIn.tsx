@@ -12,30 +12,36 @@ import Container from '@material-ui/core/Container';
 import styled from 'styled-components';
 import { FormikConfig, useFormik } from 'formik';
 import { FormHelperText } from '@material-ui/core';
+import { Alert, AlertTitle } from '@material-ui/lab';
 import { UserCredentials } from '../../types/user';
 import {
   DEFAULT_SIGN_IN_EMAIL,
   DEFAULT_SIGN_IN_PASSWORD,
 } from '../../config/config';
 import { StyledLink } from '../../theme/styled';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { authSelectors, authWorkers } from '../../store/auth';
 import { SignInValidationSchema } from './types';
+import { getErrorMessage } from './helpers';
 
 const initialFormValues: UserCredentials = {
   email: DEFAULT_SIGN_IN_EMAIL,
   password: DEFAULT_SIGN_IN_PASSWORD,
 };
 
-const formikConfig: FormikConfig<UserCredentials> = {
-  enableReinitialize: false,
-  initialValues: initialFormValues,
-  onSubmit: (values) => {
-    // eslint-disable-next-line no-console
-    console.log('values', values);
-  },
-  validationSchema: SignInValidationSchema,
-};
-
 export const SignIn: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const requestError = useAppSelector(authSelectors.getRequestError);
+
+  const formikConfig: FormikConfig<UserCredentials> = {
+    enableReinitialize: false,
+    initialValues: initialFormValues,
+    onSubmit: (values) => {
+      dispatch(authWorkers.authSignUp(values));
+    },
+    validationSchema: SignInValidationSchema,
+  };
+
   const formik = useFormik<UserCredentials>(formikConfig);
 
   return (
@@ -47,6 +53,12 @@ export const SignIn: React.FC = () => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
+        {requestError ? (
+          <StyledAlert severity={'error'}>
+            <AlertTitle>Sign in Error</AlertTitle>
+            {getErrorMessage(requestError)}
+          </StyledAlert>
+        ) : null}
         <Form noValidate onSubmit={formik.handleSubmit}>
           <TextField
             variant="outlined"
@@ -118,4 +130,9 @@ const Form = styled.form`
 
 const StyledButton = styled(Button)`
   margin: ${({ theme }) => theme.spacing(3, 0, 2)};
+`;
+
+const StyledAlert = styled(Alert)`
+  margin-top: ${({ theme }) => theme.spacing(2)}px;
+  width: 100%;
 `;

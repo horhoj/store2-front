@@ -1,10 +1,14 @@
+import { UserCredentials } from '../../types/user';
+import { RequestError } from '../types';
+
 export interface AuthState {
   isLoading: boolean;
   isAuthenticated: boolean;
+  requestError: RequestError | null;
 }
 
 export enum AuthSagaWorkerType {
-  AUTH_TEST_WORKER = 'app/appTestWorker',
+  AUTH_SIGN_IN_WORKER = 'auth/authSignInWorker',
 }
 
 interface AuthSagaWorker<T, P> {
@@ -12,7 +16,7 @@ interface AuthSagaWorker<T, P> {
   payload: P;
 }
 
-export type AuthTestWorker = AuthSagaWorker<
-  AuthSagaWorkerType.AUTH_TEST_WORKER,
-  number
+export type AuthSignInWorker = AuthSagaWorker<
+  AuthSagaWorkerType.AUTH_SIGN_IN_WORKER,
+  UserCredentials
 >;

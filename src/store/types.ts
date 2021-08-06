@@ -1,4 +1,5 @@
 import { Action, ThunkAction } from '@reduxjs/toolkit';
+import { AxiosResponse } from 'axios';
 import { store } from './store';
 
 export type AppDispatch = typeof store.dispatch;
@@ -9,3 +10,8 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
+
+export interface RequestError {
+  responseData: AxiosResponse | null;
+  errorMsg: string;
+}

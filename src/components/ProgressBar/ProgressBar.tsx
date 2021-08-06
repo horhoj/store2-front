@@ -1,6 +1,8 @@
 import { LinearProgress } from '@material-ui/core';
 import React from 'react';
 import styled from 'styled-components';
+import { useAppSelector } from '../../store/hooks';
+import { authSelectors } from '../../store/auth';
 
 const StyledLinearProgress = styled(LinearProgress)`
   position: fixed;
@@ -12,6 +14,7 @@ const StyledLinearProgress = styled(LinearProgress)`
 `;
 
 export const ProgressBar: React.FC = () => {
-  const isProgress = false;
+  const auth = useAppSelector(authSelectors.getIsLoading);
+  const isProgress = auth;
   return isProgress ? <StyledLinearProgress /> : null;
 };
