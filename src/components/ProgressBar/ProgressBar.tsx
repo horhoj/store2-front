@@ -14,7 +14,10 @@ const StyledLinearProgress = styled(LinearProgress)`
 `;
 
 export const ProgressBar: React.FC = () => {
-  const auth = useAppSelector(authSelectors.getIsLoading);
-  const isProgress = auth;
+  const authIsLoading = useAppSelector(authSelectors.getIsLoading);
+  const authIsLoadingUserData = useAppSelector(
+    authSelectors.getIsLoadingUserData,
+  );
+  const isProgress = authIsLoading || authIsLoadingUserData;
   return isProgress ? <StyledLinearProgress /> : null;
 };
