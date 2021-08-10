@@ -1,4 +1,4 @@
-import { UserData, UserCredentials } from '../../types/user';
+import { UserData, UserCredentials } from '../../types/userData';
 import { RequestError } from '../types';
 
 export interface AuthState {
@@ -10,8 +10,9 @@ export interface AuthState {
 }
 
 export enum AuthSagaWorkerType {
-  AUTH_SIGN_IN_WORKER = 'auth/authSignInWorker',
-  AUTH_GET_USER_DATA = 'auth/GetUserData',
+  SIGN_IN_WORKER = 'auth/authSignInWorker',
+  GET_USER_DATA = 'auth/getUserData',
+  SIGN_OUT = 'auth/signOut',
 }
 
 interface AuthSagaWorker<T, P> {
@@ -20,11 +21,16 @@ interface AuthSagaWorker<T, P> {
 }
 
 export type AuthSignInWorker = AuthSagaWorker<
-  AuthSagaWorkerType.AUTH_SIGN_IN_WORKER,
+  AuthSagaWorkerType.SIGN_IN_WORKER,
   UserCredentials
 >;
 
 export type AuthGetUserDataWorker = AuthSagaWorker<
-  AuthSagaWorkerType.AUTH_GET_USER_DATA,
+  AuthSagaWorkerType.GET_USER_DATA,
+  null
+>;
+
+export type AuthSignOutWorker = AuthSagaWorker<
+  AuthSagaWorkerType.SIGN_OUT,
   null
 >;

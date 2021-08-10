@@ -33,4 +33,9 @@ export const App: React.FC = () => {
   );
 };
 
-const GlobalStyle = createGlobalStyle``;
+const GlobalStyle = createGlobalStyle`
+body {
+  min-width: 300px;
+}
+
+`;

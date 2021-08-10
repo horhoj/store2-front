@@ -11,16 +11,17 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import styled from 'styled-components';
 import { FormikConfig, useFormik } from 'formik';
-import { FormHelperText } from '@material-ui/core';
+import { FormHelperText, Link } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import { UserCredentials } from '../../types/user';
+import { UserCredentials } from '../../types/userData';
 import {
   DEFAULT_SIGN_IN_EMAIL,
   DEFAULT_SIGN_IN_PASSWORD,
 } from '../../config/config';
-import { StyledLink } from '../../theme/styled';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { authSelectors, authWorkers } from '../../store/auth';
+import { User } from '../../components/User';
+import { StyledFieldSet } from '../../theme/styled';
 import { SignInValidationSchema } from './types';
 import { getErrorMessage } from './helpers';
 
@@ -32,6 +33,7 @@ const initialFormValues: UserCredentials = {
 export const SignIn: React.FC = () => {
   const dispatch = useAppDispatch();
   const requestError = useAppSelector(authSelectors.getRequestError);
+  const isLoading = useAppSelector(authSelectors.getIsLoading);
 
   const formikConfig: FormikConfig<UserCredentials> = {
     enableReinitialize: false,
@@ -47,6 +49,7 @@ export const SignIn: React.FC = () => {
   return (
     <Container component="main" maxWidth="xs">
       <Wrap>
+        <User />
         <StyledAvatar>
           <LockOutlinedIcon />
         </StyledAvatar>
@@ -59,53 +62,60 @@ export const SignIn: React.FC = () => {
             {getErrorMessage(requestError)}
           </StyledAlert>
         ) : null}
-        <Form noValidate onSubmit={formik.handleSubmit}>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            autoComplete="email"
-            type="email"
-            autoFocus
-            label="Email"
-            {...formik.getFieldProps('email')}
-          />
-          <FormHelperText error={true}>{formik.errors.email}</FormHelperText>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            label="Password"
-            type="password"
-            autoComplete="current-password"
-            {...formik.getFieldProps('password')}
-          />
-          <FormHelperText error={true}>{formik.errors.password}</FormHelperText>
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <StyledButton
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-          >
-            Sign In
-          </StyledButton>
-          <Grid container>
-            <Grid item xs>
-              <StyledLink href="#">Forgot password?</StyledLink>
+        <StyledFieldSet disabled={isLoading} fullWidth={true}>
+          <Form noValidate onSubmit={formik.handleSubmit}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              autoComplete="email"
+              type="email"
+              autoFocus
+              label="Email"
+              {...formik.getFieldProps('email')}
+            />
+            <FormHelperText error={true}>{formik.errors.email}</FormHelperText>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              label="Password"
+              type="password"
+              autoComplete="current-password"
+              {...formik.getFieldProps('password')}
+            />
+            <FormHelperText error={true}>
+              {formik.errors.password}
+            </FormHelperText>
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <StyledButton
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              disabled={isLoading}
+            >
+              Sign In
+            </StyledButton>
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" color={'textSecondary'}>
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="#" color={'textSecondary'}>
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
             </Grid>
-            <Grid item>
-              <StyledLink href="#">
-                {"Don't have an account? Sign Up"}
-              </StyledLink>
-            </Grid>
-          </Grid>
-        </Form>
+          </Form>
+        </StyledFieldSet>
       </Wrap>
     </Container>
   );

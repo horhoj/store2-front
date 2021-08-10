@@ -1,27 +1,30 @@
 import React from 'react';
+import { AppBar, Box, Toolbar } from '@material-ui/core';
 import styled from 'styled-components';
-import { AppBar, Theme, Toolbar } from '@material-ui/core';
 import { ThemeModeSwitch } from '../ThemeModeSwitch';
-
-const StyledAppBar = styled(AppBar)`
-  width: 100%;
-  min-height: 50px;
-  background-color: ${({ theme }) => {
-    return (theme as Theme).palette.type === 'dark' ? '#605ca8' : '#eeeeee';
-  }};
-
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  justify-content: space-between;
-`;
+import { User } from '../User';
 
 export const AppHeader: React.FC = () => {
   return (
-    <StyledAppBar position="static">
+    <StyledAppBar position="static" color={'inherit'}>
       <Toolbar>
-        <ThemeModeSwitch />
+        <RightWrap>
+          <User />
+          <ThemeModeSwitch />
+        </RightWrap>
       </Toolbar>
     </StyledAppBar>
   );
 };
+
+const StyledAppBar = styled(AppBar)``;
+
+const RightWrap = styled(Box)`
+  margin: 0 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  & > div:not(:last-child) {
+    margin-right: 50px;
+  }
+`;

@@ -8,18 +8,23 @@ import {
   getErrorData,
   validateData,
 } from '../helpers';
-import { UserData, UserDataValidationSchema } from '../../types/user';
+import { UserData, UserDataValidationSchema } from '../../types/userData';
 import { ajax } from '../../api/transport';
 import { AuthSagaWorkerType, AuthSignInWorker } from './types';
-import { getTokenRequestConfig, getUserDataRequestConfig } from './helpers';
+import {
+  getTokenRequestConfig,
+  getTokenRevokeRequestConfig,
+  getUserDataRequestConfig,
+} from './helpers';
 import { authActions } from './index';
 
 export function* authWatcher(): SagaIterator {
-  yield takeEvery(AuthSagaWorkerType.AUTH_SIGN_IN_WORKER, authSignUpWorker);
-  yield takeEvery(AuthSagaWorkerType.AUTH_GET_USER_DATA, getUserDataWorker);
+  yield takeEvery(AuthSagaWorkerType.SIGN_IN_WORKER, signUpWorker);
+  yield takeEvery(AuthSagaWorkerType.GET_USER_DATA, getUserDataWorker);
+  yield takeEvery(AuthSagaWorkerType.SIGN_OUT, signOutWorker);
 }
 
-export function* authSignUpWorker(action: AuthSignInWorker): SagaIterator {
+export function* signUpWorker(action: AuthSignInWorker): SagaIterator {
   try {
     yield put(authActions.setIsLoading(true));
     yield put(authActions.SetUserData(null));
@@ -47,7 +52,7 @@ export function* authSignUpWorker(action: AuthSignInWorker): SagaIterator {
     yield put(authActions.setIsAuthenticated(true));
   } catch (e) {
     const errorData = getErrorData(e);
-    yield call(logger, 'authSignUpWorker errors', errorData);
+    yield call(logger, 'signUpWorker errors', errorData);
     yield put(authActions.SetRequestError(errorData));
   } finally {
     yield put(authActions.setIsLoading(false));
@@ -76,5 +81,25 @@ export function* getUserDataWorker(): SagaIterator {
     yield call(logger, 'getUserDataWorker errors', getErrorData(e));
   } finally {
     yield put(authActions.SetIsLoadingUserData(false));
+  }
+}
+
+export function* signOutWorker(): SagaIterator {
+  try {
+    yield put(authActions.setIsLoading(true));
+    yield put(authActions.SetUserData(null));
+    yield put(authActions.setIsAuthenticated(false));
+    const token: SagaReturnType<typeof localStorage.getItem> = yield call(
+      [localStorage, localStorage.getItem],
+      ACCESS_TOKEN_LS_KEY,
+    );
+    yield call(
+      ajax,
+      addBearerTokenToRequestConfig(token || '', getTokenRevokeRequestConfig()),
+    );
+  } catch (e) {
+    yield call(logger, 'signOutWorker errors', getErrorData(e));
+  } finally {
+    yield put(authActions.setIsLoading(false));
   }
 }
