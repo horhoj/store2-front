@@ -56,14 +56,14 @@ export const SignIn: React.FC = () => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        {requestError ? (
-          <StyledAlert severity={'error'}>
-            <AlertTitle>Sign in Error</AlertTitle>
-            {getErrorMessage(requestError)}
-          </StyledAlert>
-        ) : null}
         <StyledFieldSet disabled={isLoading} fullWidth={true}>
           <Form noValidate onSubmit={formik.handleSubmit}>
+            {requestError ? (
+              <StyledAlert severity={'error'}>
+                <AlertTitle>Sign in Error</AlertTitle>
+                {getErrorMessage(requestError)}
+              </StyledAlert>
+            ) : null}
             <TextField
               variant="outlined"
               margin="normal"
