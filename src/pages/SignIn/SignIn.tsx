@@ -13,6 +13,7 @@ import styled from 'styled-components';
 import { FormikConfig, useFormik } from 'formik';
 import { FormHelperText, Link } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
+import * as yup from 'yup';
 import { UserCredentials } from '../../types/userData';
 import {
   DEFAULT_SIGN_IN_EMAIL,
@@ -22,7 +23,6 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { authSelectors, authWorkers } from '../../store/auth';
 import { User } from '../../components/User';
 import { StyledFieldSet } from '../../theme/styled';
-import { SignInValidationSchema } from './types';
 import { getErrorMessage } from './helpers';
 
 const initialFormValues: UserCredentials = {
@@ -34,6 +34,11 @@ export const SignIn: React.FC = () => {
   const dispatch = useAppDispatch();
   const requestError = useAppSelector(authSelectors.getRequestError);
   const isLoading = useAppSelector(authSelectors.getIsLoading);
+
+  const SignInValidationSchema = yup.object({
+    email: yup.string().required().email(),
+    password: yup.string().required().min(8).max(30),
+  });
 
   const formikConfig: FormikConfig<UserCredentials> = {
     enableReinitialize: false,
