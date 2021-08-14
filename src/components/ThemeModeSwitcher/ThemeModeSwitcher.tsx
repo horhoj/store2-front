@@ -5,7 +5,7 @@ import { Box, Button, Typography } from '@material-ui/core';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { appActions, appSelectors } from '../../store/app';
 
-export const ThemeModeSwitch: React.FC = () => {
+export const ThemeModeSwitcher: React.FC = () => {
   const dispatch = useAppDispatch();
   const isDarkMode = useAppSelector(appSelectors.getIsDarkMode);
 
@@ -29,15 +29,8 @@ export const ThemeModeSwitch: React.FC = () => {
 };
 
 const StyledButton = styled(Button)`
-  border-radius: 50%;
   min-width: 40px;
   min-height: 40px;
 `;
 
-const Wrap = styled(Box)`
-  display: flex;
-  width: auto;
-  height: auto;
-  justify-content: center;
-  align-content: center;
-`;
+const Wrap = styled(Box)``;

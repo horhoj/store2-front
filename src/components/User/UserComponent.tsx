@@ -23,13 +23,13 @@ export const UserComponent: React.FC = () => {
 
   return userData ? (
     <Wrap>
-      <Button
+      <StyledButton
         onClick={handleMenuBtnClk}
         aria-controls="customized-menu"
         aria-haspopup="true"
       >
         <PersonIcon />
-      </Button>
+      </StyledButton>
       <StyledMenu
         id="customized-menu"
         open={Boolean(anchorEl)}
@@ -59,3 +59,8 @@ const UserDataBox = styled(Box)`
 `;
 
 const StyledMenu = styled(Menu)``;
+
+const StyledButton = styled(Button)`
+  min-width: 40px;
+  min-height: 40px;
+`;

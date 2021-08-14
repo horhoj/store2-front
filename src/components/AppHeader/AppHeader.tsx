@@ -1,30 +1,32 @@
 import React from 'react';
 import { AppBar, Box, Toolbar } from '@material-ui/core';
 import styled from 'styled-components';
-import { ThemeModeSwitch } from '../ThemeModeSwitch';
+import { ThemeModeSwitcher } from '../ThemeModeSwitcher';
 import { User } from '../User';
+import { LangSwitcher } from '../LangSwitcher';
 
 export const AppHeader: React.FC = () => {
   return (
-    <StyledAppBar position="static" color={'inherit'}>
-      <Toolbar>
+    <AppBar position="static" color={'inherit'}>
+      <StyledToolBar>
+        <Box>Logo</Box>
         <RightWrap>
           <User />
-          <ThemeModeSwitch />
+          <ThemeModeSwitcher />
+          <LangSwitcher />
         </RightWrap>
-      </Toolbar>
-    </StyledAppBar>
+      </StyledToolBar>
+    </AppBar>
   );
 };
 
-const StyledAppBar = styled(AppBar)``;
+const StyledToolBar = styled(Toolbar)`
+  display: flex;
+  justify-content: space-between;
+`;
 
 const RightWrap = styled(Box)`
-  margin: 0 0 0 auto;
   display: flex;
   justify-content: center;
   align-content: center;
-  & > div:not(:last-child) {
-    margin-right: 50px;
-  }
 `;

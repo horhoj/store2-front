@@ -2,8 +2,6 @@ import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -23,6 +21,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { authSelectors, authWorkers } from '../../store/auth';
 import { User } from '../../components/User';
 import { StyledFieldSet } from '../../theme/styled';
+import { useAppTranslation } from '../../i18n/useAppTranslation';
 import { getErrorMessage } from './helpers';
 
 const initialFormValues: UserCredentials = {
@@ -31,13 +30,21 @@ const initialFormValues: UserCredentials = {
 };
 
 export const SignIn: React.FC = () => {
+  const t = useAppTranslation();
   const dispatch = useAppDispatch();
   const requestError = useAppSelector(authSelectors.getRequestError);
   const isLoading = useAppSelector(authSelectors.getIsLoading);
 
   const SignInValidationSchema = yup.object({
-    email: yup.string().required().email(),
-    password: yup.string().required().min(8).max(30),
+    email: yup
+      .string()
+      .required(t('validation__required'))
+      .email(t('validation__email')),
+    password: yup
+      .string()
+      .required(t('validation__required'))
+      .min(8, t('validation__min_x_symbol', { x: 8 }))
+      .max(30, t('validation__max_x_symbol', { x: 30 })),
   });
 
   const formikConfig: FormikConfig<UserCredentials> = {
@@ -59,7 +66,7 @@ export const SignIn: React.FC = () => {
           <LockOutlinedIcon />
         </StyledAvatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          {t('page__sign-in__page-title')}
         </Typography>
         <StyledFieldSet disabled={isLoading} fullWidth={true}>
           <Form noValidate onSubmit={formik.handleSubmit}>
@@ -77,7 +84,7 @@ export const SignIn: React.FC = () => {
               autoComplete="email"
               type="email"
               autoFocus
-              label="Email"
+              label={t('page__sign-in__form-label__email')}
               {...formik.getFieldProps('email')}
             />
             <FormHelperText error={true}>{formik.errors.email}</FormHelperText>
@@ -86,7 +93,7 @@ export const SignIn: React.FC = () => {
               margin="normal"
               required
               fullWidth
-              label="Password"
+              label={t('page__sign-in__form-label__password')}
               type="password"
               autoComplete="current-password"
               {...formik.getFieldProps('password')}
@@ -94,10 +101,6 @@ export const SignIn: React.FC = () => {
             <FormHelperText error={true}>
               {formik.errors.password}
             </FormHelperText>
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <StyledButton
               type="submit"
               fullWidth
@@ -105,7 +108,7 @@ export const SignIn: React.FC = () => {
               color="primary"
               disabled={isLoading}
             >
-              Sign In
+              {t('page__sign-in__form-label__submit-btn')}
             </StyledButton>
             <Grid container>
               <Grid item xs>
