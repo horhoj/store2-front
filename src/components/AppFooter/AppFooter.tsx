@@ -6,10 +6,10 @@ export const AppFooter: React.FC = () => {
   return (
     <StyledAppBar position="static" color={'inherit'}>
       <StyledToolBar>
-        <Typography>
-          Copyright © {new Date().getFullYear()} cool29horhoj. All rights
-          reserved.
+        <Typography noWrap={true}>
+          Copyright © {new Date().getFullYear()} cool29horhoj.&nbsp;
         </Typography>
+        <Typography noWrap={true}>All rights reserved.</Typography>
       </StyledToolBar>
     </StyledAppBar>
   );
@@ -18,6 +18,7 @@ export const AppFooter: React.FC = () => {
 const StyledToolBar = styled(Toolbar)`
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 `;
 
 const StyledAppBar = styled(AppBar)``;
