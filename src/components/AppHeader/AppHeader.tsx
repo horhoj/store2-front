@@ -4,12 +4,15 @@ import styled from 'styled-components';
 import { ThemeModeSwitcher } from '../ThemeModeSwitcher';
 import { User } from '../User';
 import { LangSwitcher } from '../LangSwitcher';
+import { MenuBtn } from '../MenuBtn';
 
 export const AppHeader: React.FC = () => {
   return (
     <AppBar position="static" color={'inherit'}>
       <StyledToolBar>
-        <Box>Logo</Box>
+        <LeftWrap>
+          <MenuBtn />
+        </LeftWrap>
         <RightWrap>
           <User />
           <ThemeModeSwitcher />
@@ -30,3 +33,5 @@ const RightWrap = styled(Box)`
   justify-content: center;
   align-content: center;
 `;
+
+const LeftWrap = styled(Box)``;
