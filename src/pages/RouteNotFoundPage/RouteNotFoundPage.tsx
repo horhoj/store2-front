@@ -1,5 +1,5 @@
 import React from 'react';
 
-export const RouteNotFound: React.FC = () => {
+export const RouteNotFoundPage: React.FC = () => {
   return <div>routeNotFound Page</div>;
 };

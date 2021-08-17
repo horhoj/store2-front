@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-export const Home: React.FC = () => {
+export const HomePage: React.FC = () => {
   const { t } = useTranslation();
 
   return (

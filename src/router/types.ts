@@ -1,4 +1,8 @@
-export type RouterPathNames = 'home' | 'signIn' | 'routeNotFound';
+export type RouterPathNames =
+  | 'home'
+  | 'signIn'
+  | 'routeNotFound'
+  | 'productList';
 
 export interface RouteItem {
   name: RouterPathNames;

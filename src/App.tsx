@@ -8,6 +8,7 @@ import {
   Theme,
 } from '@material-ui/core';
 import styled, { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
 import { RoutesStructure } from './router';
 import { useAppTheme } from './theme/useAppTheme';
 import { ProgressBar } from './components/ProgressBar';
@@ -36,18 +37,20 @@ export const App: React.FC = () => {
             <CssBaseline />
             <GlobalStyle />
             <ProgressBar />
-            <AppWrap>
-              <AppHeader />
-              <CenterBlock>
-                {isAuthenticated ? <NavBlock /> : null}
-                <Main>
-                  <StyledPaper square={true}>
-                    {isLoadingUserData ? null : <RoutesStructure />}
-                  </StyledPaper>
-                </Main>
-              </CenterBlock>
-              <AppFooter />
-            </AppWrap>
+            <BrowserRouter>
+              <AppWrap>
+                <AppHeader />
+                <CenterBlock>
+                  {isAuthenticated ? <NavBlock /> : null}
+                  <Main>
+                    <StyledPaper square={true}>
+                      {isLoadingUserData ? null : <RoutesStructure />}
+                    </StyledPaper>
+                  </Main>
+                </CenterBlock>
+                <AppFooter />
+              </AppWrap>
+            </BrowserRouter>
           </ThemeProvider>
         </MuiThemeProvider>
       </StylesProvider>

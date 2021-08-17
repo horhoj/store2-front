@@ -1,16 +1,17 @@
-import { Home } from '../pages/Home';
-import { SignIn } from '../pages/SignIn';
-import { RouteNotFound } from '../pages/RouteNotFound/';
+import { HomePage } from '../pages/HomePage';
+import { SignInPage } from '../pages/SignInPage';
+import { RouteNotFoundPage } from '../pages/RouteNotFoundPage';
+import { ProductListPage } from '../pages/ProductListPage';
 import { RouteItem } from './types';
 
 export const routes: RouteItem[] = [
   {
     name: 'home',
-    path: '/',
+    path: '/home',
     exact: true,
     private: true,
     always: false,
-    component: Home,
+    component: HomePage,
   },
   {
     name: 'signIn',
@@ -18,7 +19,15 @@ export const routes: RouteItem[] = [
     exact: true,
     private: false,
     always: false,
-    component: SignIn,
+    component: SignInPage,
+  },
+  {
+    name: 'productList',
+    path: '/product-list',
+    exact: true,
+    private: true,
+    always: false,
+    component: ProductListPage,
   },
   {
     name: 'routeNotFound',
@@ -26,6 +35,6 @@ export const routes: RouteItem[] = [
     exact: false,
     private: false,
     always: true,
-    component: RouteNotFound,
+    component: RouteNotFoundPage,
   },
 ];

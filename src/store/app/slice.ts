@@ -6,6 +6,7 @@ const APP_SLICE_NAME = 'app';
 const initialState: AppState = {
   isDarkMode: false,
   isOpenMenu: true,
+  isSmallWidth: false,
 };
 
 export const appSlice = createSlice({
@@ -23,6 +24,9 @@ export const appSlice = createSlice({
     },
     toggleMenuMode: (state) => {
       state.isOpenMenu = !state.isOpenMenu;
+    },
+    setIsSmallWidth: (state, action: PayloadAction<boolean>) => {
+      state.isSmallWidth = action.payload;
     },
   },
 });

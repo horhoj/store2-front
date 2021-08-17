@@ -29,7 +29,7 @@ const initialFormValues: UserCredentials = {
   password: DEFAULT_SIGN_IN_PASSWORD,
 };
 
-export const SignIn: React.FC = () => {
+export const SignInPage: React.FC = () => {
   const t = useAppTranslation();
   const dispatch = useAppDispatch();
   const requestError = useAppSelector(authSelectors.getRequestError);

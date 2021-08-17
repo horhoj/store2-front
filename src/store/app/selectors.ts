@@ -5,3 +5,6 @@ export const getIsDarkMode = (state: RootState): boolean =>
 
 export const getIsOpenMenu = (state: RootState): boolean =>
   state.app.isOpenMenu;
+
+export const getIsSmallWidth = (state: RootState): boolean =>
+  state.app.isSmallWidth;

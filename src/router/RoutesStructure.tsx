@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { useAppSelector } from '../store/hooks';
 import { authSelectors } from '../store/auth';
 import { routes } from './routes';
@@ -35,15 +35,16 @@ export const RoutesStructure: React.FC = () => {
   };
 
   return (
-    <BrowserRouter>
+    <>
       {/*<RedirectComponent />*/}
       <Switch>
+        <Redirect from={'/'} to={getPathByName('signIn')} exact={true} />;
         {routes.map((route) => (
           <Route path={route.path} exact={route.exact} key={route.name}>
             {getRouteAction(route)}
           </Route>
         ))}
       </Switch>
-    </BrowserRouter>
+    </>
   );
 };
