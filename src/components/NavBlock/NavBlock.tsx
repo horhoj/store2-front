@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Box, Drawer, Paper, Theme } from '@material-ui/core';
 import styled from 'styled-components';
-import { logger } from '../../utils/logger';
 import { AppNav } from '../AppNav';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { appActions, appSelectors } from '../../store/app';
@@ -11,27 +10,6 @@ export const NavBlock: React.FC = () => {
   const isOpenMenu = useAppSelector(appSelectors.getIsOpenMenu);
   const dispatch = useAppDispatch();
   const isSmallWidth = useAppSelector(appSelectors.getIsSmallWidth);
-
-  useEffect(() => {
-    const handleResize = () => {
-      const innerWidthWhenSidebarIsHidden = 1100;
-      const result = window.innerWidth < innerWidthWhenSidebarIsHidden;
-      dispatch(appActions.setIsSmallWidth(result));
-      //если при изменении размера ширина экрана большая то открываем меню
-      //в противном случае закрываем
-      dispatch(appActions.setIsOpenMenu(!result));
-    };
-
-    //делаем дополнительную проверку при загрузке
-    handleResize();
-
-    window.addEventListener('resize', handleResize);
-    logger('add resize listener');
-    return () => {
-      logger('remove resize listener');
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   const handleDrawerClose = () => {
     dispatch(appActions.setIsOpenMenu(false));

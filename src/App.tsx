@@ -18,6 +18,7 @@ import { authSelectors, authWorkers } from './store/auth';
 import { AppFooter } from './components/AppFooter';
 import { GlobalStyle } from './theme/GlobalStyle';
 import { NavBlock } from './components/NavBlock/NavBlock';
+import { SmallWidthChecker } from './components/SmallWidthChecker';
 
 export const App: React.FC = () => {
   const theme = useAppTheme();
@@ -37,6 +38,7 @@ export const App: React.FC = () => {
             <CssBaseline />
             <GlobalStyle />
             <ProgressBar />
+            <SmallWidthChecker />
             <BrowserRouter>
               <AppWrap>
                 <AppHeader />
