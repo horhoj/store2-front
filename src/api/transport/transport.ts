@@ -21,17 +21,3 @@ export const ajax = async (
     logger('ajax', ajaxWorkReport);
   }
 };
-
-// export const ajaxRequestWithAuthHeader = async (
-//   requestConfig: AxiosRequestConfig,
-// ): Promise<AxiosResponse> => {
-//   const accessToken = localStorage.getItem(ACCESS_TOKEN_LS_KEY) ?? '';
-//   const finalRequestConfig: AxiosRequestConfig = {
-//     ...requestConfig,
-//     headers: {
-//       ...requestConfig.headers,
-//       Authorization: `Bearer ${accessToken}`,
-//     },
-//   };
-//   return ajaxRequest(finalRequestConfig);
-// };

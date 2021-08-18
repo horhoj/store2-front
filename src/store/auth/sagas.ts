@@ -97,6 +97,8 @@ export function* signOutWorker(): SagaIterator {
       ajax,
       addBearerTokenToRequestConfig(token || '', getTokenRevokeRequestConfig()),
     );
+
+    yield call([localStorage, localStorage.removeItem], ACCESS_TOKEN_LS_KEY);
   } catch (e) {
     yield call(logger, 'signOutWorker errors', getErrorData(e));
   } finally {
