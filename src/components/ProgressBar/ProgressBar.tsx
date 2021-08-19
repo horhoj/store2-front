@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useAppSelector } from '../../store/hooks';
 import { authSelectors } from '../../store/auth';
+import { productListSelectors } from '../../features/productList/ProductListReducer';
 
 const StyledLinearProgress = styled(LinearProgress)`
   position: fixed;
@@ -18,6 +19,7 @@ export const ProgressBar: React.FC = () => {
   const authIsLoadingUserData = useAppSelector(
     authSelectors.getIsLoadingUserData,
   );
-  const isProgress = authIsLoading || authIsLoadingUserData;
+  const productList = useAppSelector(productListSelectors.getIsLoading);
+  const isProgress = authIsLoading || authIsLoadingUserData || productList;
   return isProgress ? <StyledLinearProgress /> : null;
 };

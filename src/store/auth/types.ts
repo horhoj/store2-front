@@ -11,8 +11,8 @@ export interface AuthState {
 
 export enum AuthSagaWorkerType {
   SIGN_IN_WORKER = 'auth/authSignInWorker',
-  GET_USER_DATA = 'auth/getUserData',
-  SIGN_OUT = 'auth/signOut',
+  GET_USER_DATA = 'auth/getUserDataWorker',
+  SIGN_OUT = 'auth/signOutWorker',
 }
 
 interface AuthSagaWorker<T, P> {

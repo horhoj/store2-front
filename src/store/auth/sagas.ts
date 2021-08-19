@@ -26,6 +26,7 @@ export function* authWatcher(): SagaIterator {
 
 export function* signUpWorker(action: AuthSignInWorker): SagaIterator {
   try {
+    yield call(logger, 'test xxx');
     yield put(authActions.setIsLoading(true));
     yield put(authActions.SetUserData(null));
     yield put(authActions.SetRequestError(null));
