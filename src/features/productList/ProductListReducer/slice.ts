@@ -1,10 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ProductListResponseType } from '../types';
-import { ProductListState } from './types';
+import { ProductListRequestOptions, ProductListState } from './types';
 
 const initialState: ProductListState = {
-  isLoading: true,
+  isLoading: false,
   productListResponse: null,
+  requestOptions: {
+    page: 1,
+    per_page: 10,
+    search: '',
+    sort_asc: 1,
+    sort_field: 'id',
+  },
 };
 
 export const productListSlice = createSlice({
@@ -19,6 +26,12 @@ export const productListSlice = createSlice({
       action: PayloadAction<ProductListResponseType | null>,
     ) => {
       state.productListResponse = action.payload;
+    },
+    setRequestOptions: (
+      state,
+      action: PayloadAction<ProductListRequestOptions>,
+    ) => {
+      state.requestOptions = action.payload;
     },
   },
 });

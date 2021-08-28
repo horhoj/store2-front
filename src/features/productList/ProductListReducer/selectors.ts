@@ -1,5 +1,6 @@
 import { RootState } from '../../../store/types';
 import { ProductListResponseType } from '../types';
+import { ProductListRequestOptions } from './types';
 
 export const getIsLoading = (state: RootState): boolean =>
   state.productList.isLoading;
@@ -7,3 +8,7 @@ export const getIsLoading = (state: RootState): boolean =>
 export const getProductListResponse = (
   state: RootState,
 ): ProductListResponseType | null => state.productList.productListResponse;
+
+export const getRequestOptions = (
+  state: RootState,
+): ProductListRequestOptions => state.productList.requestOptions;

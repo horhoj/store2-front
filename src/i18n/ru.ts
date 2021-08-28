@@ -12,4 +12,9 @@ export const ru: typeof en = {
   'page__sign-in__form-label__email': 'Почта',
   'page__sign-in__form-label__password': 'Пароль',
   'page__sign-in__form-label__submit-btn': 'ВОЙТИ',
+  //productListFor
+  'features__product-list-form__data-grid-column__id': 'ИД',
+  'features__product-list-form__data-grid-column__title': 'Наименование',
+  'features__product-list-form__data-grid-column__description': 'Описание',
+  'features__product-list-form__data-grid-column__options': 'Опции',
 };

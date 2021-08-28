@@ -11,7 +11,6 @@ import styled from 'styled-components';
 import { FormikConfig, useFormik } from 'formik';
 import { FormHelperText, Link } from '@material-ui/core';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import * as yup from 'yup';
 import { UserCredentials } from '../../types/userData';
 import {
   DEFAULT_SIGN_IN_EMAIL,
@@ -23,8 +22,9 @@ import { User } from '../../components/User';
 import { StyledFieldSet } from '../../theme/styled';
 import { useAppTranslation } from '../../i18n/useAppTranslation';
 import { getErrorMessage } from './helpers';
+import { useSignInValidationSchema } from './hooks';
 
-const initialFormValues: UserCredentials = {
+const initialValues: UserCredentials = {
   email: DEFAULT_SIGN_IN_EMAIL,
   password: DEFAULT_SIGN_IN_PASSWORD,
 };
@@ -35,25 +35,15 @@ export const SignInPage: React.FC = () => {
   const requestError = useAppSelector(authSelectors.getRequestError);
   const isLoading = useAppSelector(authSelectors.getIsLoading);
 
-  const SignInValidationSchema = yup.object({
-    email: yup
-      .string()
-      .required(t('validation__required'))
-      .email(t('validation__email')),
-    password: yup
-      .string()
-      .required(t('validation__required'))
-      .min(8, t('validation__min_x_symbol', { x: 8 }))
-      .max(30, t('validation__max_x_symbol', { x: 30 })),
-  });
+  const validationSchema = useSignInValidationSchema();
 
   const formikConfig: FormikConfig<UserCredentials> = {
     enableReinitialize: false,
-    initialValues: initialFormValues,
+    initialValues,
     onSubmit: (values) => {
       dispatch(authWorkers.authSignUp(values));
     },
-    validationSchema: SignInValidationSchema,
+    validationSchema,
   };
 
   const formik = useFormik<UserCredentials>(formikConfig);
