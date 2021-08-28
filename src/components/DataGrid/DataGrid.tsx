@@ -9,7 +9,11 @@ import React from 'react';
 import { DataGridProps } from './types';
 import { DataGridRow } from './components/DataGridRow';
 
-export const DataGrid: React.FC<DataGridProps> = ({ fields, rows }) => {
+export const DataGrid: React.FC<DataGridProps> = ({
+  fields,
+  rows,
+  disabled,
+}) => {
   return (
     <>
       <Table>

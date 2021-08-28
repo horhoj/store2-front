@@ -1,6 +1,7 @@
 export interface DataGridProps {
   fields: DataGridColumn[];
   rows: DataGridRow[];
+  disabled: boolean;
 }
 
 export interface DataGridColumn<T = string> {
