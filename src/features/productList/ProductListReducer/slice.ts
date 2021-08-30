@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ProductListResponseType } from '../types';
+import { Product } from '../../../types/product';
 import { ProductListRequestOptions, ProductListState } from './types';
 
 const initialState: ProductListState = {
@@ -21,17 +22,31 @@ export const productListSlice = createSlice({
     setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
+
     setProductListResponse: (
       state,
       action: PayloadAction<ProductListResponseType | null>,
     ) => {
       state.productListResponse = action.payload;
     },
+
     setRequestOptions: (
       state,
-      action: PayloadAction<ProductListRequestOptions>,
+      action: PayloadAction<Partial<ProductListRequestOptions>>,
     ) => {
-      state.requestOptions = action.payload;
+      state.requestOptions = { ...state.requestOptions, ...action.payload };
+    },
+
+    sort: (state, action: PayloadAction<keyof Product>) => {
+      const { sort_field, sort_asc } = state.requestOptions;
+      const newSortField = action.payload;
+      state.requestOptions.page = 1;
+      if (sort_field === newSortField) {
+        state.requestOptions.sort_asc = sort_asc === 1 ? 0 : 1;
+      } else {
+        state.requestOptions.sort_field = newSortField;
+        state.requestOptions.sort_asc = 1;
+      }
     },
   },
 });

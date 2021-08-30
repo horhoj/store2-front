@@ -1,35 +1,48 @@
-import {
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-} from '@material-ui/core';
+import { Table, TableHead, TableBody, Box } from '@material-ui/core';
 import React from 'react';
+import styled from 'styled-components';
 import { DataGridProps } from './types';
 import { DataGridRow } from './components/DataGridRow';
+import { DataGridHeadRow } from './components/DataGridHeadRow';
 
 export const DataGrid: React.FC<DataGridProps> = ({
   fields,
   rows,
   disabled,
+  handleColumnClkCb,
+  sortAsc,
+  sortField,
 }) => {
+  const handleColumnHeaderClk = (fieldName: string) => {
+    handleColumnClkCb(fieldName);
+  };
+
   return (
-    <>
-      <Table>
+    <Wrap>
+      <StyledTable>
         <TableHead>
-          <TableRow>
-            {fields.map((field) => (
-              <TableCell key={field.id}>{field.title.toUpperCase()}</TableCell>
-            ))}
-          </TableRow>
+          <DataGridHeadRow
+            fields={fields}
+            handleColumnHeaderClkCb={handleColumnHeaderClk}
+            sortField={sortField}
+            sortAsc={sortAsc}
+          />
         </TableHead>
         <TableBody>
           {rows.map((row) => (
             <DataGridRow key={row.id} row={row} fields={fields} />
           ))}
         </TableBody>
-      </Table>
-    </>
+      </StyledTable>
+    </Wrap>
   );
 };
+
+const Wrap = styled(Box)`
+  width: 100%;
+  overflow-x: auto;
+`;
+
+const StyledTable = styled(Table)`
+  min-width: 600px;
+`;

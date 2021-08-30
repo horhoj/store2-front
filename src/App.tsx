@@ -67,10 +67,12 @@ const AppWrap = styled(Box)`
 `;
 const CenterBlock = styled(Box)`
   display: flex;
+  width: 100%;
   flex-grow: 1;
 `;
 
 const Main = styled.main`
+  width: 100%;
   display: flex;
   flex-grow: 1;
   padding: ${({ theme }) => (theme as Theme).spacing(1, 0)};
@@ -78,6 +80,5 @@ const Main = styled.main`
 
 const StyledPaper = styled(Paper)`
   padding: ${({ theme }) => (theme as Theme).spacing(1)}px;
-  display: flex;
-  flex-grow: 1;
+  width: 100%;
 `;

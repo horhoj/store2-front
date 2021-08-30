@@ -8,6 +8,7 @@ import {
   productListWorkers,
 } from '../ProductListReducer';
 import { DataGrid } from '../../../components/DataGrid';
+import { Product } from '../../../types/product';
 import { useFields } from './hooks';
 
 export const ProductListForm: React.FC = () => {
@@ -17,31 +18,37 @@ export const ProductListForm: React.FC = () => {
   );
 
   const isLoading = useAppSelector(productListSelectors.getIsLoading);
+  const requestOptions = useAppSelector(productListSelectors.getRequestOptions);
 
   useEffect(() => {
-    dispatch(productListWorkers.fetchData({}));
+    dispatch(productListWorkers.fetchData());
   }, []);
 
   const fields = useFields();
+
+  const handleColumnHeaderClk = (fieldName: keyof Product) => {
+    dispatch(productListWorkers.sort(fieldName));
+  };
 
   const handlePaginationBtnClk = (
     e: React.ChangeEvent<unknown>,
     page: number,
   ) => {
-    dispatch(productListWorkers.fetchData({ page }));
+    dispatch(productListWorkers.goToPage(page));
   };
 
   return productList ? (
     <Wrap>
-      {productList ? (
-        <DataGrid
-          rows={productList.data}
-          fields={fields}
-          disabled={isLoading}
-        />
-      ) : null}
+      <DataGrid
+        rows={productList.data}
+        fields={fields}
+        disabled={isLoading}
+        handleColumnClkCb={handleColumnHeaderClk}
+        sortField={requestOptions.sort_field}
+        sortAsc={Boolean(requestOptions.sort_asc)}
+      />
       <StyledPagination
-        count={productList.per_page}
+        count={productList.last_page}
         page={productList.current_page}
         onChange={handlePaginationBtnClk}
         disabled={isLoading}
@@ -57,7 +64,5 @@ const Wrap = styled(Box)`
 `;
 
 const StyledPagination = styled(Pagination)`
-  margin-top: ${({ theme }) => (theme as Theme).spacing(2)}px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: ${({ theme }) => (theme as Theme).spacing(2)}px auto 0;
 `;

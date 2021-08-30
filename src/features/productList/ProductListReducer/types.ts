@@ -12,6 +12,8 @@ export interface ProductListState {
 
 export enum ProductListWorkerType {
   FETCH_DATA_WORKER = 'productList/fetchDataWorker',
+  SORT_WORKER = 'productList/sortWorker',
+  GO_TO_PAGE = 'productList/goToPageWorker',
 }
 
 interface ProductListWorker<T, P> {
@@ -21,5 +23,15 @@ interface ProductListWorker<T, P> {
 
 export type FetchDataWorker = ProductListWorker<
   ProductListWorkerType.FETCH_DATA_WORKER,
-  Partial<ProductListRequestOptions>
+  null
+>;
+
+export type SortWorker = ProductListWorker<
+  ProductListWorkerType.SORT_WORKER,
+  keyof Product
+>;
+
+export type GoToPageWorker = ProductListWorker<
+  ProductListWorkerType.GO_TO_PAGE,
+  number
 >;
