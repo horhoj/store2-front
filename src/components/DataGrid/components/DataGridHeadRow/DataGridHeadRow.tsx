@@ -10,6 +10,7 @@ export const DataGridHeadRow: React.FC<DataGridHeadRowProps> = ({
   handleColumnHeaderClkCb,
   sortField,
   sortAsc,
+  disabled,
 }) => {
   const handleColumnClkCreator = (fieldName: string) => () => {
     handleColumnHeaderClkCb(fieldName);
@@ -29,6 +30,7 @@ export const DataGridHeadRow: React.FC<DataGridHeadRowProps> = ({
           <ColumnBtn
             disableRipple={true}
             onClick={handleColumnClkCreator(field.name)}
+            disabled={disabled}
           >
             {field.title.toUpperCase()}&nbsp;{arrow(field.name)}
           </ColumnBtn>

@@ -26,6 +26,7 @@ export const DataGrid: React.FC<DataGridProps> = ({
             handleColumnHeaderClkCb={handleColumnHeaderClk}
             sortField={sortField}
             sortAsc={sortAsc}
+            disabled={disabled}
           />
         </TableHead>
         <TableBody>

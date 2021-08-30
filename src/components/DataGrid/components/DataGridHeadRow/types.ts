@@ -5,4 +5,5 @@ export interface DataGridHeadRowProps {
   handleColumnHeaderClkCb(fieldName: string): void;
   sortField: string;
   sortAsc: boolean;
+  disabled: boolean;
 }
