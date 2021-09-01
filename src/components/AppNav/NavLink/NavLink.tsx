@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink as RouterLink } from 'react-router-dom';
-import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { ListItem, ListItemIcon, ListItemText, Theme } from '@material-ui/core';
 import styled from 'styled-components';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { appActions, appSelectors } from '../../../store/app';
@@ -44,7 +44,7 @@ export const NavLink: React.FC<NavLinkProps> = ({
 const StyledListItem: typeof ListItem = styled(ListItem)`
   &.active svg,
   &.active .link-text {
-    color: magenta;
+    color: ${({ theme }) => (theme as Theme).palette.primary.main};
   }
 `;
 

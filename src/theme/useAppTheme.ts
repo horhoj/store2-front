@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { createTheme, Theme, useMediaQuery } from '@material-ui/core';
+import { createTheme, Theme, useMediaQuery, colors } from '@material-ui/core';
+
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { appActions, appSelectors } from '../store/app';
 
@@ -19,6 +20,7 @@ export const useAppTheme = (): Theme => {
       createTheme({
         palette: {
           type: isDarkMode ? 'dark' : 'light',
+          primary: isDarkMode ? colors.deepOrange : colors.deepPurple,
         },
       }),
     [isDarkMode],

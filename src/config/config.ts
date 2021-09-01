@@ -14,3 +14,5 @@ export const DEFAULT_REQUEST_HEADERS = {
 export const ACCESS_TOKEN_LS_KEY = 'ACCESS_TOKEN_LS_KEY';
 
 export const isStrictMode = false;
+
+export const DEFAULT_DEBOUNCED_INPUT_DELAY = 600;

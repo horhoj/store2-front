@@ -3,6 +3,7 @@ import {
   FetchDataWorker,
   GoToPageWorker,
   ProductListWorkerType,
+  SearchWorker,
   SortWorker,
 } from './types';
 
@@ -19,4 +20,9 @@ export const sort = (fieldName: keyof Product): SortWorker => ({
 export const goToPage = (page: number): GoToPageWorker => ({
   type: ProductListWorkerType.GO_TO_PAGE,
   payload: page,
+});
+
+export const search = (searchStr: string): SearchWorker => ({
+  type: ProductListWorkerType.SEARCH,
+  payload: searchStr,
 });
