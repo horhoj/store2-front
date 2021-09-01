@@ -2,6 +2,17 @@
 
 export const en = {
   test: 'TEST',
+  //nav-link
+  'nav-link__home': 'Home',
+  'nav-link__product-list': 'Product list',
+  //app__user
+  'app__user__user-id': 'ID',
+  'app__user__user-email': 'Email',
+  'app__user__user-name': 'Name',
+  'app__user__user-logout-btn': 'Logout',
+  //app__footer
+  'app__footer__copyright-msg1': 'Copyright © 2021 cool29horhoj',
+  'app__footer__copyright-msg2': 'All rights reserved.',
   //validation
   validation__min_x_symbol: 'min {{x}} symbol',
   validation__max_x_symbol: 'max {{x}} symbol',
@@ -17,4 +28,5 @@ export const en = {
   'features__product-list-form__data-grid-column__title': 'Title',
   'features__product-list-form__data-grid-column__description': 'Description',
   'features__product-list-form__data-grid-column__options': 'Options',
+  'features__product-list-form__search-placeholder': 'search',
 };

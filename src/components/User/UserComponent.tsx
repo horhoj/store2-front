@@ -4,11 +4,13 @@ import PersonIcon from '@material-ui/icons/Person';
 import styled from 'styled-components';
 import { authSelectors, authWorkers } from '../../store/auth';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { useAppTranslation } from '../../i18n/useAppTranslation';
 
 export const UserComponent: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const userData = useAppSelector(authSelectors.getUserData);
   const dispatch = useAppDispatch();
+  const t = useAppTranslation();
 
   const handleLogout = () => {
     dispatch(authWorkers.authSignOut());
@@ -40,12 +42,14 @@ export const UserComponent: React.FC = () => {
       >
         <MenuItem button={false} style={{ outline: 'none' }}>
           <UserDataBox>
-            <Box>UserID: {userData.id}</Box>
-            <Box>Email: {userData.email}</Box>
-            <Box>Name: {userData.name}</Box>
+            <Box>{`${t('app__user__user-id')}: ${userData.id}`}</Box>
+            <Box>{`${t('app__user__user-email')}: ${userData.email}`}</Box>
+            <Box>{`${t('app__user__user-name')}: ${userData.name}`}</Box>
           </UserDataBox>
         </MenuItem>
-        <MenuItem onClick={handleLogout}>logout</MenuItem>
+        <MenuItem onClick={handleLogout}>
+          {t('app__user__user-logout-btn')}
+        </MenuItem>
       </StyledMenu>
     </Wrap>
   ) : null;

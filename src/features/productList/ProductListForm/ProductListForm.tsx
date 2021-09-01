@@ -6,6 +6,7 @@ import {
 } from '../ProductListReducer';
 import { Product } from '../../../types/product';
 import { EntityListForm } from '../../../components/EntityListForm';
+import { useAppTranslation } from '../../../i18n/useAppTranslation';
 import { useFields } from './hooks';
 
 export const ProductListForm: React.FC = () => {
@@ -22,6 +23,7 @@ export const ProductListForm: React.FC = () => {
   }, []);
 
   const fields = useFields();
+  const t = useAppTranslation();
 
   const handleColumnHeaderClk = (fieldName: keyof Product) => {
     dispatch(productListWorkers.sort(fieldName));
@@ -58,7 +60,7 @@ export const ProductListForm: React.FC = () => {
       pageCount={productList.last_page}
       page={productList.current_page}
       paginationBtnClkCb={handlePaginationBtnClk}
-      searchPlaceholder={'search'}
+      searchPlaceholder={t('features__product-list-form__search-placeholder')}
     />
   ) : null;
 };

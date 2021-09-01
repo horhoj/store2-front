@@ -4,20 +4,23 @@ import styled from 'styled-components';
 import HomeIcon from '@material-ui/icons/Home';
 import DevicesOtherIcon from '@material-ui/icons/DevicesOther';
 import { getPathByName } from '../../router';
+import { useAppTranslation } from '../../i18n/useAppTranslation';
 import { NavLink } from './NavLink';
 
 export const AppNav: React.FC = () => {
+  const t = useAppTranslation();
+
   return (
     <StyledList component="nav">
       <NavLink
         to={getPathByName('home')}
         icon={<HomeIcon />}
-        primary={'home'}
+        primary={t('nav-link__home')}
       />
       <NavLink
         to={getPathByName('productList')}
         icon={<DevicesOtherIcon />}
-        primary={'productList'}
+        primary={t('nav-link__product-list')}
       />
     </StyledList>
   );
