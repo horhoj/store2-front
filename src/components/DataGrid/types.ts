@@ -5,6 +5,7 @@ export interface DataGridProps {
   handleColumnClkCb(fieldName: string): void;
   sortField: string;
   sortAsc: boolean;
+  searchStr: string;
 }
 
 export interface DataGridColumn<T = string> {

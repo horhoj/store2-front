@@ -49,6 +49,7 @@ export const EntityListForm: React.FC<EntityListFormProps> = ({
         handleColumnClkCb={columnHeaderClkCb}
         sortField={sortField}
         sortAsc={sortAsc}
+        searchStr={searchStr}
       />
       <StyledPagination
         count={pageCount}

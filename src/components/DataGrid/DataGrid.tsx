@@ -12,6 +12,7 @@ export const DataGrid: React.FC<DataGridProps> = ({
   handleColumnClkCb,
   sortAsc,
   sortField,
+  searchStr,
 }) => {
   const handleColumnHeaderClk = (fieldName: string) => {
     handleColumnClkCb(fieldName);
@@ -31,7 +32,12 @@ export const DataGrid: React.FC<DataGridProps> = ({
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <DataGridRow key={row.id} row={row} fields={fields} />
+            <DataGridRow
+              key={row.id}
+              row={row}
+              fields={fields}
+              searchStr={searchStr}
+            />
           ))}
         </TableBody>
       </StyledTable>
