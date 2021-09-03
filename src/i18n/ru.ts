@@ -13,6 +13,14 @@ export const ru: typeof en = {
   //app__footer
   'app__footer__copyright-msg1': 'Авторское право © {{year}} cool29horhoj.',
   'app__footer__copyright-msg2': 'Все права защищены.',
+  //requestErrorView
+  'app__request-error-view__title': 'Ошибка выполнения запроса',
+  'app__request-error-view__error__invalid-credentials':
+    'Неверные учетные данные',
+  'app__request-error-view__error__failed-to-get-a-response-from-the-server':
+    'Ошибка получения ответа от сервера',
+  'app__request-error-view__error__unknown-error-with-code':
+    'Неизвестная ошибка с кодом {{code}}',
   //validation
   validation__min_x_symbol: 'минимум {{x}} символов',
   validation__max_x_symbol: 'максимум {{x}} символов',
@@ -23,7 +31,7 @@ export const ru: typeof en = {
   'page__sign-in__form-label__email': 'Почта',
   'page__sign-in__form-label__password': 'Пароль',
   'page__sign-in__form-label__submit-btn': 'ВОЙТИ',
-  //productListFor
+  //productListForm
   'features__product-list-form__data-grid-column__id': 'ИД',
   'features__product-list-form__data-grid-column__title': 'Наименование',
   'features__product-list-form__data-grid-column__description': 'Описание',

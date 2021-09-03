@@ -4,6 +4,10 @@ import { Theme, Typography } from '@material-ui/core';
 import { CellValueProps } from './types';
 
 export const CellValue: React.FC<CellValueProps> = ({ value, searchStr }) => {
+  //если значение ячейки не задано
+  if (value === null) {
+    return <></>;
+  }
   //если строка поиска не задана то возвращаем value
   if (searchStr === '') {
     return <>{value}</>;

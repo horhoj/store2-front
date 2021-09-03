@@ -9,7 +9,6 @@ import Container from '@material-ui/core/Container';
 import styled from 'styled-components';
 import { FormikConfig, useFormik } from 'formik';
 import { FormHelperText } from '@material-ui/core';
-import { Alert, AlertTitle } from '@material-ui/lab';
 import { UserCredentials } from '../../types/userData';
 import {
   DEFAULT_SIGN_IN_EMAIL,
@@ -20,7 +19,7 @@ import { authSelectors, authWorkers } from '../../store/auth';
 import { User } from '../../components/User';
 import { StyledFieldSet } from '../../theme/styled';
 import { useAppTranslation } from '../../i18n/useAppTranslation';
-import { getErrorMessage } from './helpers';
+import { RequestErrorView } from '../../components/RequestErrorView';
 import { useSignInValidationSchema } from './hooks';
 
 const initialValues: UserCredentials = {
@@ -47,6 +46,10 @@ export const SignInPage: React.FC = () => {
 
   const formik = useFormik<UserCredentials>(formikConfig);
 
+  const requestErrorRender = requestError ? (
+    <RequestErrorView requestError={requestError} />
+  ) : null;
+
   return (
     <Container component="main" maxWidth="xs">
       <Wrap>
@@ -59,12 +62,7 @@ export const SignInPage: React.FC = () => {
         </Typography>
         <StyledFieldSet disabled={isLoading} fullWidth={true}>
           <Form noValidate onSubmit={formik.handleSubmit}>
-            {requestError ? (
-              <StyledAlert severity={'error'}>
-                <AlertTitle>Sign in Error</AlertTitle>
-                {getErrorMessage(requestError)}
-              </StyledAlert>
-            ) : null}
+            {requestErrorRender}
             <TextField
               variant="outlined"
               margin="normal"
@@ -99,18 +97,6 @@ export const SignInPage: React.FC = () => {
             >
               {t('page__sign-in__form-label__submit-btn')}
             </StyledButton>
-            {/*<Grid container>*/}
-            {/*  <Grid item xs>*/}
-            {/*    <Link href="#" color={'textSecondary'}>*/}
-            {/*      Forgot password?*/}
-            {/*    </Link>*/}
-            {/*  </Grid>*/}
-            {/*  <Grid item>*/}
-            {/*    <Link href="#" color={'textSecondary'}>*/}
-            {/*      {"Don't have an account? Sign Up"}*/}
-            {/*    </Link>*/}
-            {/*  </Grid>*/}
-            {/*</Grid>*/}
           </Form>
         </StyledFieldSet>
       </Wrap>
@@ -137,9 +123,4 @@ const Form = styled.form`
 
 const StyledButton = styled(Button)`
   margin: ${({ theme }) => theme.spacing(3, 0, 2)};
-`;
-
-const StyledAlert = styled(Alert)`
-  margin-top: ${({ theme }) => theme.spacing(2)}px;
-  width: 100%;
 `;

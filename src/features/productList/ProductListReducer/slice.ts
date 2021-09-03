@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ProductListResponseType } from '../types';
 import { Product } from '../../../types/product';
+import { RequestError } from '../../../store/types';
 import { ProductListRequestOptions, ProductListState } from './types';
 
 const initialState: ProductListState = {
@@ -13,6 +14,7 @@ const initialState: ProductListState = {
     sort_asc: 1,
     sort_field: 'id',
   },
+  requestError: null,
 };
 
 export const productListSlice = createSlice({
@@ -47,6 +49,13 @@ export const productListSlice = createSlice({
         state.requestOptions.sort_field = newSortField;
         state.requestOptions.sort_asc = 1;
       }
+    },
+    setRequestError: (state, action: PayloadAction<RequestError | null>) => {
+      state.requestError = action.payload;
+    },
+    clear: (state) => {
+      state.requestError = null;
+      state.productListResponse = null;
     },
   },
 });

@@ -1,4 +1,4 @@
-import { RootState } from '../../../store/types';
+import { RequestError, RootState } from '../../../store/types';
 import { ProductListResponseType } from '../types';
 import { ProductListRequestOptions } from './types';
 
@@ -12,3 +12,6 @@ export const getProductListResponse = (
 export const getRequestOptions = (
   state: RootState,
 ): ProductListRequestOptions => state.productList.requestOptions;
+
+export const getRequestError = (state: RootState): RequestError | null =>
+  state.productList.requestError;

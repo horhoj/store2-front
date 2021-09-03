@@ -52,7 +52,10 @@ export function* signUpWorker(action: AuthSignInWorker): SagaIterator {
     yield put(authActions.SetUserData(responseToUserDataRequest.data));
     yield put(authActions.setIsAuthenticated(true));
   } catch (e) {
-    const errorData = getErrorData(e);
+    const errorData: ReturnType<typeof getErrorData> = yield call(
+      getErrorData,
+      e,
+    );
     yield call(logger, 'signUpWorker errors', errorData);
     yield put(authActions.SetRequestError(errorData));
   } finally {

@@ -11,8 +11,16 @@ export const en = {
   'app__user__user-name': 'Name',
   'app__user__user-logout-btn': 'Logout',
   //app__footer
-  'app__footer__copyright-msg1': 'Copyright © 2021 cool29horhoj',
+  'app__footer__copyright-msg1': 'Copyright © {{year}} cool29horhoj',
   'app__footer__copyright-msg2': 'All rights reserved.',
+  //requestErrorView
+  'app__request-error-view__title': 'Request execution error',
+  'app__request-error-view__error__invalid-credentials': 'Invalid credentials',
+  'app__request-error-view__error__failed-to-get-a-response-from-the-server':
+    'Failed to get a response from the server',
+  'app__request-error-view__error__unknown-error-with-code':
+    'Unknown error with code {{code}}',
+
   //validation
   validation__min_x_symbol: 'min {{x}} symbol',
   validation__max_x_symbol: 'max {{x}} symbol',

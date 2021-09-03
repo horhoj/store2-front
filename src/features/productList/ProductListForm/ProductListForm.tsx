@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import {
+  productListActions,
   productListSelectors,
   productListWorkers,
 } from '../ProductListReducer';
 import { Product } from '../../../types/product';
 import { EntityListForm } from '../../../components/EntityListForm';
 import { useAppTranslation } from '../../../i18n/useAppTranslation';
+import { RequestErrorView } from '../../../components/RequestErrorView';
 import { useFields } from './hooks';
 
 export const ProductListForm: React.FC = () => {
@@ -17,9 +19,13 @@ export const ProductListForm: React.FC = () => {
 
   const isLoading = useAppSelector(productListSelectors.getIsLoading);
   const requestOptions = useAppSelector(productListSelectors.getRequestOptions);
+  const requestError = useAppSelector(productListSelectors.getRequestError);
 
   useEffect(() => {
     dispatch(productListWorkers.fetchData());
+    return () => {
+      dispatch(productListActions.clear());
+    };
   }, []);
 
   const fields = useFields();
@@ -45,7 +51,7 @@ export const ProductListForm: React.FC = () => {
     dispatch(productListWorkers.search(searchStr));
   };
 
-  return productList ? (
+  const productListFormRender = productList ? (
     <EntityListForm
       disabled={isLoading}
       updateCb={handleUpdateBtnClk}
@@ -63,4 +69,15 @@ export const ProductListForm: React.FC = () => {
       searchPlaceholder={t('features__product-list-form__search-placeholder')}
     />
   ) : null;
+
+  const requestErrorRender = requestError ? (
+    <RequestErrorView requestError={requestError} />
+  ) : null;
+
+  return (
+    <>
+      {requestErrorRender}
+      {productListFormRender}
+    </>
+  );
 };

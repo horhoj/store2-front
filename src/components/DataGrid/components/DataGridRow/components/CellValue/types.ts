@@ -1,4 +1,4 @@
 export interface CellValueProps {
-  value: string;
+  value: string | number | null;
   searchStr: string;
 }

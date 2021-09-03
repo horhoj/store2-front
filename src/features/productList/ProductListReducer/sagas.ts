@@ -23,8 +23,8 @@ export function* productListWatcher(): SagaIterator {
 export function* fetchDataWorker(): SagaIterator {
   try {
     yield put(productListActions.setIsLoading(true));
+    yield put(productListActions.setRequestError(null));
     const requestOptions = yield select(productListSelectors.getRequestOptions);
-
     const requestConfig: ReturnType<typeof getProductListRequestConfig> =
       yield call(getProductListRequestConfig, requestOptions);
     const result: ProductListResponseType = yield call(
@@ -35,7 +35,12 @@ export function* fetchDataWorker(): SagaIterator {
     yield call(logger, 'fetchDataWorker', result);
     yield put(productListActions.setProductListResponse(result));
   } catch (e) {
-    yield call(logger, 'fetchDataWorker', getErrorData(e));
+    const errorData: ReturnType<typeof getErrorData> = yield call(
+      getErrorData,
+      e,
+    );
+    yield call(logger, 'fetchDataWorker', errorData);
+    yield put(productListActions.setRequestError(errorData));
   } finally {
     yield put(productListActions.setIsLoading(false));
   }

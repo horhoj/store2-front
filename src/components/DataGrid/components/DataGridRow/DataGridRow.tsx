@@ -13,7 +13,6 @@ export const DataGridRow: React.FC<DataGridRowProps> = ({
     <TableRow>
       {fields.map((field) => (
         <TableBodyCell key={field.id}>
-          {/*{String(row[field.name]).split(searchStr).join(`|${searchStr}|`)}*/}
           <CellValue value={row[field.name]} searchStr={searchStr} />
         </TableBodyCell>
       ))}

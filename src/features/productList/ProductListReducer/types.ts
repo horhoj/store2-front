@@ -1,6 +1,7 @@
 import { ProductListResponseType } from '../types';
 import { EntityListRequestOptions } from '../../../types/commonTypes';
 import { Product } from '../../../types/product';
+import { RequestError } from '../../../store/types';
 
 export type ProductListRequestOptions = EntityListRequestOptions<keyof Product>;
 
@@ -8,6 +9,7 @@ export interface ProductListState {
   isLoading: boolean;
   productListResponse: ProductListResponseType | null;
   requestOptions: ProductListRequestOptions;
+  requestError: RequestError | null;
 }
 
 export enum ProductListWorkerType {
