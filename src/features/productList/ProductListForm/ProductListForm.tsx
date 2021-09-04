@@ -51,6 +51,10 @@ export const ProductListForm: React.FC = () => {
     dispatch(productListWorkers.search(searchStr));
   };
 
+  const handleChangePerPage = (perPage: number) => {
+    dispatch(productListWorkers.changePerPage(perPage));
+  };
+
   const productListFormRender = productList ? (
     <EntityListForm
       disabled={isLoading}
@@ -67,6 +71,8 @@ export const ProductListForm: React.FC = () => {
       page={productList.current_page}
       paginationBtnClkCb={handlePaginationBtnClk}
       searchPlaceholder={t('features__product-list-form__search-placeholder')}
+      perPage={productList.per_page}
+      changePerPageCb={handleChangePerPage}
     />
   ) : null;
 

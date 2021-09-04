@@ -13,10 +13,11 @@ export interface ProductListState {
 }
 
 export enum ProductListWorkerType {
-  FETCH_DATA_WORKER = 'productList/fetchDataWorker',
-  SORT_WORKER = 'productList/sortWorker',
+  FETCH_DATA = 'productList/fetchDataWorker',
+  SORT = 'productList/sortWorker',
   GO_TO_PAGE = 'productList/goToPageWorker',
   SEARCH = 'productList/searchWorker',
+  CHANGE_PER_PAGE = 'productList/changePerPage',
 }
 
 interface ProductListWorker<T, P> {
@@ -25,12 +26,12 @@ interface ProductListWorker<T, P> {
 }
 
 export type FetchDataWorker = ProductListWorker<
-  ProductListWorkerType.FETCH_DATA_WORKER,
+  ProductListWorkerType.FETCH_DATA,
   null
 >;
 
 export type SortWorker = ProductListWorker<
-  ProductListWorkerType.SORT_WORKER,
+  ProductListWorkerType.SORT,
   keyof Product
 >;
 
@@ -42,4 +43,9 @@ export type GoToPageWorker = ProductListWorker<
 export type SearchWorker = ProductListWorker<
   ProductListWorkerType.SEARCH,
   string
+>;
+
+export type ChangePerPageWorker = ProductListWorker<
+  ProductListWorkerType.CHANGE_PER_PAGE,
+  number
 >;

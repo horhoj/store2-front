@@ -5,6 +5,7 @@ import { requestExecutor } from '../../../store/sagas';
 import { ProductListResponseSchema, ProductListResponseType } from '../types';
 import { getErrorData } from '../../../store/helpers';
 import {
+  ChangePerPageWorker,
   GoToPageWorker,
   ProductListWorkerType,
   SearchWorker,
@@ -14,10 +15,11 @@ import { getProductListRequestConfig } from './helpers';
 import { productListActions, productListSelectors } from './index';
 
 export function* productListWatcher(): SagaIterator {
-  yield takeEvery(ProductListWorkerType.FETCH_DATA_WORKER, fetchDataWorker);
-  yield takeEvery(ProductListWorkerType.SORT_WORKER, sortWorker);
+  yield takeEvery(ProductListWorkerType.FETCH_DATA, fetchDataWorker);
+  yield takeEvery(ProductListWorkerType.SORT, sortWorker);
   yield takeEvery(ProductListWorkerType.GO_TO_PAGE, goToPageWorker);
   yield takeEvery(ProductListWorkerType.SEARCH, searchWorker);
+  yield takeEvery(ProductListWorkerType.CHANGE_PER_PAGE, changePerPageWorker);
 }
 
 export function* fetchDataWorker(): SagaIterator {
@@ -64,6 +66,15 @@ export function* searchWorker(action: SearchWorker): SagaIterator {
       sort_field: 'id',
       sort_asc: 1,
     }),
+  );
+  yield call(fetchDataWorker);
+}
+
+export function* changePerPageWorker(
+  action: ChangePerPageWorker,
+): SagaIterator {
+  yield put(
+    productListActions.setRequestOptions({ per_page: action.payload, page: 1 }),
   );
   yield call(fetchDataWorker);
 }

@@ -1,5 +1,6 @@
 import { Product } from '../../../types/product';
 import {
+  ChangePerPageWorker,
   FetchDataWorker,
   GoToPageWorker,
   ProductListWorkerType,
@@ -8,12 +9,12 @@ import {
 } from './types';
 
 export const fetchData = (): FetchDataWorker => ({
-  type: ProductListWorkerType.FETCH_DATA_WORKER,
+  type: ProductListWorkerType.FETCH_DATA,
   payload: null,
 });
 
 export const sort = (fieldName: keyof Product): SortWorker => ({
-  type: ProductListWorkerType.SORT_WORKER,
+  type: ProductListWorkerType.SORT,
   payload: fieldName,
 });
 
@@ -25,4 +26,9 @@ export const goToPage = (page: number): GoToPageWorker => ({
 export const search = (searchStr: string): SearchWorker => ({
   type: ProductListWorkerType.SEARCH,
   payload: searchStr,
+});
+
+export const changePerPage = (perPage: number): ChangePerPageWorker => ({
+  type: ProductListWorkerType.CHANGE_PER_PAGE,
+  payload: perPage,
 });
