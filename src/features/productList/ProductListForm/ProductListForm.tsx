@@ -9,6 +9,7 @@ import { Product } from '../../../types/product';
 import { EntityListForm } from '../../../components/EntityListForm';
 import { useAppTranslation } from '../../../i18n/useAppTranslation';
 import { RequestErrorView } from '../../../components/RequestErrorView';
+import { EntityListFormSkeleton } from '../../../components/EntityListFormSkeleton';
 import { useFields } from './hooks';
 
 export const ProductListForm: React.FC = () => {
@@ -80,10 +81,14 @@ export const ProductListForm: React.FC = () => {
     <RequestErrorView requestError={requestError} />
   ) : null;
 
+  const skeletonFormRender =
+    isLoading && !productList ? <EntityListFormSkeleton /> : null;
+
   return (
     <>
       {requestErrorRender}
       {productListFormRender}
+      {skeletonFormRender}
     </>
   );
 };
