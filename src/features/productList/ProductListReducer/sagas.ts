@@ -5,12 +5,12 @@ import { requestExecutor } from '../../../store/sagas';
 import { ProductListResponseSchema, ProductListResponseType } from '../types';
 import { getErrorData } from '../../../store/helpers';
 import {
-  ChangePerPageWorker,
-  DeleteProductWorker,
-  GoToPageWorker,
+  ProductListChangePerPageWorker,
+  ProductListDeleteProductWorker,
+  ProductListGoToPageWorker,
   ProductListWorkerType,
-  SearchWorker,
-  SortWorker,
+  ProductListSearchWorker,
+  ProductListSortWorker,
 } from './types';
 import {
   getDeleteProductRequestConfig,
@@ -53,17 +53,19 @@ export function* fetchDataWorker(): SagaIterator {
   }
 }
 
-export function* sortWorker(action: SortWorker): SagaIterator {
+export function* sortWorker(action: ProductListSortWorker): SagaIterator {
   yield put(productListActions.sort(action.payload));
   yield call(fetchDataWorker);
 }
 
-export function* goToPageWorker(action: GoToPageWorker): SagaIterator {
+export function* goToPageWorker(
+  action: ProductListGoToPageWorker,
+): SagaIterator {
   yield put(productListActions.setRequestOptions({ page: action.payload }));
   yield call(fetchDataWorker);
 }
 
-export function* searchWorker(action: SearchWorker): SagaIterator {
+export function* searchWorker(action: ProductListSearchWorker): SagaIterator {
   yield put(
     productListActions.setRequestOptions({
       search: action.payload,
@@ -76,7 +78,7 @@ export function* searchWorker(action: SearchWorker): SagaIterator {
 }
 
 export function* changePerPageWorker(
-  action: ChangePerPageWorker,
+  action: ProductListChangePerPageWorker,
 ): SagaIterator {
   yield put(
     productListActions.setRequestOptions({ per_page: action.payload, page: 1 }),
@@ -85,7 +87,7 @@ export function* changePerPageWorker(
 }
 
 export function* deleteProductWorker(
-  action: DeleteProductWorker,
+  action: ProductListDeleteProductWorker,
 ): SagaIterator {
   try {
     yield put(productListActions.setIsLoading(true));

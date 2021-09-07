@@ -26,32 +26,32 @@ interface ProductListWorker<T, P> {
   payload: P;
 }
 
-export type FetchDataWorker = ProductListWorker<
+export type ProductListFetchDataWorker = ProductListWorker<
   ProductListWorkerType.FETCH_DATA,
   null
 >;
 
-export type SortWorker = ProductListWorker<
+export type ProductListSortWorker = ProductListWorker<
   ProductListWorkerType.SORT,
   keyof Product
 >;
 
-export type GoToPageWorker = ProductListWorker<
+export type ProductListGoToPageWorker = ProductListWorker<
   ProductListWorkerType.GO_TO_PAGE,
   number
 >;
 
-export type SearchWorker = ProductListWorker<
+export type ProductListSearchWorker = ProductListWorker<
   ProductListWorkerType.SEARCH,
   string
 >;
 
-export type ChangePerPageWorker = ProductListWorker<
+export type ProductListChangePerPageWorker = ProductListWorker<
   ProductListWorkerType.CHANGE_PER_PAGE,
   number
 >;
 
-export type DeleteProductWorker = ProductListWorker<
+export type ProductListDeleteProductWorker = ProductListWorker<
   ProductListWorkerType.DELETE,
   number
 >;

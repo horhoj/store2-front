@@ -1,40 +1,42 @@
 import { Product } from '../../../types/product';
 import {
-  ChangePerPageWorker,
-  DeleteProductWorker,
-  FetchDataWorker,
-  GoToPageWorker,
+  ProductListChangePerPageWorker,
+  ProductListDeleteProductWorker,
+  ProductListFetchDataWorker,
+  ProductListGoToPageWorker,
   ProductListWorkerType,
-  SearchWorker,
-  SortWorker,
+  ProductListSearchWorker,
+  ProductListSortWorker,
 } from './types';
 
-export const fetchData = (): FetchDataWorker => ({
+export const fetchData = (): ProductListFetchDataWorker => ({
   type: ProductListWorkerType.FETCH_DATA,
   payload: null,
 });
 
-export const sort = (fieldName: keyof Product): SortWorker => ({
+export const sort = (fieldName: keyof Product): ProductListSortWorker => ({
   type: ProductListWorkerType.SORT,
   payload: fieldName,
 });
 
-export const goToPage = (page: number): GoToPageWorker => ({
+export const goToPage = (page: number): ProductListGoToPageWorker => ({
   type: ProductListWorkerType.GO_TO_PAGE,
   payload: page,
 });
 
-export const search = (searchStr: string): SearchWorker => ({
+export const search = (searchStr: string): ProductListSearchWorker => ({
   type: ProductListWorkerType.SEARCH,
   payload: searchStr,
 });
 
-export const changePerPage = (perPage: number): ChangePerPageWorker => ({
+export const changePerPage = (
+  perPage: number,
+): ProductListChangePerPageWorker => ({
   type: ProductListWorkerType.CHANGE_PER_PAGE,
   payload: perPage,
 });
 
-export const deleteProduct = (id: number): DeleteProductWorker => ({
+export const deleteProduct = (id: number): ProductListDeleteProductWorker => ({
   type: ProductListWorkerType.DELETE,
   payload: id,
 });
