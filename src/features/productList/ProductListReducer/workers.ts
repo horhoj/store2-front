@@ -1,6 +1,7 @@
 import { Product } from '../../../types/product';
 import {
   ChangePerPageWorker,
+  DeleteProductWorker,
   FetchDataWorker,
   GoToPageWorker,
   ProductListWorkerType,
@@ -31,4 +32,9 @@ export const search = (searchStr: string): SearchWorker => ({
 export const changePerPage = (perPage: number): ChangePerPageWorker => ({
   type: ProductListWorkerType.CHANGE_PER_PAGE,
   payload: perPage,
+});
+
+export const deleteProduct = (id: number): DeleteProductWorker => ({
+  type: ProductListWorkerType.DELETE,
+  payload: id,
 });

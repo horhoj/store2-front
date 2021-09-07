@@ -13,6 +13,8 @@ export const DataGrid: React.FC<DataGridProps> = ({
   sortAsc,
   sortField,
   searchStr,
+  actionColumnTitle,
+  actionRowPanelRender,
 }) => {
   const handleColumnHeaderClk = (fieldName: string) => {
     handleColumnClkCb(fieldName);
@@ -28,6 +30,7 @@ export const DataGrid: React.FC<DataGridProps> = ({
             sortField={sortField}
             sortAsc={sortAsc}
             disabled={disabled}
+            actionColumnTitle={actionColumnTitle}
           />
         </TableHead>
         <TableBody>
@@ -37,6 +40,7 @@ export const DataGrid: React.FC<DataGridProps> = ({
               row={row}
               fields={fields}
               searchStr={searchStr}
+              actionRowPanelRender={actionRowPanelRender}
             />
           ))}
         </TableBody>

@@ -2,12 +2,12 @@ export interface DataGridProps {
   fields: DataGridColumn[];
   rows: DataGridRow[];
   disabled: boolean;
-
   handleColumnClkCb(fieldName: string): void;
-
   sortField: string;
   sortAsc: boolean;
   searchStr: string;
+  actionColumnTitle: string;
+  actionRowPanelRender(id: number): JSX.Element;
 }
 
 export interface DataGridColumn<T = string> {

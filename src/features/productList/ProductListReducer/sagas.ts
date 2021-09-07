@@ -6,12 +6,16 @@ import { ProductListResponseSchema, ProductListResponseType } from '../types';
 import { getErrorData } from '../../../store/helpers';
 import {
   ChangePerPageWorker,
+  DeleteProductWorker,
   GoToPageWorker,
   ProductListWorkerType,
   SearchWorker,
   SortWorker,
 } from './types';
-import { getProductListRequestConfig } from './helpers';
+import {
+  getDeleteProductRequestConfig,
+  getProductListRequestConfig,
+} from './helpers';
 import { productListActions, productListSelectors } from './index';
 
 export function* productListWatcher(): SagaIterator {
@@ -20,6 +24,7 @@ export function* productListWatcher(): SagaIterator {
   yield takeEvery(ProductListWorkerType.GO_TO_PAGE, goToPageWorker);
   yield takeEvery(ProductListWorkerType.SEARCH, searchWorker);
   yield takeEvery(ProductListWorkerType.CHANGE_PER_PAGE, changePerPageWorker);
+  yield takeEvery(ProductListWorkerType.DELETE, deleteProductWorker);
 }
 
 export function* fetchDataWorker(): SagaIterator {
@@ -77,4 +82,26 @@ export function* changePerPageWorker(
     productListActions.setRequestOptions({ per_page: action.payload, page: 1 }),
   );
   yield call(fetchDataWorker);
+}
+
+export function* deleteProductWorker(
+  action: DeleteProductWorker,
+): SagaIterator {
+  try {
+    yield put(productListActions.setIsLoading(true));
+    yield put(productListActions.setRequestError(null));
+    const requestConfig: ReturnType<typeof getDeleteProductRequestConfig> =
+      yield call(getDeleteProductRequestConfig, action.payload);
+    yield call(requestExecutor, requestConfig, null);
+    yield call(fetchDataWorker);
+  } catch (e) {
+    const errorData: ReturnType<typeof getErrorData> = yield call(
+      getErrorData,
+      e,
+    );
+    yield call(logger, 'fetchDataWorker', errorData);
+    yield put(productListActions.setRequestError(errorData));
+  } finally {
+    yield put(productListActions.setIsLoading(false));
+  }
 }

@@ -26,6 +26,8 @@ export const EntityListForm: React.FC<EntityListFormProps> = ({
   searchPlaceholder,
   perPage,
   changePerPageCb,
+  actionColumnTitle,
+  actionRowPanelRender,
 }) => {
   return (
     <Wrap>
@@ -52,6 +54,8 @@ export const EntityListForm: React.FC<EntityListFormProps> = ({
         sortField={sortField}
         sortAsc={sortAsc}
         searchStr={searchStr}
+        actionColumnTitle={actionColumnTitle}
+        actionRowPanelRender={actionRowPanelRender}
       />
       <PerPageSelect
         value={perPage}

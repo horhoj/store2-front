@@ -14,7 +14,7 @@ import { authActions } from './auth';
 
 export function* requestExecutor(
   requestConfig: AxiosRequestConfig,
-  validationSchema: AnyObjectSchema,
+  validationSchema: AnyObjectSchema | null,
 ): SagaIterator {
   try {
     const defaultRequestConfig: ReturnType<typeof getDefaultRequestConfig> =
@@ -28,13 +28,17 @@ export function* requestExecutor(
         ...requestConfig,
         ...defaultRequestConfig,
       });
+    //если при запросе подразумевается ответ в виде json, который мы валидируем
+    if (validationSchema) {
+      const response: AxiosResponse<Asserts<typeof validationSchema>> =
+        yield call(ajax, fullRequestConfig);
 
-    const response: AxiosResponse<Asserts<typeof validationSchema>> =
-      yield call(ajax, fullRequestConfig);
+      yield call(validateData, validationSchema, response.data);
 
-    yield call(validateData, validationSchema, response.data);
-
-    return response.data;
+      return response.data;
+    }
+    //если ответа в виде json нет то просто выполняем запрос
+    yield call(ajax, fullRequestConfig);
   } catch (e) {
     const unauthorizedAccessStatusCode = 401;
     if (getErrorData(e).responseData?.status === unauthorizedAccessStatusCode) {

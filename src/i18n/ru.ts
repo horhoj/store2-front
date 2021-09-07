@@ -21,6 +21,8 @@ export const ru: typeof en = {
     'Ошибка получения ответа от сервера',
   'app__request-error-view__error__unknown-error-with-code':
     'Неизвестная ошибка с кодом {{code}}',
+  // ActionRowPanelDefault
+  'component__action-row-panel-default__delete-request-message': 'Удалить ?',
   //validation
   validation__min_x_symbol: 'минимум {{x}} символов',
   validation__max_x_symbol: 'максимум {{x}} символов',
@@ -37,4 +39,5 @@ export const ru: typeof en = {
   'features__product-list-form__data-grid-column__description': 'Описание',
   'features__product-list-form__data-grid-column__options': 'Опции',
   'features__product-list-form__search-placeholder': 'найти',
+  'features__product-list-form__action-column-title': 'Действия',
 };

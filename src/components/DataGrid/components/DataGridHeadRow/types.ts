@@ -6,4 +6,5 @@ export interface DataGridHeadRowProps {
   sortField: string;
   sortAsc: boolean;
   disabled: boolean;
+  actionColumnTitle: string;
 }

@@ -8,9 +8,13 @@ export const DataGridRow: React.FC<DataGridRowProps> = ({
   row,
   fields,
   searchStr,
+  actionRowPanelRender,
 }) => {
   return (
     <TableRow>
+      <TableBodyCellActions>
+        {actionRowPanelRender(row.id)}
+      </TableBodyCellActions>
       {fields.map((field) => (
         <TableBodyCell key={field.id}>
           <CellValue value={row[field.name]} searchStr={searchStr} />
@@ -22,4 +26,8 @@ export const DataGridRow: React.FC<DataGridRowProps> = ({
 
 const TableBodyCell = styled(TableCell)`
   padding: ${({ theme }) => (theme as Theme).spacing(2, 3)};
+`;
+
+const TableBodyCellActions = styled(TableCell)`
+  padding: ${({ theme }) => (theme as Theme).spacing(1, 1)};
 `;

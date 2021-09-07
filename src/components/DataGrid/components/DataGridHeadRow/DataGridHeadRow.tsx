@@ -11,6 +11,7 @@ export const DataGridHeadRow: React.FC<DataGridHeadRowProps> = ({
   sortField,
   sortAsc,
   disabled,
+  actionColumnTitle,
 }) => {
   const handleColumnClkCreator = (fieldName: string) => () => {
     handleColumnHeaderClkCb(fieldName);
@@ -25,6 +26,7 @@ export const DataGridHeadRow: React.FC<DataGridHeadRowProps> = ({
 
   return (
     <TableRow>
+      <TableCell>{actionColumnTitle.toUpperCase()}</TableCell>
       {fields.map((field) => (
         <TableCell key={field.id}>
           <ColumnBtn

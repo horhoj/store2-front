@@ -8,3 +8,10 @@ export const getProductListRequestConfig = (
   method: 'get',
   params: requestOptions,
 });
+
+export const getDeleteProductRequestConfig = (
+  id: number,
+): AxiosRequestConfig => ({
+  url: `/products/${id}`,
+  method: 'delete',
+});

@@ -18,6 +18,7 @@ export enum ProductListWorkerType {
   GO_TO_PAGE = 'productList/goToPageWorker',
   SEARCH = 'productList/searchWorker',
   CHANGE_PER_PAGE = 'productList/changePerPage',
+  DELETE = 'productList/delete',
 }
 
 interface ProductListWorker<T, P> {
@@ -47,5 +48,10 @@ export type SearchWorker = ProductListWorker<
 
 export type ChangePerPageWorker = ProductListWorker<
   ProductListWorkerType.CHANGE_PER_PAGE,
+  number
+>;
+
+export type DeleteProductWorker = ProductListWorker<
+  ProductListWorkerType.DELETE,
   number
 >;

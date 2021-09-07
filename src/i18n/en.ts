@@ -20,7 +20,8 @@ export const en = {
     'Failed to get a response from the server',
   'app__request-error-view__error__unknown-error-with-code':
     'Unknown error with code {{code}}',
-
+  // ActionRowPanelDefault
+  'component__action-row-panel-default__delete-request-message': 'Delete ?',
   //validation
   validation__min_x_symbol: 'min {{x}} symbol',
   validation__max_x_symbol: 'max {{x}} symbol',
@@ -37,4 +38,5 @@ export const en = {
   'features__product-list-form__data-grid-column__description': 'Description',
   'features__product-list-form__data-grid-column__options': 'Options',
   'features__product-list-form__search-placeholder': 'search',
+  'features__product-list-form__action-column-title': 'Actions',
 };

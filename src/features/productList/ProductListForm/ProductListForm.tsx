@@ -10,6 +10,8 @@ import { EntityListForm } from '../../../components/EntityListForm';
 import { useAppTranslation } from '../../../i18n/useAppTranslation';
 import { RequestErrorView } from '../../../components/RequestErrorView';
 import { EntityListFormSkeleton } from '../../../components/EntityListFormSkeleton';
+import { ActionRowPanelDefault } from '../../../components/ActionRowPanelDefault';
+import { logger } from '../../../utils/logger';
 import { useFields } from './hooks';
 
 export const ProductListForm: React.FC = () => {
@@ -17,10 +19,11 @@ export const ProductListForm: React.FC = () => {
   const productList = useAppSelector(
     productListSelectors.getProductListResponse,
   );
-
   const isLoading = useAppSelector(productListSelectors.getIsLoading);
   const requestOptions = useAppSelector(productListSelectors.getRequestOptions);
   const requestError = useAppSelector(productListSelectors.getRequestError);
+  const fields = useFields();
+  const t = useAppTranslation();
 
   useEffect(() => {
     dispatch(productListWorkers.fetchData());
@@ -28,9 +31,6 @@ export const ProductListForm: React.FC = () => {
       dispatch(productListActions.clear());
     };
   }, []);
-
-  const fields = useFields();
-  const t = useAppTranslation();
 
   const handleColumnHeaderClk = (fieldName: keyof Product) => {
     dispatch(productListWorkers.sort(fieldName));
@@ -56,6 +56,22 @@ export const ProductListForm: React.FC = () => {
     dispatch(productListWorkers.changePerPage(perPage));
   };
 
+  const handleRowEdit = (id: number) => {
+    logger('ProductListForm', 'edit item', id);
+  };
+
+  const handleDeleteEdit = (id: number) => {
+    dispatch(productListWorkers.deleteProduct(id));
+  };
+
+  const actionRowPanelRender = (id: number) => (
+    <ActionRowPanelDefault
+      id={id}
+      handleEditCb={handleRowEdit}
+      handleDeleteCb={handleDeleteEdit}
+    />
+  );
+
   const productListFormRender = productList ? (
     <EntityListForm
       disabled={isLoading}
@@ -74,6 +90,8 @@ export const ProductListForm: React.FC = () => {
       searchPlaceholder={t('features__product-list-form__search-placeholder')}
       perPage={productList.per_page}
       changePerPageCb={handleChangePerPage}
+      actionColumnTitle={t('features__product-list-form__action-column-title')}
+      actionRowPanelRender={actionRowPanelRender}
     />
   ) : null;
 

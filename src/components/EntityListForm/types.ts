@@ -17,4 +17,6 @@ export interface EntityListFormProps {
   searchPlaceholder: string;
   perPage: number;
   changePerPageCb(perPage: number): void;
+  actionColumnTitle: string;
+  actionRowPanelRender(id: number): JSX.Element;
 }
