@@ -24,10 +24,10 @@ export const ActionRowPanelDefault: React.FC<ActionRowPanelDefaultProps> = ({
   return (
     <Wrap>
       <StyledButton onClick={() => handleEditCb(id)}>
-        <EditIcon />
+        <EditIcon color={'primary'} />
       </StyledButton>
       <StyledButton onClick={handleDeleteBtnClk}>
-        <DeleteForeverIcon />
+        <DeleteForeverIcon color={'secondary'} />
       </StyledButton>
     </Wrap>
   );

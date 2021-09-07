@@ -46,6 +46,10 @@ const StyledListItem: typeof ListItem = styled(ListItem)`
   &.active .link-text {
     color: ${({ theme }) => (theme as Theme).palette.primary.main};
   }
+  &.active .link-text > span {
+    font-weight: 700;
+    font-size: 130%;
+  }
 `;
 
 const StyledListItemIcon = styled(ListItemIcon)`
