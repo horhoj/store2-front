@@ -12,6 +12,7 @@ import { RequestErrorView } from '../../../components/RequestErrorView';
 import { EntityListFormSkeleton } from '../../../components/EntityListFormSkeleton';
 import { ActionRowPanelDefault } from '../../../components/ActionRowPanelDefault';
 import { logger } from '../../../utils/logger';
+import { getPathByName } from '../../../router';
 import { useFields } from './hooks';
 
 export const ProductListForm: React.FC = () => {
@@ -57,7 +58,8 @@ export const ProductListForm: React.FC = () => {
   };
 
   const handleRowEdit = (id: number) => {
-    logger('ProductListForm', 'edit item', id);
+    const path = getPathByName('product', { id });
+    logger('ProductListForm', 'edit item', id, path);
   };
 
   const handleDeleteEdit = (id: number) => {

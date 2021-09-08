@@ -13,3 +13,7 @@ export interface RouteItem {
   always: boolean;
   component: any;
 }
+
+export interface RouteParams {
+  [keys: string]: string | number;
+}
