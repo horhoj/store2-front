@@ -2,6 +2,7 @@ import { HomePage } from '../pages/HomePage';
 import { SignInPage } from '../pages/SignInPage';
 import { RouteNotFoundPage } from '../pages/RouteNotFoundPage';
 import { ProductListPage } from '../pages/ProductListPage';
+import { ProductPage } from '../pages/ProductPage';
 import { RouteItem } from './types';
 
 export const routes: RouteItem[] = [
@@ -23,11 +24,19 @@ export const routes: RouteItem[] = [
   },
   {
     name: 'productList',
-    path: '/product-list',
+    path: '/products',
     exact: true,
     private: true,
     always: false,
     component: ProductListPage,
+  },
+  {
+    name: 'product',
+    path: '/products/:id',
+    exact: true,
+    private: true,
+    always: false,
+    component: ProductPage,
   },
   {
     name: 'routeNotFound',
