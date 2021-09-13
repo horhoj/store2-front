@@ -5,6 +5,7 @@ import { authSelectors } from '../store/auth';
 import { routes } from './routes';
 import { RouteItem } from './types';
 import { getPathByName } from './helpers';
+import { RedirectExecutor } from './RedirectExecutor';
 
 export const RoutesStructure: React.FC = () => {
   const userIsAuthenticated = useAppSelector(authSelectors.getIsAuthenticated);
@@ -36,7 +37,7 @@ export const RoutesStructure: React.FC = () => {
 
   return (
     <>
-      {/*<RedirectComponent />*/}
+      <RedirectExecutor />
       <Switch>
         <Redirect from={'/'} to={getPathByName('signIn')} exact={true} />;
         {routes.map((route) => (

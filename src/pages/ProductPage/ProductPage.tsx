@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router';
-import { ProductEditForm } from '../../features/ProductEdit/ProductEditForm';
+import { ProductForm } from '../../features/Product/ProductForm';
 
 export const ProductPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  return <ProductEditForm id={id} />;
+  return <ProductForm id={id} />;
 };

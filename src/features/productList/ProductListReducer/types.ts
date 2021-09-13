@@ -1,9 +1,9 @@
-import { ProductListResponseType } from '../types';
+import { ProductListItemKeys, ProductListResponseType } from '../types';
 import { EntityListRequestOptions } from '../../../types/commonTypes';
-import { Product } from '../../../types/product';
 import { RequestError } from '../../../store/types';
 
-export type ProductListRequestOptions = EntityListRequestOptions<keyof Product>;
+export type ProductListRequestOptions =
+  EntityListRequestOptions<ProductListItemKeys>;
 
 export interface ProductListState {
   isLoading: boolean;
@@ -33,7 +33,7 @@ export type ProductListFetchDataWorker = ProductListWorker<
 
 export type ProductListSortWorker = ProductListWorker<
   ProductListWorkerType.SORT,
-  keyof Product
+  ProductListItemKeys
 >;
 
 export type ProductListGoToPageWorker = ProductListWorker<

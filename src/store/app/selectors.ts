@@ -8,3 +8,6 @@ export const getIsOpenMenu = (state: RootState): boolean =>
 
 export const getIsSmallWidth = (state: RootState): boolean =>
   state.app.isSmallWidth;
+
+export const getRedirectUrl = (state: RootState): string | null =>
+  state.app.redirectUrl;

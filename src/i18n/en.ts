@@ -39,4 +39,11 @@ export const en = {
   'features__product-list-form__data-grid-column__options': 'Options',
   'features__product-list-form__search-placeholder': 'search',
   'features__product-list-form__action-column-title': 'Actions',
+  //productForm
+  'features__product-form__input-label-title': 'Title',
+  'features__product-form__input-label-description': 'Description',
+  'features__product-form__input-label-options': 'Option',
+  'features__product-form__button-title-save': 'Save',
+  'features__product-form__button-title-previous': 'Previous',
+  'features__product-form__page-edit-title': 'Edit product with ID="{{id}}"',
 };

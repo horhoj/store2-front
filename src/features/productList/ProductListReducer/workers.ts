@@ -1,4 +1,4 @@
-import { Product } from '../../../types/product';
+import { ProductListItemKeys } from '../types';
 import {
   ProductListChangePerPageWorker,
   ProductListDeleteProductWorker,
@@ -14,7 +14,9 @@ export const fetchData = (): ProductListFetchDataWorker => ({
   payload: null,
 });
 
-export const sort = (fieldName: keyof Product): ProductListSortWorker => ({
+export const sort = (
+  fieldName: ProductListItemKeys,
+): ProductListSortWorker => ({
   type: ProductListWorkerType.SORT,
   payload: fieldName,
 });

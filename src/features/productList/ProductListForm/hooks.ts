@@ -1,8 +1,8 @@
 import { useAppTranslation } from '../../../i18n/useAppTranslation';
 import { DataGridColumn } from '../../../components/DataGrid/types';
-import { Product } from '../../../types/product';
+import { ProductListItemKeys } from '../types';
 
-export const useFields = (): DataGridColumn<keyof Product>[] => {
+export const useFields = (): DataGridColumn<ProductListItemKeys>[] => {
   const t = useAppTranslation();
 
   return [

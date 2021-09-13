@@ -7,6 +7,7 @@ const initialState: AppState = {
   isDarkMode: false,
   isOpenMenu: true,
   isSmallWidth: false,
+  redirectUrl: null,
 };
 
 export const appSlice = createSlice({
@@ -27,6 +28,9 @@ export const appSlice = createSlice({
     },
     setIsSmallWidth: (state, action: PayloadAction<boolean>) => {
       state.isSmallWidth = action.payload;
+    },
+    redirect: (state, action: PayloadAction<string | null>) => {
+      state.redirectUrl = action.payload;
     },
   },
 });

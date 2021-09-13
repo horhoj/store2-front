@@ -5,14 +5,14 @@ import {
   productListSelectors,
   productListWorkers,
 } from '../ProductListReducer';
-import { Product } from '../../../types/product';
+import { ProductListItemKeys } from '../types';
 import { EntityListForm } from '../../../components/EntityListForm';
 import { useAppTranslation } from '../../../i18n/useAppTranslation';
 import { RequestErrorView } from '../../../components/RequestErrorView';
 import { EntityListFormSkeleton } from '../../../components/EntityListFormSkeleton';
 import { ActionRowPanelDefault } from '../../../components/ActionRowPanelDefault';
-import { logger } from '../../../utils/logger';
 import { getPathByName } from '../../../router';
+import { appActions } from '../../../store/app';
 import { useFields } from './hooks';
 
 export const ProductListForm: React.FC = () => {
@@ -33,7 +33,7 @@ export const ProductListForm: React.FC = () => {
     };
   }, []);
 
-  const handleColumnHeaderClk = (fieldName: keyof Product) => {
+  const handleColumnHeaderClk = (fieldName: ProductListItemKeys) => {
     dispatch(productListWorkers.sort(fieldName));
   };
 
@@ -59,7 +59,7 @@ export const ProductListForm: React.FC = () => {
 
   const handleRowEdit = (id: number) => {
     const path = getPathByName('product', { id });
-    logger('ProductListForm', 'edit item', id, path);
+    dispatch(appActions.redirect(path));
   };
 
   const handleDeleteEdit = (id: number) => {
@@ -84,7 +84,7 @@ export const ProductListForm: React.FC = () => {
       rows={productList.data}
       fields={fields}
       columnHeaderClkCb={handleColumnHeaderClk}
-      sortField={requestOptions.sort_field}
+      sortField={String(requestOptions.sort_field)}
       sortAsc={Boolean(requestOptions.sort_asc)}
       pageCount={productList.last_page}
       page={productList.current_page}
