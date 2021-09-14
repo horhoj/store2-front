@@ -26,6 +26,7 @@ export const productSlice = createSlice({
       state.requestError = action.payload;
     },
     clear: (state) => {
+      state.productResponse = null;
       state.requestError = null;
     },
   },

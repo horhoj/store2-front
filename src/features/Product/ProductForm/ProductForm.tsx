@@ -3,7 +3,11 @@ import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components';
 import { Box, Button, Theme } from '@material-ui/core';
 import { FormikConfig, useFormik } from 'formik';
-import { productSelectors, productWorkers } from '../productReducer';
+import {
+  productActions,
+  productSelectors,
+  productWorkers,
+} from '../productReducer';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { useAppTranslation } from '../../../i18n/useAppTranslation';
 import { ProductResponseType } from '../types';
@@ -33,6 +37,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
 
   useEffect(() => {
     dispatch(productWorkers.productFetchData(Number(id)));
+    return () => {
+      dispatch(productActions.clear());
+    };
   }, []);
 
   const formikConfig: FormikConfig<ProductResponseType> = {
