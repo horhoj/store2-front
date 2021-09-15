@@ -1,4 +1,4 @@
-import { RootState } from '../../../store/types';
+import { RequestError, RootState } from '../../../store/types';
 import { ProductResponseType } from '../types';
 
 export const getProductResponse = (
@@ -7,3 +7,6 @@ export const getProductResponse = (
 
 export const getIsLoading = (state: RootState): boolean =>
   state.product.isLoading;
+
+export const getRequestError = (state: RootState): RequestError | null =>
+  state.product.requestError;

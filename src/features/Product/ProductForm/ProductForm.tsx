@@ -10,12 +10,13 @@ import {
 } from '../productReducer';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { useAppTranslation } from '../../../i18n/useAppTranslation';
-import { ProductResponseType } from '../types';
-import { logger } from '../../../utils/logger';
+import { ProductResponseSchema, ProductResponseType } from '../types';
 import { getPathByName } from '../../../router';
 import { appActions } from '../../../store/app';
 import { PageTitle } from '../../../components/PageTitle';
+import { RequestErrorView } from '../../../components/RequestErrorView';
 import { ProductFormProps } from './types';
+import { prepareProductFormData, prepareProductRequestData } from './helpers';
 
 export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
   const [currentValues, setCurrentValues] = useState<ProductResponseType>({
@@ -28,10 +29,12 @@ export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
   const dispatch = useAppDispatch();
   const t = useAppTranslation();
   const productResponse = useAppSelector(productSelectors.getProductResponse);
+  const requestError = useAppSelector(productSelectors.getRequestError);
 
   useEffect(() => {
     if (productResponse) {
-      setCurrentValues(productResponse);
+      const data = prepareProductFormData(productResponse);
+      setCurrentValues(data);
     }
   }, [productResponse]);
 
@@ -46,8 +49,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
     enableReinitialize: true,
     initialValues: currentValues,
     onSubmit: (values) => {
-      logger('ProductForm formSubmit', values);
+      const requestData = prepareProductRequestData(values);
+      dispatch(productWorkers.productPatchData(requestData));
     },
+    validationSchema: ProductResponseSchema,
   };
 
   const formik = useFormik<ProductResponseType>(formikConfig);
@@ -57,45 +62,61 @@ export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
     dispatch(appActions.redirect(path));
   };
 
+  const requestErrorRender = requestError ? (
+    <RequestErrorView requestError={requestError} />
+  ) : null;
+
+  const productFormRender = (
+    <form noValidate onSubmit={formik.handleSubmit}>
+      <StyledTextField
+        variant="outlined"
+        fullWidth={true}
+        required
+        label={t('features__product-form__input-label-title')}
+        {...formik.getFieldProps('title')}
+        helperText={formik.errors.title}
+        error={Boolean(formik.errors.title)}
+      />
+
+      <StyledTextField
+        variant="outlined"
+        fullWidth={true}
+        label={t('features__product-form__input-label-description')}
+        {...formik.getFieldProps('description')}
+        helperText={formik.errors.description}
+        error={Boolean(formik.errors.description)}
+      />
+      <StyledTextField
+        variant="outlined"
+        fullWidth={true}
+        label={t('features__product-form__input-label-options')}
+        {...formik.getFieldProps('options')}
+        helperText={formik.errors.options}
+        error={Boolean(formik.errors.options)}
+      />
+      <ButtonWrap>
+        <StyledButton type={'submit'} color={'primary'} variant={'contained'}>
+          {t('features__product-form__button-title-save')}
+        </StyledButton>
+        <StyledButton
+          type={'button'}
+          color={'primary'}
+          variant={'contained'}
+          onClick={handlePreviousBtnClk}
+        >
+          {t('features__product-form__button-title-previous')}
+        </StyledButton>
+      </ButtonWrap>
+    </form>
+  );
+
   return (
     <>
       <PageTitle>
         {t('features__product-form__page-edit-title', { id })}
       </PageTitle>
-      <form noValidate onSubmit={formik.handleSubmit}>
-        <StyledTextField
-          variant="outlined"
-          fullWidth={true}
-          required
-          label={t('features__product-form__input-label-title')}
-          {...formik.getFieldProps('title')}
-        />
-        <StyledTextField
-          variant="outlined"
-          fullWidth={true}
-          label={t('features__product-form__input-label-description')}
-          {...formik.getFieldProps('description')}
-        />
-        <StyledTextField
-          variant="outlined"
-          fullWidth={true}
-          label={t('features__product-form__input-label-options')}
-          {...formik.getFieldProps('options')}
-        />
-        <ButtonWrap>
-          <StyledButton type={'submit'} color={'primary'} variant={'contained'}>
-            {t('features__product-form__button-title-save')}
-          </StyledButton>
-          <StyledButton
-            type={'button'}
-            color={'primary'}
-            variant={'contained'}
-            onClick={handlePreviousBtnClk}
-          >
-            {t('features__product-form__button-title-previous')}
-          </StyledButton>
-        </ButtonWrap>
-      </form>
+      {requestErrorRender}
+      {productFormRender}
     </>
   );
 };
