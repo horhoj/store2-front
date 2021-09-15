@@ -16,7 +16,7 @@ export function* productFetchDataWorker(
   action: ProductFetchDataWorker,
 ): SagaIterator {
   try {
-    yield put(productActions.setIsLoading(false));
+    yield put(productActions.setIsLoading(true));
     yield put(productActions.setRequestError(null));
     const requestConfig: ReturnType<typeof getProductRequestConfig> =
       yield call(getProductRequestConfig, action.payload);

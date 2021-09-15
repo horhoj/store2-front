@@ -11,7 +11,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 import { RoutesStructure } from './router';
 import { useAppTheme } from './theme/useAppTheme';
-import { ProgressBar } from './components/ProgressBar';
+import { ProgressBar } from './UI/ProgressBar';
 import { AppHeader } from './components/AppHeader';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { authSelectors, authWorkers } from './store/auth';
