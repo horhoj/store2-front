@@ -53,8 +53,8 @@ export const productListSlice = createSlice({
       state.requestError = action.payload;
     },
     clear: (state) => {
+      // state.productListResponse = null;
       state.requestError = null;
-      state.productListResponse = null;
     },
   },
 });
