@@ -1,9 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { en } from './en';
+import { AppTranslationHookTType } from './types';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const useAppTranslation = () => {
+export const useAppTranslation = (): AppTranslationHookTType => {
   const { t } = useTranslation();
 
   return (key: keyof typeof en, ...arg: any[]) => t(key, ...arg);
 };
+
+export const appTranslationTStub = (): '' => '';

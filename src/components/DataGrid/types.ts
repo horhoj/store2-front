@@ -19,5 +19,5 @@ export interface DataGridColumn<T = string> {
 export interface DataGridRow {
   id: number;
 
-  [keys: string]: number | string | null;
+  [keys: string]: number | string | null | undefined;
 }

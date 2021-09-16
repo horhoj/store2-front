@@ -4,8 +4,8 @@ import { getCommonResponseSchemaFieldsForAnEntityList } from '../../types/helper
 const ProductListItemSchema = yup.object({
   id: yup.number().required(),
   title: yup.string().required(),
-  description: yup.string().nullable().defined(),
-  options: yup.string().nullable().defined(),
+  description: yup.string().nullable(),
+  options: yup.string().nullable(),
 });
 
 interface ProductListItem extends yup.Asserts<typeof ProductListItemSchema> {}

@@ -29,6 +29,11 @@ export const appSlice = createSlice({
     setIsSmallWidth: (state, action: PayloadAction<boolean>) => {
       state.isSmallWidth = action.payload;
     },
+    // в компоненте RedirectExecutor мы отслеживаем изменение
+    // redirectUrl и соответственно делаем redirect
+    // это нужно что бы не привязывать компоненты к роутеру
+    // и была возможность делать переадресацию из саг
+    // без доступа напрямую к HISTORY API
     redirect: (state, action: PayloadAction<string | null>) => {
       state.redirectUrl = action.payload;
     },
