@@ -13,7 +13,7 @@ import { EntityListFormSkeleton } from '../../../components/EntityListFormSkelet
 import { ActionRowPanelDefault } from '../../../components/ActionRowPanelDefault';
 import { getPathByName } from '../../../router';
 import { appActions } from '../../../store/app';
-import { useFields } from './hooks';
+import { useProductListFields } from './hooks';
 
 export const ProductListForm: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -23,7 +23,7 @@ export const ProductListForm: React.FC = () => {
   const isLoading = useAppSelector(productListSelectors.getIsLoading);
   const requestOptions = useAppSelector(productListSelectors.getRequestOptions);
   const requestError = useAppSelector(productListSelectors.getRequestError);
-  const fields = useFields();
+  const fields = useProductListFields();
   const t = useAppTranslation();
 
   useEffect(() => {
@@ -66,7 +66,7 @@ export const ProductListForm: React.FC = () => {
     dispatch(productListWorkers.deleteProduct(id));
   };
 
-  const actionRowPanelRender = (id: number) => (
+  const actionRowPanelRenderCb = (id: number) => (
     <ActionRowPanelDefault
       id={id}
       handleEditCb={handleRowEdit}
@@ -94,7 +94,7 @@ export const ProductListForm: React.FC = () => {
       perPage={productList.per_page}
       changePerPageCb={handleChangePerPage}
       actionColumnTitle={t('features__product-list-form__action-column-title')}
-      actionRowPanelRender={actionRowPanelRender}
+      actionRowPanelRender={actionRowPanelRenderCb}
     />
   ) : null;
 
