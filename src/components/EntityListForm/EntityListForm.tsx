@@ -59,6 +59,7 @@ export const EntityListForm: React.FC<EntityListFormProps> = ({
       />
       <PerPageSelect
         value={perPage}
+        disabled={disabled}
         onChange={(e) => {
           changePerPageCb(Number(e.target.value));
         }}
