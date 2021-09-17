@@ -71,6 +71,7 @@ export const ProductListForm: React.FC = () => {
       id={id}
       handleEditCb={handleRowEdit}
       handleDeleteCb={handleDeleteEdit}
+      disabled={isLoading}
     />
   );
 

@@ -10,6 +10,7 @@ export const ActionRowPanelDefault: React.FC<ActionRowPanelDefaultProps> = ({
   id,
   handleDeleteCb,
   handleEditCb,
+  disabled,
 }) => {
   const t = useAppTranslation();
 
@@ -23,11 +24,11 @@ export const ActionRowPanelDefault: React.FC<ActionRowPanelDefaultProps> = ({
 
   return (
     <Wrap>
-      <StyledButton onClick={() => handleEditCb(id)}>
-        <EditIcon color={'primary'} />
+      <StyledButton onClick={() => handleEditCb(id)} disabled={disabled}>
+        <EditIcon color={disabled ? 'disabled' : 'primary'} />
       </StyledButton>
-      <StyledButton onClick={handleDeleteBtnClk}>
-        <DeleteForeverIcon color={'secondary'} />
+      <StyledButton onClick={handleDeleteBtnClk} disabled={disabled}>
+        <DeleteForeverIcon color={disabled ? 'disabled' : 'secondary'} />
       </StyledButton>
     </Wrap>
   );
