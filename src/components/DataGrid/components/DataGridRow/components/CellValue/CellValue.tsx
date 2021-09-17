@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Theme, Typography } from '@material-ui/core';
+import { Theme } from '@material-ui/core';
 import { CellValueProps } from './types';
 
 export const CellValue: React.FC<CellValueProps> = ({ value, searchStr }) => {
@@ -30,7 +30,7 @@ export const CellValue: React.FC<CellValueProps> = ({ value, searchStr }) => {
         <span key={index}>
           {item}
           {index < slices.length - 1 ? (
-            <SearchStrWrap component={'span'}>{ms[index]}</SearchStrWrap>
+            <SearchStrWrap>{ms[index]}</SearchStrWrap>
           ) : null}
         </span>
       ))}
@@ -38,7 +38,7 @@ export const CellValue: React.FC<CellValueProps> = ({ value, searchStr }) => {
   );
 };
 
-const SearchStrWrap: typeof Typography = styled.span`
+const SearchStrWrap = styled.span`
   background-color: ${({ theme }) => {
     return (theme as Theme).palette.primary.main;
   }};
