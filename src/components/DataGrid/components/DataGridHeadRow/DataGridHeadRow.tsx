@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, TableCell, TableRow, Theme } from '@material-ui/core';
+import { Button, TableCell, TableRow, Theme } from '@material-ui/core';
 import styled from 'styled-components';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';

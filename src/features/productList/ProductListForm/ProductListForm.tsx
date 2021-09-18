@@ -13,6 +13,8 @@ import { EntityListFormSkeleton } from '../../../components/EntityListFormSkelet
 import { ActionRowPanelDefault } from '../../../components/ActionRowPanelDefault';
 import { getPathByName } from '../../../router';
 import { appActions } from '../../../store/app';
+import { PageTitle } from '../../../components/PageTitle';
+import { NEW_ENTITY_ITEM_ID } from '../../../config/config';
 import { useProductListFields } from './hooks';
 
 export const ProductListForm: React.FC = () => {
@@ -62,15 +64,19 @@ export const ProductListForm: React.FC = () => {
     dispatch(appActions.redirect(path));
   };
 
-  const handleDeleteEdit = (id: number) => {
+  const handleRowDelete = (id: number) => {
     dispatch(productListWorkers.deleteProduct(id));
+  };
+  const handleAdd = () => {
+    const path = getPathByName('product', { id: NEW_ENTITY_ITEM_ID });
+    dispatch(appActions.redirect(path));
   };
 
   const actionRowPanelRenderCb = (id: number) => (
     <ActionRowPanelDefault
       id={id}
       handleEditCb={handleRowEdit}
-      handleDeleteCb={handleDeleteEdit}
+      handleDeleteCb={handleRowDelete}
       disabled={isLoading}
     />
   );
@@ -95,6 +101,7 @@ export const ProductListForm: React.FC = () => {
       changePerPageCb={handleChangePerPage}
       actionColumnTitle={t('features__product-list-form__action-column-title')}
       actionRowPanelRender={actionRowPanelRenderCb}
+      addCb={handleAdd}
     />
   ) : null;
 
@@ -107,6 +114,7 @@ export const ProductListForm: React.FC = () => {
 
   return (
     <>
+      <PageTitle>{t('features__product-list-form__page-title')} </PageTitle>
       {requestErrorRender}
       {productListFormRender}
       {skeletonFormRender}

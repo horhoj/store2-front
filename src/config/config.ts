@@ -16,3 +16,5 @@ export const ACCESS_TOKEN_LS_KEY = 'ACCESS_TOKEN_LS_KEY';
 export const isStrictMode = false;
 
 export const DEFAULT_DEBOUNCED_INPUT_DELAY = 600;
+
+export const NEW_ENTITY_ITEM_ID = 'new';

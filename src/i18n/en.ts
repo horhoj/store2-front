@@ -39,6 +39,7 @@ export const en = {
   'features__product-list-form__data-grid-column__options': 'Options',
   'features__product-list-form__search-placeholder': 'search',
   'features__product-list-form__action-column-title': 'Actions',
+  'features__product-list-form__page-title': 'Список товаров',
   //productForm
   'features__product-form__input-label-title': 'Title',
   'features__product-form__input-label-description': 'Description',

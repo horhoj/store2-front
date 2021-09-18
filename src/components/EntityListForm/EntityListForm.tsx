@@ -1,6 +1,7 @@
 import React from 'react';
 import UpdateIcon from '@material-ui/icons/Update';
 import ClearIcon from '@material-ui/icons/Clear';
+import AddIcon from '@material-ui/icons/Add';
 import styled from 'styled-components';
 import { Box, Button, MenuItem, Select, Theme } from '@material-ui/core';
 import Pagination from '@material-ui/lab/Pagination';
@@ -28,16 +29,20 @@ export const EntityListForm: React.FC<EntityListFormProps> = ({
   changePerPageCb,
   actionColumnTitle,
   actionRowPanelRender,
+  addCb,
 }) => {
   return (
     <Wrap>
       <SearchWrap>
-        <SearchBtn onClick={updateCb} disabled={disabled}>
+        <StyledBtn disabled={disabled} onClick={addCb}>
+          <AddIcon />
+        </StyledBtn>
+        <StyledBtn onClick={updateCb} disabled={disabled}>
           <UpdateIcon />
-        </SearchBtn>
-        <SearchBtn disabled={disabled} onClick={searchClearCb}>
+        </StyledBtn>
+        <StyledBtn disabled={disabled} onClick={searchClearCb}>
           <ClearIcon />
-        </SearchBtn>
+        </StyledBtn>
         <DebouncedInput
           placeholder={searchPlaceholder}
           disabled={disabled}
@@ -50,7 +55,7 @@ export const EntityListForm: React.FC<EntityListFormProps> = ({
         rows={rows}
         fields={fields}
         disabled={disabled}
-        handleColumnClkCb={columnHeaderClkCb}
+        columnClkCb={columnHeaderClkCb}
         sortField={sortField}
         sortAsc={sortAsc}
         searchStr={searchStr}
@@ -97,7 +102,7 @@ const SearchWrap = styled(Box)`
   width: 100%;
 `;
 
-const SearchBtn = styled(Button)`
+const StyledBtn = styled(Button)`
   min-width: 40px;
   min-height: 40px;
   &:last-child {

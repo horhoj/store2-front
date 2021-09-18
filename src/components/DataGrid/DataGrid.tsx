@@ -9,7 +9,7 @@ export const DataGrid: React.FC<DataGridProps> = ({
   fields,
   rows,
   disabled,
-  handleColumnClkCb,
+  columnClkCb,
   sortAsc,
   sortField,
   searchStr,
@@ -17,7 +17,7 @@ export const DataGrid: React.FC<DataGridProps> = ({
   actionRowPanelRender,
 }) => {
   const handleColumnHeaderClk = (fieldName: string) => {
-    handleColumnClkCb(fieldName);
+    columnClkCb(fieldName);
   };
 
   return (

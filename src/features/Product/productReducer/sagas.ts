@@ -8,10 +8,12 @@ import { appActions } from '../../../store/app';
 import { getPathByName } from '../../../router';
 import {
   ProductFetchDataWorker,
+  ProductNewWorker,
   ProductPatchDataWorker,
   ProductWorkerType,
 } from './types';
 import {
+  getNewProductRequestConfig,
   getProductFetchDataRequestConfig,
   getProductPatchDataRequestConfig,
 } from './helpers';
@@ -20,6 +22,7 @@ import { productActions } from './index';
 export function* productWatcher(): SagaIterator {
   yield takeEvery(ProductWorkerType.fetchData, productFetchDataWorker);
   yield takeEvery(ProductWorkerType.patchData, productPatchDataWorker);
+  yield takeEvery(ProductWorkerType.new, productNewWorker);
 }
 
 export function* productFetchDataWorker(
@@ -60,6 +63,30 @@ export function* productPatchDataWorker(
         action.payload.id,
         action.payload,
       );
+    yield call(requestExecutor, requestConfig, null);
+    const path: ReturnType<typeof getPathByName> = yield call(
+      getPathByName,
+      'productList',
+    );
+    yield put(appActions.redirect(path));
+  } catch (e) {
+    const errorData: ReturnType<typeof getErrorData> = yield call(
+      getErrorData,
+      e,
+    );
+    yield call(logger, 'fetchDataWorker', errorData);
+    yield put(productActions.setRequestError(errorData));
+  } finally {
+    yield put(productActions.setIsLoading(false));
+  }
+}
+
+export function* productNewWorker(action: ProductNewWorker): SagaIterator {
+  try {
+    yield put(productActions.setIsLoading(true));
+    yield put(productActions.setRequestError(null));
+    const requestConfig: ReturnType<typeof getNewProductRequestConfig> =
+      yield call(getNewProductRequestConfig, action.payload.id, action.payload);
     yield call(requestExecutor, requestConfig, null);
     const path: ReturnType<typeof getPathByName> = yield call(
       getPathByName,

@@ -19,4 +19,5 @@ export interface EntityListFormProps {
   changePerPageCb(perPage: number): void;
   actionColumnTitle: string;
   actionRowPanelRender(id: number): JSX.Element;
+  addCb(): void;
 }

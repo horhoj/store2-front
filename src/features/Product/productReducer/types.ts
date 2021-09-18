@@ -10,6 +10,7 @@ export interface ProductState {
 export enum ProductWorkerType {
   fetchData = 'product/fetchData',
   patchData = 'product/patchData',
+  new = 'product/new',
 }
 
 interface ProductWorker<T, P> {
@@ -24,5 +25,10 @@ export type ProductFetchDataWorker = ProductWorker<
 
 export type ProductPatchDataWorker = ProductWorker<
   ProductWorkerType.patchData,
+  ProductRequestType
+>;
+
+export type ProductNewWorker = ProductWorker<
+  ProductWorkerType.new,
   ProductRequestType
 >;

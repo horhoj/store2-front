@@ -40,6 +40,7 @@ export const ru: typeof en = {
   'features__product-list-form__data-grid-column__options': 'Опции',
   'features__product-list-form__search-placeholder': 'найти',
   'features__product-list-form__action-column-title': 'Действия',
+  'features__product-list-form__page-title': 'Список товаров',
   //productForm
   'features__product-form__input-label-title': 'Наименование',
   'features__product-form__input-label-description': 'Описание',

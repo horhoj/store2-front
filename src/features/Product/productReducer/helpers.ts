@@ -16,3 +16,12 @@ export const getProductPatchDataRequestConfig = (
   method: 'put',
   data,
 });
+
+export const getNewProductRequestConfig = (
+  id: number,
+  data: ProductRequestType,
+): AxiosRequestConfig => ({
+  url: `/products`,
+  method: 'post',
+  data,
+});

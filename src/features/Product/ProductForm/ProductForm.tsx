@@ -16,6 +16,7 @@ import { appActions } from '../../../store/app';
 import { PageTitle } from '../../../components/PageTitle';
 import { RequestErrorView } from '../../../components/RequestErrorView';
 import { StyledFieldSet } from '../../../theme/styled';
+import { NEW_ENTITY_ITEM_ID } from '../../../config/config';
 import { ProductFormProps } from './types';
 import { prepareProductFormData, prepareProductRequestData } from './helpers';
 
@@ -33,6 +34,8 @@ export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
   const requestError = useAppSelector(productSelectors.getRequestError);
   const isLoading = useAppSelector(productSelectors.getIsLoading);
 
+  const isNew = id === NEW_ENTITY_ITEM_ID;
+
   useEffect(() => {
     if (productResponse) {
       const data = prepareProductFormData(productResponse);
@@ -41,7 +44,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
   }, [productResponse]);
 
   useEffect(() => {
-    dispatch(productWorkers.productFetchData(Number(id)));
+    if (!isNew) {
+      dispatch(productWorkers.productFetchData(Number(id)));
+    }
     return () => {
       dispatch(productActions.clear());
     };
@@ -54,6 +59,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
     initialValues: currentValues,
     onSubmit: (values) => {
       const requestData = prepareProductRequestData(values);
+      if (isNew) {
+        dispatch(productWorkers.productNew(requestData));
+        return;
+      }
       dispatch(productWorkers.productPatchData(requestData));
     },
     validationSchema,

@@ -1,6 +1,7 @@
 import { ProductRequestType } from '../types';
 import {
   ProductFetchDataWorker,
+  ProductNewWorker,
   ProductPatchDataWorker,
   ProductWorkerType,
 } from './types';
@@ -14,5 +15,10 @@ export const productPatchData = (
   data: ProductRequestType,
 ): ProductPatchDataWorker => ({
   type: ProductWorkerType.patchData,
+  payload: data,
+});
+
+export const productNew = (data: ProductRequestType): ProductNewWorker => ({
+  type: ProductWorkerType.new,
   payload: data,
 });
