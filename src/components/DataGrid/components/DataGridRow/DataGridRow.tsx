@@ -9,9 +9,11 @@ export const DataGridRow: React.FC<DataGridRowProps> = ({
   fields,
   searchStr,
   actionRowPanelRender,
+  index,
 }) => {
   return (
     <TableRow>
+      <TableBodyCell>{index}</TableBodyCell>
       <TableBodyCellActions>
         {actionRowPanelRender(row.id)}
       </TableBodyCellActions>

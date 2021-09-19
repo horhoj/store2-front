@@ -26,6 +26,7 @@ export const DataGridHeadRow: React.FC<DataGridHeadRowProps> = ({
 
   return (
     <TableRow>
+      <ActionColumnTableCell disabled={disabled}>№</ActionColumnTableCell>
       <ActionColumnTableCell disabled={disabled}>
         {actionColumnTitle.toUpperCase()}
       </ActionColumnTableCell>

@@ -15,10 +15,14 @@ export const DataGrid: React.FC<DataGridProps> = ({
   searchStr,
   actionColumnTitle,
   actionRowPanelRender,
+  page,
+  perPage,
 }) => {
   const handleColumnHeaderClk = (fieldName: string) => {
     columnClkCb(fieldName);
   };
+
+  const indexOffset = (page - 1) * perPage + 1;
 
   return (
     <Wrap>
@@ -34,10 +38,11 @@ export const DataGrid: React.FC<DataGridProps> = ({
           />
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rows.map((row, index) => (
             <DataGridRow
               key={row.id}
               row={row}
+              index={index + indexOffset}
               fields={fields}
               searchStr={searchStr}
               actionRowPanelRender={actionRowPanelRender}

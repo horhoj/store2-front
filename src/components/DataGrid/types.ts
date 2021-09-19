@@ -8,6 +8,8 @@ export interface DataGridProps {
   searchStr: string;
   actionColumnTitle: string;
   actionRowPanelRender(id: number): JSX.Element;
+  perPage: number;
+  page: number;
 }
 
 export interface DataGridColumn<T = string> {

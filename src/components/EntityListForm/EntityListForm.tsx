@@ -61,6 +61,8 @@ export const EntityListForm: React.FC<EntityListFormProps> = ({
         searchStr={searchStr}
         actionColumnTitle={actionColumnTitle}
         actionRowPanelRender={actionRowPanelRender}
+        perPage={perPage}
+        page={page}
       />
       <PerPageSelect
         value={perPage}
