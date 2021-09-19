@@ -18,7 +18,7 @@ import { authSelectors, authWorkers } from './store/auth';
 import { AppFooter } from './components/AppFooter';
 import { GlobalStyle } from './theme/GlobalStyle';
 import { NavBlock } from './components/NavBlock/NavBlock';
-import { SmallWidthChecker } from './components/SmallWidthChecker';
+import { SmallWidthChecker } from './UI/SmallWidthChecker';
 
 export const App: React.FC = () => {
   const theme = useAppTheme();
