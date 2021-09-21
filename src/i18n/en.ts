@@ -5,6 +5,7 @@ export const en = {
   //nav-link
   'nav-link__home': 'Home',
   'nav-link__product-list': 'Product list',
+  'nav-link__category-list': 'Category list',
   //app__user
   'app__user__user-id': 'ID',
   'app__user__user-email': 'Email',

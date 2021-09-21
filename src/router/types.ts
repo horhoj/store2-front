@@ -3,7 +3,8 @@ export type RouterPathNames =
   | 'signIn'
   | 'routeNotFound'
   | 'productList'
-  | 'product';
+  | 'product'
+  | 'categoryList';
 
 export interface RouteItem {
   name: RouterPathNames;

@@ -65,7 +65,7 @@ const NavBigWrap = styled.div<{ show: boolean }>`
 `;
 
 const NavWrap = styled(Box)`
-  width: 250px;
+  width: 300px;
   display: flex;
   flex-grow: 1;
   padding: ${({ theme }) => (theme as Theme).spacing(1, 1, 1, 0)};

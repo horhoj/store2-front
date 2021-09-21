@@ -3,6 +3,7 @@ import { SignInPage } from '../pages/SignInPage';
 import { RouteNotFoundPage } from '../pages/RouteNotFoundPage';
 import { ProductListPage } from '../pages/ProductListPage';
 import { ProductPage } from '../pages/ProductPage';
+import { CategoryList } from '../pages/CategoryList/CategoryList';
 import { RouteItem } from './types';
 
 export const routes: RouteItem[] = [
@@ -37,6 +38,14 @@ export const routes: RouteItem[] = [
     private: true,
     always: false,
     component: ProductPage,
+  },
+  {
+    name: 'categoryList',
+    path: '/category',
+    exact: true,
+    private: true,
+    always: false,
+    component: CategoryList,
   },
   {
     name: 'routeNotFound',

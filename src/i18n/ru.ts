@@ -5,6 +5,7 @@ export const ru: typeof en = {
   //nav-link
   'nav-link__home': 'Главная',
   'nav-link__product-list': 'Список товаров',
+  'nav-link__category-list': 'Список категорий',
   //app__user
   'app__user__user-id': 'ИД',
   'app__user__user-email': 'Почта',
