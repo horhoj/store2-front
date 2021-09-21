@@ -20,3 +20,9 @@ export const DEFAULT_DEBOUNCED_INPUT_DELAY = 600;
 export const NEW_ENTITY_ITEM_ID = 'new';
 
 export const LEFT_MENU_WIDTH = 300;
+
+export const DEFAULT_ENTITY_LIST_ALLOWABLE_VALUES = [
+  5, 10, 25, 50, 999,
+] as const;
+
+export const DEFAULT_ENTITY_LIST_PER_PAGE: typeof DEFAULT_ENTITY_LIST_ALLOWABLE_VALUES[number] = 5;

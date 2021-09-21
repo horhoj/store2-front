@@ -6,7 +6,10 @@ import styled from 'styled-components';
 import { Box, Button, MenuItem, Select, Theme } from '@material-ui/core';
 import Pagination from '@material-ui/lab/Pagination';
 import { DebouncedInput } from '../DebouncedInput';
-import { DEFAULT_DEBOUNCED_INPUT_DELAY } from '../../config/config';
+import {
+  DEFAULT_DEBOUNCED_INPUT_DELAY,
+  DEFAULT_ENTITY_LIST_ALLOWABLE_VALUES,
+} from '../../config/config';
 import { DataGrid } from '../DataGrid';
 import { EntityListFormProps } from './types';
 
@@ -71,11 +74,11 @@ export const EntityListForm: React.FC<EntityListFormProps> = ({
           changePerPageCb(Number(e.target.value));
         }}
       >
-        <MenuItem value={5}>5</MenuItem>
-        <MenuItem value={10}>10</MenuItem>
-        <MenuItem value={25}>25</MenuItem>
-        <MenuItem value={50}>50</MenuItem>
-        <MenuItem value={999}>999</MenuItem>
+        {DEFAULT_ENTITY_LIST_ALLOWABLE_VALUES.map((value) => (
+          <MenuItem value={value} key={value}>
+            {value}
+          </MenuItem>
+        ))}
       </PerPageSelect>
       <StyledPagination
         count={pageCount}
@@ -107,6 +110,7 @@ const SearchWrap = styled(Box)`
 const StyledBtn = styled(Button)`
   min-width: 40px;
   min-height: 40px;
+
   &:last-child {
     margin-right: 40px;
   }

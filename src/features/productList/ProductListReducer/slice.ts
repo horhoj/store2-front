@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ProductListItemKeys, ProductListResponseType } from '../types';
 import { RequestError } from '../../../store/types';
+import { DEFAULT_ENTITY_LIST_PER_PAGE } from '../../../config/config';
 import { ProductListRequestOptions, ProductListState } from './types';
 
 const initialState: ProductListState = {
@@ -8,7 +9,7 @@ const initialState: ProductListState = {
   productListResponse: null,
   requestOptions: {
     page: 1,
-    per_page: 10,
+    per_page: DEFAULT_ENTITY_LIST_PER_PAGE,
     search: '',
     sort_asc: 1,
     sort_field: 'id',
