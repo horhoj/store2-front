@@ -5,6 +5,7 @@ import { AppNav } from '../AppNav';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { appActions, appSelectors } from '../../store/app';
 import { MenuBtn } from '../MenuBtn';
+import { LEFT_MENU_WIDTH } from '../../config/config';
 
 export const NavBlock: React.FC = () => {
   const isOpenMenu = useAppSelector(appSelectors.getIsOpenMenu);
@@ -59,13 +60,13 @@ const StyledBox = styled(Box)`
 
 const NavBigWrap = styled.div<{ show: boolean }>`
   display: flex;
-  margin-left: ${({ show }) => (show ? '0' : '-250px')};
+  margin-left: ${({ show }) => (show ? '0' : `${-LEFT_MENU_WIDTH}px`)};
   visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
   transition: margin-left 0.3s ease, visibility 0.4s ease;
 `;
 
 const NavWrap = styled(Box)`
-  width: 300px;
+  width: ${LEFT_MENU_WIDTH}px;
   display: flex;
   flex-grow: 1;
   padding: ${({ theme }) => (theme as Theme).spacing(1, 1, 1, 0)};

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useAppSelector } from '../../store/hooks';
 import { authSelectors } from '../../store/auth';
 import { productListSelectors } from '../../features/productList/ProductListReducer';
-import { productSelectors } from '../../features/Product/productReducer';
+import { productSelectors } from '../../features/product/productReducer';
 
 const StyledLinearProgress = styled(LinearProgress)`
   position: fixed;
