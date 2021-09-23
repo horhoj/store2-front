@@ -13,6 +13,9 @@ import { ActionRowPanelDefault } from '../../../components/ActionRowPanelDefault
 import { EntityListFormSkeleton } from '../../../components/EntityListFormSkeleton';
 import { RequestErrorView } from '../../../components/RequestErrorView';
 import { logger } from '../../../utils/logger';
+import { getPathByName } from '../../../router';
+import { appActions } from '../../../store/app';
+import { NEW_ENTITY_ITEM_ID } from '../../../config/config';
 import { useCategoryListFields } from './hooks';
 
 export const CategoryListForm: React.FC = () => {
@@ -61,10 +64,14 @@ export const CategoryListForm: React.FC = () => {
 
   const handleAdd = () => {
     logger('categoryList new');
+    const path = getPathByName('category', { id: NEW_ENTITY_ITEM_ID });
+    dispatch(appActions.redirect(path));
   };
 
   const handleRowEdit = (id: number) => {
     logger('categoryList Edit', id);
+    const path = getPathByName('category', { id });
+    dispatch(appActions.redirect(path));
   };
 
   const handleRowDelete = (id: number) => {

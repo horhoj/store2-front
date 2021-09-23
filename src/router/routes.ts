@@ -3,7 +3,8 @@ import { SignInPage } from '../pages/SignInPage';
 import { RouteNotFoundPage } from '../pages/RouteNotFoundPage';
 import { ProductListPage } from '../pages/ProductListPage';
 import { ProductPage } from '../pages/ProductPage';
-import { CategoryList } from '../pages/CategoryList';
+import { CategoryListPage } from '../pages/CategoryListPage';
+import { CategoryPage } from '../pages/CategoryPage';
 import { RouteItem } from './types';
 
 export const routes: RouteItem[] = [
@@ -45,7 +46,15 @@ export const routes: RouteItem[] = [
     exact: true,
     private: true,
     always: false,
-    component: CategoryList,
+    component: CategoryListPage,
+  },
+  {
+    name: 'category',
+    path: '/category/:id',
+    exact: true,
+    private: true,
+    always: false,
+    component: CategoryPage,
   },
   {
     name: 'routeNotFound',
