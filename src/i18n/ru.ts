@@ -51,6 +51,7 @@ export const ru: typeof en = {
   'features__product-form__button-title-previous': 'Назад',
   'features__product-form__page-edit-title':
     'Редактируется товар с ИД="{{id}}"',
+  'features__product-form__page-new-title': 'Добавить новый товар',
   //categoryListForm
   'features__category-list-form__page-title': 'Список категорий',
   'features__category-list-form__data-grid-column__id': 'ИД',

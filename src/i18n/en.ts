@@ -49,6 +49,7 @@ export const en = {
   'features__product-form__button-title-save': 'Save',
   'features__product-form__button-title-previous': 'Previous',
   'features__product-form__page-edit-title': 'Edit product with ID="{{id}}"',
+  'features__product-form__page-new-title': 'Add new product',
   //categoryListForm
   'features__category-list-form__page-title': 'Category list',
   'features__category-list-form__data-grid-column__id': 'ID',

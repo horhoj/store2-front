@@ -75,6 +75,14 @@ export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
     dispatch(appActions.redirect(path));
   };
 
+  const titleRender = (
+    <PageTitle>
+      {isNew
+        ? t('features__product-form__page-new-title')
+        : t('features__product-form__page-edit-title', { id })}
+    </PageTitle>
+  );
+
   const requestErrorRender = requestError ? (
     <RequestErrorView requestError={requestError} />
   ) : null;
@@ -133,9 +141,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
 
   return (
     <>
-      <PageTitle>
-        {t('features__product-form__page-edit-title', { id })}
-      </PageTitle>
+      {titleRender}
       {requestErrorRender}
       {productFormRender}
     </>
