@@ -50,4 +50,11 @@ export const ru: typeof en = {
   'features__product-form__button-title-previous': 'Назад',
   'features__product-form__page-edit-title':
     'Редактируется товар с ИД="{{id}}"',
+  //categoryListForm
+  'features__category-list-form__page-title': 'Список категорий',
+  'features__category-list-form__data-grid-column__id': 'ИД',
+  'features__category-list-form__data-grid-column__title': 'Наименование',
+  'features__category-list-form__data-grid-column__description': 'Описание',
+  'features__category-list-form__search-placeholder': 'найти',
+  'features__category-list-form__action-column-title': 'Действия',
 };

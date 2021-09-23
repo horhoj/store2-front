@@ -39,14 +39,14 @@ export function* fetchDataWorker(): SagaIterator {
       requestConfig,
       ProductListResponseSchema,
     );
-    yield call(logger, 'fetchDataWorker', result);
+    yield call(logger, 'ProductList fetchDataWorker', result);
     yield put(productListActions.setProductListResponse(result));
   } catch (e) {
     const errorData: ReturnType<typeof getErrorData> = yield call(
       getErrorData,
       e,
     );
-    yield call(logger, 'fetchDataWorker', errorData);
+    yield call(logger, 'ProductList fetchDataWorker', errorData);
     yield put(productListActions.setRequestError(errorData));
   } finally {
     yield put(productListActions.setIsLoading(false));
@@ -101,7 +101,7 @@ export function* deleteProductWorker(
       getErrorData,
       e,
     );
-    yield call(logger, 'fetchDataWorker', errorData);
+    yield call(logger, 'ProductList fetchDataWorker', errorData);
     yield put(productListActions.setRequestError(errorData));
   } finally {
     yield put(productListActions.setIsLoading(false));

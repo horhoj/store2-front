@@ -46,7 +46,6 @@ export const DebouncedInput: React.FC<DebouncedInputProps> = ({
 
   return (
     <StyledTextField
-      autoFocus
       placeholder={placeholder}
       disabled={disabled}
       onChange={handle}

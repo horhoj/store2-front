@@ -1,5 +1,10 @@
 import React from 'react';
+import { CategoryListForm } from '../../features/categoryList/CategoryListForm';
 
 export const CategoryList: React.FC = () => {
-  return <div>CategoryList</div>;
+  return (
+    <>
+      <CategoryListForm />
+    </>
+  );
 };

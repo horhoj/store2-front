@@ -40,7 +40,7 @@ export const en = {
   'features__product-list-form__data-grid-column__options': 'Options',
   'features__product-list-form__search-placeholder': 'search',
   'features__product-list-form__action-column-title': 'Actions',
-  'features__product-list-form__page-title': 'Список товаров',
+  'features__product-list-form__page-title': 'Product list',
   //productForm
   'features__product-form__input-label-title': 'Title',
   'features__product-form__input-label-description': 'Description',
@@ -48,4 +48,11 @@ export const en = {
   'features__product-form__button-title-save': 'Save',
   'features__product-form__button-title-previous': 'Previous',
   'features__product-form__page-edit-title': 'Edit product with ID="{{id}}"',
+  //categoryListForm
+  'features__category-list-form__page-title': 'Category list',
+  'features__category-list-form__data-grid-column__id': 'ID',
+  'features__category-list-form__data-grid-column__title': 'Title',
+  'features__category-list-form__data-grid-column__description': 'Description',
+  'features__category-list-form__search-placeholder': 'search',
+  'features__category-list-form__action-column-title': 'Actions',
 };
