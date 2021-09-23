@@ -22,6 +22,7 @@ export const ru: typeof en = {
     'Ошибка получения ответа от сервера',
   'app__request-error-view__error__unknown-error-with-code':
     'Неизвестная ошибка с кодом {{code}}',
+  'app__request-error-view__error__resource-not-found': 'Ресурс не существует',
   // ActionRowPanelDefault
   'component__action-row-panel-default__delete-request-message': 'Удалить ?',
   //validation

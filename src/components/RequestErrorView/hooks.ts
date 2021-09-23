@@ -13,6 +13,8 @@ export const useErrorMessage =
     switch (requestError.responseData.status) {
       case 401:
         return t('app__request-error-view__error__invalid-credentials');
+      case 404:
+        return t('app__request-error-view__error__resource-not-found');
       default:
         return t('app__request-error-view__error__unknown-error-with-code', {
           code: requestError.responseData.status,

@@ -21,6 +21,7 @@ export const en = {
     'Failed to get a response from the server',
   'app__request-error-view__error__unknown-error-with-code':
     'Unknown error with code {{code}}',
+  'app__request-error-view__error__resource-not-found': 'Resource not found',
   // ActionRowPanelDefault
   'component__action-row-panel-default__delete-request-message': 'Delete ?',
   //validation
