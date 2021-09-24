@@ -7,6 +7,8 @@ import { productReducer } from '../features/product/productReducer';
 import { productWatcher } from '../features/product/productReducer/sagas';
 import { categoryListReducer } from '../features/categoryList/categoryListReducer';
 import { categoryListWatcher } from '../features/categoryList/categoryListReducer/sagas';
+import { categoryReducer } from '../features/category/categoryReducer';
+import { categoryWatcher } from '../features/category/categoryReducer/sagas';
 import { appReducer } from './app';
 import { authReducer } from './auth';
 import { authWatcher } from './auth/sagas';
@@ -24,6 +26,7 @@ export const store = configureStore({
     productList: productListReducer,
     product: productReducer,
     categoryList: categoryListReducer,
+    category: categoryReducer,
   },
   middleware: [...middlewares],
 });
@@ -34,6 +37,7 @@ export function* rootSaga(): Generator<AllEffect<SagaIterator<any>>> {
     productListWatcher(),
     productWatcher(),
     categoryListWatcher(),
+    categoryWatcher(),
   ]);
 }
 

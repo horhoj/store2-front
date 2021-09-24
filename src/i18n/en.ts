@@ -57,4 +57,12 @@ export const en = {
   'features__category-list-form__data-grid-column__description': 'Description',
   'features__category-list-form__search-placeholder': 'search',
   'features__category-list-form__action-column-title': 'Actions',
+  //categoryForm
+  'features__category-form__input-label-title': 'Title',
+  'features__category-form__input-label-description': 'Description',
+  'features__category-form__input-label-options': 'Option',
+  'features__category-form__button-title-save': 'Save',
+  'features__category-form__button-title-previous': 'Previous',
+  'features__category-form__page-edit-title': 'Edit category with ID="{{id}}"',
+  'features__category-form__page-new-title': 'Add new category',
 };

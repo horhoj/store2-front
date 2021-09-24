@@ -59,4 +59,13 @@ export const ru: typeof en = {
   'features__category-list-form__data-grid-column__description': 'Описание',
   'features__category-list-form__search-placeholder': 'найти',
   'features__category-list-form__action-column-title': 'Действия',
+  //categoryForm
+  'features__category-form__input-label-title': 'Наименование',
+  'features__category-form__input-label-description': 'Описание',
+  'features__category-form__input-label-options': 'Опции',
+  'features__category-form__button-title-save': 'Сохранить',
+  'features__category-form__button-title-previous': 'Назад',
+  'features__category-form__page-edit-title':
+    'Редактируется категория с ИД="{{id}}"',
+  'features__category-form__page-new-title': 'Добавить новую категорию',
 };

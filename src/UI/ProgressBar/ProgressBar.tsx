@@ -6,6 +6,7 @@ import { authSelectors } from '../../store/auth';
 import { productListSelectors } from '../../features/productList/ProductListReducer';
 import { productSelectors } from '../../features/product/productReducer';
 import { categoryListSelectors } from '../../features/categoryList/categoryListReducer';
+import { categorySelectors } from '../../features/category/categoryReducer';
 
 const StyledLinearProgress = styled(LinearProgress)`
   position: fixed;
@@ -24,13 +25,15 @@ export const ProgressBar: React.FC = () => {
   const productList = useAppSelector(productListSelectors.getIsLoading);
   const product = useAppSelector(productSelectors.getIsLoading);
   const categoryList = useAppSelector(categoryListSelectors.getIsLoading);
+  const category = useAppSelector(categorySelectors.getIsLoading);
 
   const isProgress =
     authIsLoading ||
     authIsLoadingUserData ||
     productList ||
     product ||
-    categoryList;
+    categoryList ||
+    category;
 
   return isProgress ? <StyledLinearProgress /> : null;
 };
