@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components';
 import { Box, Button, Theme } from '@material-ui/core';
@@ -21,13 +21,6 @@ import { ProductFormProps } from './types';
 import { prepareProductFormData, prepareProductRequestData } from './helpers';
 
 export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
-  const [currentValues, setCurrentValues] = useState<ProductResponseType>({
-    id: 0,
-    title: '',
-    description: '',
-    options: '',
-    categories: [],
-  });
   const dispatch = useAppDispatch();
   const t = useAppTranslation();
   const productResponse = useAppSelector(productSelectors.getProductResponse);
@@ -35,13 +28,6 @@ export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
   const isLoading = useAppSelector(productSelectors.getIsLoading);
 
   const isNew = id === NEW_ENTITY_ITEM_ID;
-
-  useEffect(() => {
-    if (productResponse) {
-      const data = prepareProductFormData(productResponse);
-      setCurrentValues(data);
-    }
-  }, [productResponse]);
 
   useEffect(() => {
     if (!isNew) {
@@ -52,11 +38,17 @@ export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
     };
   }, []);
 
-  const validationSchema = getProductResponseSchema(t);
-
   const formikConfig: FormikConfig<ProductResponseType> = {
     enableReinitialize: true,
-    initialValues: currentValues,
+    initialValues: productResponse
+      ? prepareProductFormData(productResponse)
+      : {
+          id: 0,
+          title: '',
+          description: '',
+          options: '',
+          categories: [],
+        },
     onSubmit: (values) => {
       const requestData = prepareProductRequestData(values);
       if (isNew) {
@@ -65,7 +57,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
       }
       dispatch(productWorkers.productPatchData(requestData));
     },
-    validationSchema,
+    validationSchema: getProductResponseSchema(t),
   };
 
   const formik = useFormik<ProductResponseType>(formikConfig);
