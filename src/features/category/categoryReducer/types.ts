@@ -1,4 +1,4 @@
-import { CategoryResponseType } from '../types';
+import { CategoryRequestType, CategoryResponseType } from '../types';
 import { RequestError } from '../../../store/types';
 
 export interface CategoryState {
@@ -21,4 +21,14 @@ interface CategoryWorker<T, P> {
 export type CategoryFetchDataWorker = CategoryWorker<
   CategoryWorkerType.fetchData,
   number
+>;
+
+export type CategoryPatchDataWorker = CategoryWorker<
+  CategoryWorkerType.patchData,
+  CategoryRequestType
+>;
+
+export type CategoryNewWorker = CategoryWorker<
+  CategoryWorkerType.new,
+  CategoryRequestType
 >;

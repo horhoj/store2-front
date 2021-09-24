@@ -24,15 +24,15 @@ export const getProductResponseSchema = (t: AppTranslationHookTType) => {
 export const ProductResponseSchema =
   getProductResponseSchema(appTranslationTStub);
 
+export interface ProductResponseType
+  extends yup.Asserts<typeof ProductResponseSchema> {}
+
 export const ProductRequestSchema = ProductResponseSchema.shape({
   categories: yup.array(yup.number()).required(),
 });
 
 export interface ProductRequestType
   extends yup.Asserts<typeof ProductRequestSchema> {}
-
-export interface ProductResponseType
-  extends yup.Asserts<typeof ProductResponseSchema> {}
 
 // const x: ProductResponseType = {
 //   id: 1,

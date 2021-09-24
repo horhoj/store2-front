@@ -18,7 +18,6 @@ export const getProductPatchDataRequestConfig = (
 });
 
 export const getNewProductRequestConfig = (
-  id: number,
   data: ProductRequestType,
 ): AxiosRequestConfig => ({
   url: `/products`,

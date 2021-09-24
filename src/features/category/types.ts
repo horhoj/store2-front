@@ -16,3 +16,8 @@ export const CategoryResponseSchema =
 
 export interface CategoryResponseType
   extends yup.Asserts<typeof CategoryResponseSchema> {}
+
+export const CategoryRequestSchema = CategoryResponseSchema.shape({});
+
+export interface CategoryRequestType
+  extends yup.Asserts<typeof CategoryRequestSchema> {}

@@ -86,7 +86,7 @@ export function* productNewWorker(action: ProductNewWorker): SagaIterator {
     yield put(productActions.setIsLoading(true));
     yield put(productActions.setRequestError(null));
     const requestConfig: ReturnType<typeof getNewProductRequestConfig> =
-      yield call(getNewProductRequestConfig, action.payload.id, action.payload);
+      yield call(getNewProductRequestConfig, action.payload);
     yield call(requestExecutor, requestConfig, null);
     const path: ReturnType<typeof getPathByName> = yield call(
       getPathByName,
