@@ -8,9 +8,9 @@ export interface CategoryState {
 }
 
 export enum CategoryWorkerType {
-  fetchData = 'category/fetchData',
-  patchData = 'category/patchData',
-  new = 'category/new',
+  FETCH_DATA = 'category/fetchDataWorker',
+  PATCH_DATA = 'category/patchDataWorker',
+  NEW = 'category/newWorker',
 }
 
 interface CategoryWorker<T, P> {
@@ -19,16 +19,16 @@ interface CategoryWorker<T, P> {
 }
 
 export type CategoryFetchDataWorker = CategoryWorker<
-  CategoryWorkerType.fetchData,
+  CategoryWorkerType.FETCH_DATA,
   number
 >;
 
 export type CategoryPatchDataWorker = CategoryWorker<
-  CategoryWorkerType.patchData,
+  CategoryWorkerType.PATCH_DATA,
   CategoryRequestType
 >;
 
 export type CategoryNewWorker = CategoryWorker<
-  CategoryWorkerType.new,
+  CategoryWorkerType.NEW,
   CategoryRequestType
 >;

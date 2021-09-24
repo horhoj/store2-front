@@ -17,8 +17,8 @@ export enum CategoryListWorkerType {
   SORT = 'categoryList/sortWorker',
   GO_TO_PAGE = 'categoryList/goToPageWorker',
   SEARCH = 'categoryList/searchWorker',
-  CHANGE_PER_PAGE = 'categoryList/changePerPage',
-  DELETE = 'categoryList/delete',
+  CHANGE_PER_PAGE = 'categoryList/changePerPageWorker',
+  DELETE = 'categoryList/deleteWorker',
 }
 
 interface CategoryListWorker<T, P> {

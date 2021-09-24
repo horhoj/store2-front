@@ -17,8 +17,8 @@ export enum ProductListWorkerType {
   SORT = 'productList/sortWorker',
   GO_TO_PAGE = 'productList/goToPageWorker',
   SEARCH = 'productList/searchWorker',
-  CHANGE_PER_PAGE = 'productList/changePerPage',
-  DELETE = 'productList/delete',
+  CHANGE_PER_PAGE = 'productList/changePerPageWorker',
+  DELETE = 'productList/deleteWorker',
 }
 
 interface ProductListWorker<T, P> {

@@ -21,9 +21,9 @@ import {
 import { categoryActions } from './index';
 
 export function* categoryWatcher(): SagaIterator {
-  yield takeEvery(CategoryWorkerType.fetchData, categoryFetchDataWorker);
-  yield takeEvery(CategoryWorkerType.patchData, categoryPatchDataWorker);
-  yield takeEvery(CategoryWorkerType.new, categoryNewWorker);
+  yield takeEvery(CategoryWorkerType.FETCH_DATA, categoryFetchDataWorker);
+  yield takeEvery(CategoryWorkerType.PATCH_DATA, categoryPatchDataWorker);
+  yield takeEvery(CategoryWorkerType.NEW, categoryNewWorker);
 }
 
 export function* categoryFetchDataWorker(

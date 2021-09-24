@@ -8,9 +8,9 @@ export interface ProductState {
 }
 
 export enum ProductWorkerType {
-  fetchData = 'product/fetchData',
-  patchData = 'product/patchData',
-  new = 'product/new',
+  FETCH_DATA = 'product/fetchDataWorker',
+  PATCH_DATA = 'product/patchDataWorker',
+  NEW = 'product/newWorker',
 }
 
 interface ProductWorker<T, P> {
@@ -19,16 +19,16 @@ interface ProductWorker<T, P> {
 }
 
 export type ProductFetchDataWorker = ProductWorker<
-  ProductWorkerType.fetchData,
+  ProductWorkerType.FETCH_DATA,
   number
 >;
 
 export type ProductPatchDataWorker = ProductWorker<
-  ProductWorkerType.patchData,
+  ProductWorkerType.PATCH_DATA,
   ProductRequestType
 >;
 
 export type ProductNewWorker = ProductWorker<
-  ProductWorkerType.new,
+  ProductWorkerType.NEW,
   ProductRequestType
 >;

@@ -20,9 +20,9 @@ import {
 import { productActions } from './index';
 
 export function* productWatcher(): SagaIterator {
-  yield takeEvery(ProductWorkerType.fetchData, productFetchDataWorker);
-  yield takeEvery(ProductWorkerType.patchData, productPatchDataWorker);
-  yield takeEvery(ProductWorkerType.new, productNewWorker);
+  yield takeEvery(ProductWorkerType.FETCH_DATA, productFetchDataWorker);
+  yield takeEvery(ProductWorkerType.PATCH_DATA, productPatchDataWorker);
+  yield takeEvery(ProductWorkerType.NEW, productNewWorker);
 }
 
 export function* productFetchDataWorker(
