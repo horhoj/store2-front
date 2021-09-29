@@ -80,6 +80,8 @@ export const CategoryListForm: React.FC = () => {
 
   const actionRowPanelRenderCb = (id: number) => (
     <ActionRowPanelDefault
+      isEditBtn={true}
+      isDeleteBtn={true}
       id={id}
       handleEditCb={handleRowEdit}
       handleDeleteCb={handleRowDelete}

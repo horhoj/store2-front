@@ -8,13 +8,18 @@ import { ActionRowPanelDefaultProps } from './types';
 
 export const ActionRowPanelDefault: React.FC<ActionRowPanelDefaultProps> = ({
   id,
-  handleDeleteCb,
-  handleEditCb,
+  handleDeleteCb = null,
+  handleEditCb = null,
   disabled,
+  isDeleteBtn,
+  isEditBtn,
 }) => {
   const t = useAppTranslation();
 
   const handleDeleteBtnClk = () => {
+    if (!handleDeleteCb) {
+      return;
+    }
     if (
       confirm(t('component__action-row-panel-default__delete-request-message'))
     ) {
@@ -22,14 +27,26 @@ export const ActionRowPanelDefault: React.FC<ActionRowPanelDefaultProps> = ({
     }
   };
 
+  const handleEditBtnClk = () => {
+    if (!handleEditCb) {
+      return;
+    }
+    handleEditCb(id);
+  };
+
   return (
     <Wrap>
-      <StyledButton onClick={() => handleEditCb(id)} disabled={disabled}>
-        <EditIcon color={disabled ? 'disabled' : 'primary'} />
-      </StyledButton>
-      <StyledButton onClick={handleDeleteBtnClk} disabled={disabled}>
-        <DeleteForeverIcon color={disabled ? 'disabled' : 'secondary'} />
-      </StyledButton>
+      {isEditBtn ? (
+        <StyledButton onClick={handleEditBtnClk} disabled={disabled}>
+          <EditIcon color={disabled ? 'disabled' : 'primary'} />
+        </StyledButton>
+      ) : null}
+
+      {isDeleteBtn ? (
+        <StyledButton onClick={handleDeleteBtnClk} disabled={disabled}>
+          <DeleteForeverIcon color={disabled ? 'disabled' : 'secondary'} />
+        </StyledButton>
+      ) : null}
     </Wrap>
   );
 };

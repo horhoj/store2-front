@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components';
-import { Box, Button, Theme } from '@material-ui/core';
+import { Box, Button, Theme, Typography } from '@material-ui/core';
 import { FormikConfig, useFormik } from 'formik';
 import {
   productActions,
@@ -19,6 +19,7 @@ import { StyledFieldSet } from '../../../theme/styled';
 import { NEW_ENTITY_ITEM_ID } from '../../../config/config';
 import { ProductFormProps } from './types';
 import { prepareProductFormData, prepareProductRequestData } from './helpers';
+import { CategoryListSubform } from './components/CategoryListSubform';
 
 export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
   const dispatch = useAppDispatch();
@@ -75,13 +76,23 @@ export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
     </PageTitle>
   );
 
+  const categoryListSubformRender = useMemo(
+    () => (
+      <CategoryListSubform
+        entityList={formik.values.categories}
+        changeCb={(values) => formik.setFieldValue('categories', values)}
+      />
+    ),
+    [formik.values.categories],
+  );
+
   const requestErrorRender = requestError ? (
     <RequestErrorView requestError={requestError} />
   ) : null;
 
   const productFormRender = (
-    <StyledFieldSet disabled={isLoading} fullWidth={true}>
-      <form noValidate onSubmit={formik.handleSubmit}>
+    <form noValidate onSubmit={formik.handleSubmit}>
+      <StyledFieldSet disabled={isLoading} fullWidth={true}>
         <StyledTextField
           variant="outlined"
           fullWidth={true}
@@ -108,7 +119,15 @@ export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
           helperText={formik.errors.options}
           error={Boolean(formik.errors.options)}
         />
-        <ButtonWrap>
+      </StyledFieldSet>
+      <FormElementWrap>
+        <Typography component={'h3'}>
+          Категории в которые входит данный товар
+        </Typography>
+      </FormElementWrap>
+      <FormElementWrap>{categoryListSubformRender}</FormElementWrap>
+      <StyledFieldSet disabled={isLoading} fullWidth={true}>
+        <FormElementWrap>
           <StyledButton
             type={'submit'}
             color={'primary'}
@@ -126,9 +145,9 @@ export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
           >
             {t('features__product-form__button-title-previous')}
           </StyledButton>
-        </ButtonWrap>
-      </form>
-    </StyledFieldSet>
+        </FormElementWrap>
+      </StyledFieldSet>
+    </form>
   );
 
   return (
@@ -144,7 +163,7 @@ const StyledTextField = styled(TextField)`
   margin-top: ${({ theme }) => (theme as Theme).spacing(2)}px;
 `;
 
-const ButtonWrap = styled(Box)`
+const FormElementWrap = styled(Box)`
   margin-top: ${({ theme }) => (theme as Theme).spacing(2)}px;
 `;
 

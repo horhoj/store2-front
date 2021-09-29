@@ -74,6 +74,8 @@ export const ProductListForm: React.FC = () => {
 
   const actionRowPanelRenderCb = (id: number) => (
     <ActionRowPanelDefault
+      isDeleteBtn={true}
+      isEditBtn={true}
       id={id}
       handleEditCb={handleRowEdit}
       handleDeleteCb={handleRowDelete}

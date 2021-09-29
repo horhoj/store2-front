@@ -50,6 +50,10 @@ export const en = {
   'features__product-form__button-title-previous': 'Previous',
   'features__product-form__page-edit-title': 'Edit product with ID="{{id}}"',
   'features__product-form__page-new-title': 'Add new product',
+  'features__product-form__category-list-subform__action-column-title':
+    'Actions',
+  'features__product-form__category-list-subform__search-placeholder': 'Search',
+
   //categoryListForm
   'features__category-list-form__page-title': 'Category list',
   'features__category-list-form__data-grid-column__id': 'ID',
