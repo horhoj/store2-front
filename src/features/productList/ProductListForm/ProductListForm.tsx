@@ -104,6 +104,7 @@ export const ProductListForm: React.FC = () => {
       actionColumnTitle={t('features__product-list-form__action-column-title')}
       actionRowPanelRender={actionRowPanelRenderCb}
       addCb={handleAdd}
+      searchNotFoundMsg={t('features__product-list-form__search-not-found-msg')}
     />
   ) : null;
 

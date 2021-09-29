@@ -43,6 +43,7 @@ export const ru: typeof en = {
   'features__product-list-form__search-placeholder': 'найти',
   'features__product-list-form__action-column-title': 'Действия',
   'features__product-list-form__page-title': 'Список товаров',
+  'features__product-list-form__search-not-found-msg': 'Ничего не найдено',
   //productForm
   'features__product-form__input-label-title': 'Наименование',
   'features__product-form__input-label-description': 'Описание',
@@ -55,6 +56,8 @@ export const ru: typeof en = {
   'features__product-form__category-list-subform__action-column-title':
     'Действия',
   'features__product-form__category-list-subform__search-placeholder': 'Найти',
+  'features__product-form__category-list-subform__search-not-found-msg':
+    'Ничего не найдено',
   //categoryListForm
   'features__category-list-form__page-title': 'Список категорий',
   'features__category-list-form__data-grid-column__id': 'ИД',
@@ -62,6 +65,7 @@ export const ru: typeof en = {
   'features__category-list-form__data-grid-column__description': 'Описание',
   'features__category-list-form__search-placeholder': 'найти',
   'features__category-list-form__action-column-title': 'Действия',
+  'features__category-list-form__search-not-found-msg': 'Ничего не найдено',
   //categoryForm
   'features__category-form__input-label-title': 'Наименование',
   'features__category-form__input-label-description': 'Описание',

@@ -3,7 +3,14 @@ import UpdateIcon from '@material-ui/icons/Update';
 import ClearIcon from '@material-ui/icons/Clear';
 import AddIcon from '@material-ui/icons/Add';
 import styled from 'styled-components';
-import { Box, Button, MenuItem, Select, Theme } from '@material-ui/core';
+import {
+  Box,
+  Button,
+  MenuItem,
+  Select,
+  Theme,
+  Typography,
+} from '@material-ui/core';
 import Pagination from '@material-ui/lab/Pagination';
 import { DebouncedInput } from '../DebouncedInput';
 import {
@@ -33,7 +40,9 @@ export const EntityListForm: React.FC<EntityListFormProps> = ({
   actionColumnTitle,
   actionRowPanelRender,
   addCb,
+  searchNotFoundMsg,
 }) => {
+  const isEmpty = rows.length === 0;
   return (
     <Wrap>
       <SearchWrap>
@@ -43,49 +52,60 @@ export const EntityListForm: React.FC<EntityListFormProps> = ({
         <StyledBtn onClick={updateCb} disabled={disabled}>
           <UpdateIcon />
         </StyledBtn>
-        <StyledBtn disabled={disabled} onClick={searchClearCb}>
-          <ClearIcon />
-        </StyledBtn>
-        <DebouncedInput
-          placeholder={searchPlaceholder}
-          disabled={disabled}
-          handleSearchCb={searchCb}
-          value={searchStr}
-          delay={DEFAULT_DEBOUNCED_INPUT_DELAY}
-        />
+        {isEmpty && searchStr === '' ? null : (
+          <>
+            <StyledBtn disabled={disabled} onClick={searchClearCb}>
+              <ClearIcon />
+            </StyledBtn>
+            <DebouncedInput
+              placeholder={searchPlaceholder}
+              disabled={disabled}
+              handleSearchCb={searchCb}
+              value={searchStr}
+              delay={DEFAULT_DEBOUNCED_INPUT_DELAY}
+            />
+          </>
+        )}
       </SearchWrap>
-      <DataGrid
-        rows={rows}
-        fields={fields}
-        disabled={disabled}
-        columnClkCb={columnHeaderClkCb}
-        sortField={sortField}
-        sortAsc={sortAsc}
-        searchStr={searchStr}
-        actionColumnTitle={actionColumnTitle}
-        actionRowPanelRender={actionRowPanelRender}
-        perPage={perPage}
-        page={page}
-      />
-      <PerPageSelect
-        value={perPage}
-        disabled={disabled}
-        onChange={(e) => {
-          changePerPageCb(Number(e.target.value));
-        }}
-      >
-        {DEFAULT_ENTITY_LIST_ALLOWABLE_VALUES.map((value) => (
-          <MenuItem value={value} key={value}>
-            {value}
-          </MenuItem>
-        ))}
-      </PerPageSelect>
-      <StyledPagination
-        count={pageCount}
-        page={page}
-        onChange={(e, page: number) => paginationBtnClkCb(page)}
-        disabled={disabled}
-      />
+      {isEmpty && searchStr !== '' ? (
+        <Typography>{searchNotFoundMsg}</Typography>
+      ) : null}
+      {isEmpty ? null : (
+        <>
+          <DataGrid
+            rows={rows}
+            fields={fields}
+            disabled={disabled}
+            columnClkCb={columnHeaderClkCb}
+            sortField={sortField}
+            sortAsc={sortAsc}
+            searchStr={searchStr}
+            actionColumnTitle={actionColumnTitle}
+            actionRowPanelRender={actionRowPanelRender}
+            perPage={perPage}
+            page={page}
+          />
+          <PerPageSelect
+            value={perPage}
+            disabled={disabled}
+            onChange={(e) => {
+              changePerPageCb(Number(e.target.value));
+            }}
+          >
+            {DEFAULT_ENTITY_LIST_ALLOWABLE_VALUES.map((value) => (
+              <MenuItem value={value} key={value}>
+                {value}
+              </MenuItem>
+            ))}
+          </PerPageSelect>
+          <StyledPagination
+            count={pageCount}
+            page={page}
+            onChange={(e, page: number) => paginationBtnClkCb(page)}
+            disabled={disabled}
+          />
+        </>
+      )}
     </Wrap>
   );
 };

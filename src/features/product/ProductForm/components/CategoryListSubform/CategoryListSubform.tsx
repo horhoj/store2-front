@@ -8,6 +8,7 @@ import { CategoryListSubformProps } from './types';
 export const CategoryListSubform: React.FC<CategoryListSubformProps> = ({
   entityList,
   changeCb,
+  isLoading,
 }) => {
   const categoryListSubformFields = useCategoryListFields();
   const t = useAppTranslation();
@@ -25,6 +26,10 @@ export const CategoryListSubform: React.FC<CategoryListSubformProps> = ({
           'features__product-form__category-list-subform__search-placeholder',
         )}
         changeCb={changeCb}
+        isLoading={isLoading}
+        searchNotFoundMsg={t(
+          'features__product-form__category-list-subform__search-not-found-msg',
+        )}
       />
     </>
   );

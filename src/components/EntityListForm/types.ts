@@ -15,6 +15,7 @@ export interface EntityListFormProps {
   page: number;
   paginationBtnClkCb(page: number): void;
   searchPlaceholder: string;
+  searchNotFoundMsg: string;
   perPage: number;
   changePerPageCb(perPage: number): void;
   actionColumnTitle: string;

@@ -81,9 +81,10 @@ export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
       <CategoryListSubform
         entityList={formik.values.categories}
         changeCb={(values) => formik.setFieldValue('categories', values)}
+        isLoading={isLoading}
       />
     ),
-    [formik.values.categories],
+    [formik.values.categories, isLoading],
   );
 
   const requestErrorRender = requestError ? (

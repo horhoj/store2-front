@@ -42,6 +42,7 @@ export const en = {
   'features__product-list-form__search-placeholder': 'search',
   'features__product-list-form__action-column-title': 'Actions',
   'features__product-list-form__page-title': 'Product list',
+  'features__product-list-form__search-not-found-msg': 'Nothing found',
   //productForm
   'features__product-form__input-label-title': 'Title',
   'features__product-form__input-label-description': 'Description',
@@ -53,6 +54,8 @@ export const en = {
   'features__product-form__category-list-subform__action-column-title':
     'Actions',
   'features__product-form__category-list-subform__search-placeholder': 'Search',
+  'features__product-form__category-list-subform__search-not-found-msg':
+    'Nothing found',
 
   //categoryListForm
   'features__category-list-form__page-title': 'Category list',
@@ -61,6 +64,7 @@ export const en = {
   'features__category-list-form__data-grid-column__description': 'Description',
   'features__category-list-form__search-placeholder': 'search',
   'features__category-list-form__action-column-title': 'Actions',
+  'features__category-list-form__search-not-found-msg': 'Nothing found',
   //categoryForm
   'features__category-form__input-label-title': 'Title',
   'features__category-form__input-label-description': 'Description',

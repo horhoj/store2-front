@@ -16,6 +16,8 @@ export const EntityListSubform: React.FC<EntityListSubformProps> = ({
   actionColumnTitle,
   searchPlaceholder,
   changeCb,
+  isLoading,
+  searchNotFoundMsg,
 }) => {
   const [page, setPage] = useState<number>(1);
   const [perPage, setPerPage] = useState<number>(5);
@@ -57,6 +59,11 @@ export const EntityListSubform: React.FC<EntityListSubformProps> = ({
     changeCb(newValues);
   };
 
+  const searchClearCb = () => {
+    setPage(1);
+    setSearchStr('');
+  };
+
   const actionRowPanelRender = (id: number) => {
     return (
       <ActionRowPanelDefault
@@ -84,13 +91,14 @@ export const EntityListSubform: React.FC<EntityListSubformProps> = ({
         actionColumnTitle={actionColumnTitle}
         changePerPageCb={changePerPageCb}
         searchPlaceholder={searchPlaceholder}
-        disabled={false}
+        disabled={isLoading}
         searchStr={searchStr}
         paginationBtnClkCb={setPage}
         columnHeaderClkCb={columnHeaderClkCb}
         searchCb={setSearchStr}
-        searchClearCb={() => {}}
+        searchClearCb={searchClearCb}
         updateCb={() => {}}
+        searchNotFoundMsg={searchNotFoundMsg}
       />
     </>
   );

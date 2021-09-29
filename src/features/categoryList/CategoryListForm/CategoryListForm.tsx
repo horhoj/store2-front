@@ -110,6 +110,9 @@ export const CategoryListForm: React.FC = () => {
       actionRowPanelRender={actionRowPanelRenderCb}
       pageCount={categoryList.last_page}
       sortAsc={Boolean(requestOptions.sort_asc)}
+      searchNotFoundMsg={t(
+        'features__category-list-form__search-not-found-msg',
+      )}
     />
   ) : null;
 

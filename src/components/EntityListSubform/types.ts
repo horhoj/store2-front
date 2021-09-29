@@ -7,4 +7,6 @@ export interface EntityListSubformProps {
   actionColumnTitle: string;
   searchPlaceholder: string;
   changeCb(values: DataGridRow[]): void;
+  isLoading: boolean;
+  searchNotFoundMsg: string;
 }
