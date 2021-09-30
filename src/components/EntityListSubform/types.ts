@@ -9,4 +9,5 @@ export interface EntityListSubformProps {
   changeCb(values: DataGridRow[]): void;
   isLoading: boolean;
   searchNotFoundMsg: string;
+  addCb(): void;
 }

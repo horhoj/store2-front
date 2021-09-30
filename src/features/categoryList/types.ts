@@ -7,7 +7,8 @@ export const CategoryListItemSchema = yup.object({
   description: yup.string().nullable(),
 });
 
-interface CategoryListItem extends yup.Asserts<typeof CategoryListItemSchema> {}
+export interface CategoryListItem
+  extends yup.Asserts<typeof CategoryListItemSchema> {}
 
 export type CategoryListItemKeys = keyof CategoryListItem;
 

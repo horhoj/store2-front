@@ -17,8 +17,12 @@ import { getPathByName } from '../../../router';
 import { appActions } from '../../../store/app';
 import { NEW_ENTITY_ITEM_ID } from '../../../config/config';
 import { useCategoryListFields } from './hooks';
+import { CategoryListFormProps } from './types';
 
-export const CategoryListForm: React.FC = () => {
+export const CategoryListForm: React.FC<CategoryListFormProps> = ({
+  isModal = false,
+  selectCb,
+}) => {
   const t = useAppTranslation();
   const dispatch = useAppDispatch();
   const categoryList = useAppSelector(
@@ -78,13 +82,25 @@ export const CategoryListForm: React.FC = () => {
     dispatch(categoryListWorkers.deleteCategory(id));
   };
 
+  const handleRowSelect = (id: number) => {
+    if (!categoryList) {
+      return;
+    }
+    const row = categoryList.data.filter((row) => row.id === id)[0];
+    if (selectCb) {
+      selectCb(row);
+    }
+  };
+
   const actionRowPanelRenderCb = (id: number) => (
     <ActionRowPanelDefault
-      isEditBtn={true}
-      isDeleteBtn={true}
+      isEditBtn={!isModal}
+      isDeleteBtn={!isModal}
+      isSelectBtn={isModal}
       id={id}
       handleEditCb={handleRowEdit}
       handleDeleteCb={handleRowDelete}
+      handleSelectCb={handleRowSelect}
       disabled={isLoading}
     />
   );

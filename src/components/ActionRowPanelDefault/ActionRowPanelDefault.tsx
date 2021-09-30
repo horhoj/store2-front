@@ -3,6 +3,7 @@ import { Box, Button } from '@material-ui/core';
 import styled from 'styled-components';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import TouchAppIcon from '@material-ui/icons/TouchApp';
 import { useAppTranslation } from '../../i18n/useAppTranslation';
 import { ActionRowPanelDefaultProps } from './types';
 
@@ -10,9 +11,11 @@ export const ActionRowPanelDefault: React.FC<ActionRowPanelDefaultProps> = ({
   id,
   handleDeleteCb = null,
   handleEditCb = null,
+  handleSelectCb = null,
   disabled,
   isDeleteBtn,
   isEditBtn,
+  isSelectBtn,
 }) => {
   const t = useAppTranslation();
 
@@ -34,6 +37,13 @@ export const ActionRowPanelDefault: React.FC<ActionRowPanelDefaultProps> = ({
     handleEditCb(id);
   };
 
+  const handleSelectBtnClk = () => {
+    if (!handleSelectCb) {
+      return;
+    }
+    handleSelectCb(id);
+  };
+
   return (
     <Wrap>
       {isEditBtn ? (
@@ -45,6 +55,12 @@ export const ActionRowPanelDefault: React.FC<ActionRowPanelDefaultProps> = ({
       {isDeleteBtn ? (
         <StyledButton onClick={handleDeleteBtnClk} disabled={disabled}>
           <DeleteForeverIcon color={disabled ? 'disabled' : 'secondary'} />
+        </StyledButton>
+      ) : null}
+
+      {isSelectBtn ? (
+        <StyledButton onClick={handleSelectBtnClk} disabled={disabled}>
+          <TouchAppIcon color={disabled ? 'disabled' : 'action'} />
         </StyledButton>
       ) : null}
     </Wrap>

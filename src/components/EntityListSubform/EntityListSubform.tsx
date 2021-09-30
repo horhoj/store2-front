@@ -18,6 +18,7 @@ export const EntityListSubform: React.FC<EntityListSubformProps> = ({
   changeCb,
   isLoading,
   searchNotFoundMsg,
+  addCb,
 }) => {
   const [page, setPage] = useState<number>(1);
   const [perPage, setPerPage] = useState<number>(5);
@@ -69,6 +70,7 @@ export const EntityListSubform: React.FC<EntityListSubformProps> = ({
       <ActionRowPanelDefault
         isDeleteBtn={true}
         isEditBtn={false}
+        isSelectBtn={false}
         disabled={false}
         id={id}
         handleDeleteCb={handleDeleteCategory}
@@ -87,7 +89,7 @@ export const EntityListSubform: React.FC<EntityListSubformProps> = ({
         sortField={sortField}
         pageCount={getRows().pageCount}
         actionRowPanelRender={actionRowPanelRender}
-        addCb={() => {}}
+        addCb={addCb}
         actionColumnTitle={actionColumnTitle}
         changePerPageCb={changePerPageCb}
         searchPlaceholder={searchPlaceholder}
