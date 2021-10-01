@@ -121,12 +121,14 @@ export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
           error={Boolean(formik.errors.options)}
         />
       </StyledFieldSet>
-      <FormElementWrap>
+      <CategorySubformWrap>
         <Typography component={'h3'}>
-          Категории в которые входит данный товар
+          {t(
+            'features__product-form__category-list-subform__category-subform-title',
+          )}
         </Typography>
-      </FormElementWrap>
-      <FormElementWrap>{categoryListSubformRender}</FormElementWrap>
+        <CategorySubformWrap>{categoryListSubformRender}</CategorySubformWrap>
+      </CategorySubformWrap>
       <StyledFieldSet disabled={isLoading} fullWidth={true}>
         <FormElementWrap>
           <StyledButton
@@ -166,6 +168,10 @@ const StyledTextField = styled(TextField)`
 
 const FormElementWrap = styled(Box)`
   margin-top: ${({ theme }) => (theme as Theme).spacing(2)}px;
+`;
+
+const CategorySubformWrap = styled(FormElementWrap)`
+  padding: ${({ theme }) => (theme as Theme).spacing(1)}px;
 `;
 
 const StyledButton = styled(Button)`

@@ -3,6 +3,7 @@ import { Modal, Paper, Theme } from '@material-ui/core';
 import styled from 'styled-components';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import { MODAL_TRANSITION_DURATION } from '../../config/config';
 import { AppModalProps } from './types';
 
 export const AppModal: React.FC<AppModalProps> = ({
@@ -17,7 +18,7 @@ export const AppModal: React.FC<AppModalProps> = ({
       closeAfterTransition
       BackdropComponent={Backdrop}
       BackdropProps={{
-        timeout: 500,
+        timeout: MODAL_TRANSITION_DURATION,
       }}
     >
       <Fade in={open}>
@@ -31,6 +32,8 @@ const StyledPaper = styled(Paper)`
   padding: ${({ theme }) => (theme as Theme).spacing(2)}px;
   max-width: 80%;
   max-height: 90%;
+  min-height: 50%;
+  min-width: 50%;
   overflow: auto;
   @media screen and (max-width: 600px) {
     max-width: 95%;

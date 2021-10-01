@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { createTheme, Theme, useMediaQuery, colors } from '@material-ui/core';
-
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { appActions, appSelectors } from '../store/app';
 

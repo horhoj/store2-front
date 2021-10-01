@@ -58,6 +58,8 @@ export const ru: typeof en = {
   'features__product-form__category-list-subform__search-placeholder': 'Найти',
   'features__product-form__category-list-subform__search-not-found-msg':
     'Ничего не найдено',
+  'features__product-form__category-list-subform__category-subform-title':
+    'Категории, к которым принадлежит этот продукт',
   //categoryListForm
   'features__category-list-form__page-title': 'Список категорий',
   'features__category-list-form__data-grid-column__id': 'ИД',

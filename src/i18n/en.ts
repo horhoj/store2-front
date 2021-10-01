@@ -56,6 +56,8 @@ export const en = {
   'features__product-form__category-list-subform__search-placeholder': 'Search',
   'features__product-form__category-list-subform__search-not-found-msg':
     'Nothing found',
+  'features__product-form__category-list-subform__category-subform-title':
+    'Categories that this product belongs to',
 
   //categoryListForm
   'features__category-list-form__page-title': 'Category list',
