@@ -19,6 +19,7 @@ import { AppFooter } from './components/AppFooter';
 import { GlobalStyle } from './theme/GlobalStyle';
 import { NavBlock } from './components/NavBlock/NavBlock';
 import { SmallWidthChecker } from './UI/SmallWidthChecker';
+import { FlashMessagesPresenter } from './UI/FlashMessagesPresenter';
 
 export const App: React.FC = () => {
   const theme = useAppTheme();
@@ -38,6 +39,7 @@ export const App: React.FC = () => {
             <CssBaseline />
             <GlobalStyle />
             <ProgressBar />
+            <FlashMessagesPresenter />
             <SmallWidthChecker />
             <BrowserRouter>
               <AppWrap>

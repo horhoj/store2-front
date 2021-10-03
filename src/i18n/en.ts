@@ -59,6 +59,9 @@ export const en = {
   'features__product-form__category-list-subform__category-subform-title':
     'Categories that this product belongs to',
 
+  'features__product-form__category-list-subform__category-subform__msg__category_already-been-selected':
+    'This category has already been selected',
+
   //categoryListForm
   'features__category-list-form__page-title': 'Category list',
   'features__category-list-form__data-grid-column__id': 'ID',

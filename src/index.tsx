@@ -1,15 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { SnackbarProvider } from 'notistack';
 import { store } from './store';
 import { App } from './App';
 import './i18n';
-import { isStrictMode } from './config/config';
+import { isStrictMode, SNACKBAR_PROVIDER_MAX_SNACK } from './config/config';
 
 const Core: React.FC = () => {
   const appCore = (
     <Provider store={store}>
-      <App />
+      <SnackbarProvider maxSnack={SNACKBAR_PROVIDER_MAX_SNACK}>
+        <App />
+      </SnackbarProvider>
     </Provider>
   );
 

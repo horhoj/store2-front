@@ -6,6 +6,8 @@ import { useAppTranslation } from '../../../../../i18n/useAppTranslation';
 import { AppModal } from '../../../../../components/AppModal';
 import { CategoryListForm } from '../../../../categoryList/CategoryListForm';
 import { CategoryListItem } from '../../../../categoryList/types';
+import { useAppDispatch } from '../../../../../store/hooks';
+import { flashMessagesWorkers } from '../../../../../store/flashMessages';
 import { CategoryListSubformProps } from './types';
 
 export const CategoryListSubform: React.FC<CategoryListSubformProps> = ({
@@ -18,6 +20,7 @@ export const CategoryListSubform: React.FC<CategoryListSubformProps> = ({
   logger('CategoryListSubform RERENDER!');
 
   const [open, setOpen] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
 
   const addCb = () => {
     setOpen(true);
@@ -28,13 +31,18 @@ export const CategoryListSubform: React.FC<CategoryListSubformProps> = ({
   };
 
   const selectCb = (category: CategoryListItem) => {
-    setOpen(false);
     const isSelected =
       entityList.filter((item) => item.id === category.id).length > 0;
     if (!isSelected) {
       changeCb([...entityList, category]);
+      setOpen(false);
     } else {
-      console.log('уже есть!!!');
+      dispatch(
+        flashMessagesWorkers.addMessageWorker({
+          msg: 'features__product-form__category-list-subform__category-subform__msg__category_already-been-selected',
+          type: 'warning',
+        }),
+      );
     }
   };
 

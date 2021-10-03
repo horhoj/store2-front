@@ -60,6 +60,9 @@ export const ru: typeof en = {
     'Ничего не найдено',
   'features__product-form__category-list-subform__category-subform-title':
     'Категории, к которым принадлежит этот продукт',
+  'features__product-form__category-list-subform__category-subform__msg__category_already-been-selected':
+    'Данная категория уже выбрана',
+
   //categoryListForm
   'features__category-list-form__page-title': 'Список категорий',
   'features__category-list-form__data-grid-column__id': 'ИД',
