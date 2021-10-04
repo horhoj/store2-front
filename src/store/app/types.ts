@@ -2,5 +2,9 @@ export interface AppState {
   isDarkMode: boolean;
   isOpenMenu: boolean;
   isSmallWidth: boolean;
-  redirectUrl: string | null;
+  redirectUrl: AppRedirectUrl | null;
+}
+
+export interface AppRedirectUrl {
+  path: string;
 }

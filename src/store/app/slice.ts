@@ -34,8 +34,10 @@ export const appSlice = createSlice({
     // это нужно что бы не привязывать компоненты к роутеру
     // и была возможность делать переадресацию из саг
     // без доступа напрямую к HISTORY API
-    redirect: (state, action: PayloadAction<string | null>) => {
-      state.redirectUrl = action.payload;
+    redirect: (state, action: PayloadAction<string>) => {
+      state.redirectUrl = {
+        path: action.payload,
+      };
     },
   },
 });
