@@ -7,7 +7,8 @@ import { AppModal } from '../../../../../components/AppModal';
 import { CategoryListForm } from '../../../../categoryList/CategoryListForm';
 import { CategoryListItem } from '../../../../categoryList/types';
 import { useAppDispatch } from '../../../../../store/hooks';
-import { flashMessagesWorkers } from '../../../../../store/flashMessages';
+
+import { appActions } from '../../../../../store/app';
 import { CategoryListSubformProps } from './types';
 
 export const CategoryListSubform: React.FC<CategoryListSubformProps> = ({
@@ -38,7 +39,7 @@ export const CategoryListSubform: React.FC<CategoryListSubformProps> = ({
       setOpen(false);
     } else {
       dispatch(
-        flashMessagesWorkers.addMessageWorker({
+        appActions.addFlashMessage({
           msg: 'features__product-form__category-list-subform__category-subform__msg__category_already-been-selected',
           type: 'warning',
         }),

@@ -1,24 +1,21 @@
 import React, { useEffect } from 'react';
 import { useSnackbar } from 'notistack';
 import { useAppSelector } from '../../store/hooks';
-import { flashMessagesSelectors } from '../../store/flashMessages';
 import { useAppTranslation } from '../../i18n/useAppTranslation';
+import { appSelectors } from '../../store/app';
 
 export const FlashMessagesPresenter: React.FC = () => {
-  const flashMessageList = useAppSelector(
-    flashMessagesSelectors.flashMessageList,
-  );
+  const lastFlashMessage = useAppSelector(appSelectors.getLastFlashMessage);
+
   const { enqueueSnackbar } = useSnackbar();
   const t = useAppTranslation();
 
   useEffect(() => {
-    const length = flashMessageList.length;
-    if (length > 0) {
-      const lastMessage = flashMessageList[length - 1];
-      const msg = t(lastMessage.msg, { ...lastMessage.data });
-      enqueueSnackbar(msg, { variant: lastMessage.type });
+    if (lastFlashMessage) {
+      const msg = t(lastFlashMessage.msg, { ...lastFlashMessage.data });
+      enqueueSnackbar(msg, { variant: lastFlashMessage.type });
     }
-  }, [flashMessageList]);
+  }, [lastFlashMessage]);
 
   return null;
 };

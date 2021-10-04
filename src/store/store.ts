@@ -12,8 +12,6 @@ import { categoryWatcher } from '../features/category/categoryReducer/sagas';
 import { appReducer } from './app';
 import { authReducer } from './auth';
 import { authWatcher } from './auth/sagas';
-import { flashMessagesReducer } from './flashMessages';
-import { flashMessagesWatcher } from './flashMessages/sagas';
 
 const reduxSagaMonitorOptions = {};
 const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
@@ -29,7 +27,6 @@ export const store = configureStore({
     product: productReducer,
     categoryList: categoryListReducer,
     category: categoryReducer,
-    flashMessages: flashMessagesReducer,
   },
   middleware: [...middlewares],
 });
@@ -41,7 +38,6 @@ export function* rootSaga(): Generator<AllEffect<SagaIterator<any>>> {
     productWatcher(),
     categoryListWatcher(),
     categoryWatcher(),
-    flashMessagesWatcher(),
   ]);
 }
 

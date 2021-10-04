@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AppState } from './types';
+import { AppState, FlashMessage } from './types';
 
 const APP_SLICE_NAME = 'app';
 
@@ -8,6 +8,7 @@ const initialState: AppState = {
   isOpenMenu: true,
   isSmallWidth: false,
   redirectUrl: null,
+  flashMessage: null,
 };
 
 export const appSlice = createSlice({
@@ -38,6 +39,10 @@ export const appSlice = createSlice({
       state.redirectUrl = {
         path: action.payload,
       };
+    },
+
+    addFlashMessage: (state, action: PayloadAction<FlashMessage>) => {
+      state.flashMessage = action.payload;
     },
   },
 });
