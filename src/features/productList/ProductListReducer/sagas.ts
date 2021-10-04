@@ -4,6 +4,8 @@ import { logger } from '../../../utils/logger';
 import { requestExecutor } from '../../../store/sagas';
 import { ProductListResponseSchema, ProductListResponseType } from '../types';
 import { getErrorData } from '../../../store/helpers';
+import { FlashMessage } from '../../../store/app/types';
+import { appActions } from '../../../store/app';
 import {
   ProductListChangePerPageWorker,
   ProductListDeleteProductWorker,
@@ -96,6 +98,11 @@ export function* deleteProductWorker(
       yield call(getDeleteProductRequestConfig, action.payload);
     yield call(requestExecutor, requestConfig, null);
     yield call(fetchDataWorker);
+    const msg: FlashMessage = {
+      msg: 'features__product-list-form__msg-successfully-deleted-product',
+      type: 'success',
+    };
+    yield put(appActions.addFlashMessage(msg));
   } catch (e) {
     const errorData: ReturnType<typeof getErrorData> = yield call(
       getErrorData,

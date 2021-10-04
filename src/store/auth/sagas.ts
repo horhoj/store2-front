@@ -10,6 +10,8 @@ import {
 } from '../helpers';
 import { UserData, UserDataValidationSchema } from '../../types/userData';
 import { ajax } from '../../api/transport';
+import { FlashMessage } from '../app/types';
+import { appActions } from '../app';
 import { AuthSagaWorkerType, AuthSignInWorker } from './types';
 import {
   getTokenRequestConfig,
@@ -19,14 +21,13 @@ import {
 import { authActions } from './index';
 
 export function* authWatcher(): SagaIterator {
-  yield takeEvery(AuthSagaWorkerType.SIGN_IN_WORKER, signUpWorker);
+  yield takeEvery(AuthSagaWorkerType.SIGN_IN_WORKER, signInWorker);
   yield takeEvery(AuthSagaWorkerType.GET_USER_DATA, getUserDataWorker);
   yield takeEvery(AuthSagaWorkerType.SIGN_OUT, signOutWorker);
 }
 
-export function* signUpWorker(action: AuthSignInWorker): SagaIterator {
+export function* signInWorker(action: AuthSignInWorker): SagaIterator {
   try {
-    yield call(logger, 'test xxx');
     yield put(authActions.setIsLoading(true));
     yield put(authActions.SetUserData(null));
     yield put(authActions.SetRequestError(null));
@@ -51,6 +52,11 @@ export function* signUpWorker(action: AuthSignInWorker): SagaIterator {
     );
     yield put(authActions.SetUserData(responseToUserDataRequest.data));
     yield put(authActions.setIsAuthenticated(true));
+    const msg: FlashMessage = {
+      msg: 'page__sign-in__msg__successfully-logged-in',
+      type: 'success',
+    };
+    yield put(appActions.addFlashMessage(msg));
   } catch (e) {
     const errorData: ReturnType<typeof getErrorData> = yield call(
       getErrorData,
@@ -58,6 +64,11 @@ export function* signUpWorker(action: AuthSignInWorker): SagaIterator {
     );
     yield call(logger, 'signUpWorker errors', errorData);
     yield put(authActions.SetRequestError(errorData));
+    const msg: FlashMessage = {
+      msg: 'page__sign-in__msg__login-failed',
+      type: 'error',
+    };
+    yield put(appActions.addFlashMessage(msg));
   } finally {
     yield put(authActions.setIsLoading(false));
   }
@@ -93,6 +104,13 @@ export function* signOutWorker(): SagaIterator {
     yield put(authActions.setIsLoading(true));
     yield put(authActions.SetUserData(null));
     yield put(authActions.setIsAuthenticated(false));
+
+    const msg: FlashMessage = {
+      msg: 'action__sign-out',
+      type: 'success',
+    };
+    yield put(appActions.addFlashMessage(msg));
+
     const token: SagaReturnType<typeof localStorage.getItem> = yield call(
       [localStorage, localStorage.getItem],
       ACCESS_TOKEN_LS_KEY,

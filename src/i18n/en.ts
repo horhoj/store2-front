@@ -29,11 +29,16 @@ export const en = {
   validation__max_x_symbol: 'max {{x}} symbol',
   validation__required: 'is a required field',
   validation__email: 'not email',
+  //actions
+  'action__sign-out': 'You have successfully logged out',
   //sign-in
   'page__sign-in__page-title': 'Sign in',
   'page__sign-in__form-label__email': 'email',
   'page__sign-in__form-label__password': 'password',
   'page__sign-in__form-label__submit-btn': 'SIGN IN',
+  'page__sign-in__msg__successfully-logged-in':
+    'You are successfully logged in',
+  'page__sign-in__msg__login-failed': 'Login failed',
   //productListForm
   'features__product-list-form__data-grid-column__id': 'ID',
   'features__product-list-form__data-grid-column__title': 'Title',
@@ -43,6 +48,8 @@ export const en = {
   'features__product-list-form__action-column-title': 'Actions',
   'features__product-list-form__page-title': 'Product list',
   'features__product-list-form__search-not-found-msg': 'Nothing found',
+  'features__product-list-form__msg-successfully-deleted-product':
+    'You have successfully deleted the item',
   //productForm
   'features__product-form__input-label-title': 'Title',
   'features__product-form__input-label-description': 'Description',
@@ -56,11 +63,14 @@ export const en = {
   'features__product-form__category-list-subform__search-placeholder': 'Search',
   'features__product-form__category-list-subform__search-not-found-msg':
     'Nothing found',
-  'features__product-form__category-list-subform__category-subform-title':
+  'features__product-form__category-list-subform__title':
     'Categories that this product belongs to',
-
-  'features__product-form__category-list-subform__category-subform__msg__category_already-been-selected':
+  'features__product-form__category-list-subform__msg-category-already-been-selected':
     'This category has already been selected',
+  'features__product-form__msg-product-update':
+    'You have successfully updated the product data with ID="{{id}}"',
+  'features__product-form__msg-product-add':
+    'You have successfully added a new product',
 
   //categoryListForm
   'features__category-list-form__page-title': 'Category list',
@@ -70,6 +80,8 @@ export const en = {
   'features__category-list-form__search-placeholder': 'search',
   'features__category-list-form__action-column-title': 'Actions',
   'features__category-list-form__search-not-found-msg': 'Nothing found',
+  'features__category-list-form__msg-successfully-deleted-category':
+    'You have successfully deleted the item',
   //categoryForm
   'features__category-form__input-label-title': 'Title',
   'features__category-form__input-label-description': 'Description',
@@ -78,4 +90,8 @@ export const en = {
   'features__category-form__button-title-previous': 'Previous',
   'features__category-form__page-edit-title': 'Edit category with ID="{{id}}"',
   'features__category-form__page-new-title': 'Add new category',
+  'features__category-form__msg-category-update':
+    'You have successfully updated the category data with ID="{{id}}"',
+  'features__category-form__msg-category-add':
+    'You have successfully added a new category',
 };

@@ -6,6 +6,7 @@ import { ProductResponseType, ProductResponseSchema } from '../types';
 import { requestExecutor } from '../../../store/sagas';
 import { appActions } from '../../../store/app';
 import { getPathByName } from '../../../router';
+import { FlashMessage } from '../../../store/app/types';
 import {
   ProductFetchDataWorker,
   ProductNewWorker,
@@ -69,6 +70,14 @@ export function* productPatchDataWorker(
       'productList',
     );
     yield put(appActions.redirect(path));
+    const msg: FlashMessage = {
+      msg: 'features__product-form__msg-product-update',
+      type: 'success',
+      data: {
+        id: action.payload.id,
+      },
+    };
+    yield put(appActions.addFlashMessage(msg));
   } catch (e) {
     const errorData: ReturnType<typeof getErrorData> = yield call(
       getErrorData,
@@ -93,6 +102,11 @@ export function* productNewWorker(action: ProductNewWorker): SagaIterator {
       'productList',
     );
     yield put(appActions.redirect(path));
+    const msg: FlashMessage = {
+      msg: 'features__product-form__msg-product-add',
+      type: 'success',
+    };
+    yield put(appActions.addFlashMessage(msg));
   } catch (e) {
     const errorData: ReturnType<typeof getErrorData> = yield call(
       getErrorData,

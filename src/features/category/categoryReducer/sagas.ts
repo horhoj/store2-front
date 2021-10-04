@@ -7,6 +7,7 @@ import { requestExecutor } from '../../../store/sagas';
 import { productActions } from '../../product/productReducer';
 import { getPathByName } from '../../../router';
 import { appActions } from '../../../store/app';
+import { FlashMessage } from '../../../store/app/types';
 import {
   CategoryFetchDataWorker,
   CategoryNewWorker,
@@ -72,6 +73,14 @@ export function* categoryPatchDataWorker(
       'categoryList',
     );
     yield put(appActions.redirect(path));
+    const msg: FlashMessage = {
+      msg: 'features__category-form__msg-category-update',
+      type: 'success',
+      data: {
+        id: action.payload.id,
+      },
+    };
+    yield put(appActions.addFlashMessage(msg));
   } catch (e) {
     const errorData: ReturnType<typeof getErrorData> = yield call(
       getErrorData,
@@ -96,6 +105,11 @@ export function* categoryNewWorker(action: CategoryNewWorker): SagaIterator {
       'categoryList',
     );
     yield put(appActions.redirect(path));
+    const msg: FlashMessage = {
+      msg: 'features__category-form__msg-category-add',
+      type: 'success',
+    };
+    yield put(appActions.addFlashMessage(msg));
   } catch (e) {
     const errorData: ReturnType<typeof getErrorData> = yield call(
       getErrorData,

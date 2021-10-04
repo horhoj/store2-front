@@ -4,6 +4,8 @@ import { getErrorData } from '../../../store/helpers';
 import { logger } from '../../../utils/logger';
 import { CategoryListResponseSchema, CategoryListResponseType } from '../types';
 import { requestExecutor } from '../../../store/sagas';
+import { FlashMessage } from '../../../store/app/types';
+import { appActions } from '../../../store/app';
 import {
   CategoryListChangePerPageWorker,
   CategoryListDeleteCategoryWorker,
@@ -101,6 +103,11 @@ export function* deleteCategoryWorker(
       yield call(getDeleteCategoryRequestConfig, action.payload);
     yield call(requestExecutor, requestConfig, null);
     yield call(fetchDataWorker);
+    const msg: FlashMessage = {
+      msg: 'features__category-list-form__msg-successfully-deleted-category',
+      type: 'success',
+    };
+    yield put(appActions.addFlashMessage(msg));
   } catch (e) {
     const errorData: ReturnType<typeof getErrorData> = yield call(
       getErrorData,

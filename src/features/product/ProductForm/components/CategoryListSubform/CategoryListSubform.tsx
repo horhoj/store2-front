@@ -40,7 +40,7 @@ export const CategoryListSubform: React.FC<CategoryListSubformProps> = ({
     } else {
       dispatch(
         appActions.addFlashMessage({
-          msg: 'features__product-form__category-list-subform__category-subform__msg__category_already-been-selected',
+          msg: 'features__product-form__category-list-subform__msg-category-already-been-selected',
           type: 'warning',
         }),
       );

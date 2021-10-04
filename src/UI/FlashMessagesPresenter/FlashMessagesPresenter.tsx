@@ -13,7 +13,10 @@ export const FlashMessagesPresenter: React.FC = () => {
   useEffect(() => {
     if (lastFlashMessage) {
       const msg = t(lastFlashMessage.msg, { ...lastFlashMessage.data });
-      enqueueSnackbar(msg, { variant: lastFlashMessage.type });
+      enqueueSnackbar(msg, {
+        variant: lastFlashMessage.type,
+        anchorOrigin: { vertical: 'bottom', horizontal: 'right' },
+      });
     }
   }, [lastFlashMessage]);
 

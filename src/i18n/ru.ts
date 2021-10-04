@@ -30,11 +30,15 @@ export const ru: typeof en = {
   validation__max_x_symbol: 'максимум {{x}} символов',
   validation__required: 'обязательно для заполнения',
   validation__email: 'не почта',
+  //actions
+  'action__sign-out': 'Вы успешно вышли из системы',
   //sign-in
   'page__sign-in__page-title': 'Вход',
   'page__sign-in__form-label__email': 'Почта',
   'page__sign-in__form-label__password': 'Пароль',
   'page__sign-in__form-label__submit-btn': 'ВОЙТИ',
+  'page__sign-in__msg__successfully-logged-in': 'Вы успешно вошли в систему',
+  'page__sign-in__msg__login-failed': 'Не удалось войти в систему',
   //productListForm
   'features__product-list-form__data-grid-column__id': 'ИД',
   'features__product-list-form__data-grid-column__title': 'Наименование',
@@ -44,6 +48,8 @@ export const ru: typeof en = {
   'features__product-list-form__action-column-title': 'Действия',
   'features__product-list-form__page-title': 'Список товаров',
   'features__product-list-form__search-not-found-msg': 'Ничего не найдено',
+  'features__product-list-form__msg-successfully-deleted-product':
+    'Вы успешно удалили товар',
   //productForm
   'features__product-form__input-label-title': 'Наименование',
   'features__product-form__input-label-description': 'Описание',
@@ -58,10 +64,13 @@ export const ru: typeof en = {
   'features__product-form__category-list-subform__search-placeholder': 'Найти',
   'features__product-form__category-list-subform__search-not-found-msg':
     'Ничего не найдено',
-  'features__product-form__category-list-subform__category-subform-title':
+  'features__product-form__category-list-subform__title':
     'Категории, к которым принадлежит этот продукт',
-  'features__product-form__category-list-subform__category-subform__msg__category_already-been-selected':
+  'features__product-form__category-list-subform__msg-category-already-been-selected':
     'Данная категория уже выбрана',
+  'features__product-form__msg-product-update':
+    'Вы успешно обновили данные по товару c ИД="{{id}}"',
+  'features__product-form__msg-product-add': 'Вы успешно добавили новый товар',
 
   //categoryListForm
   'features__category-list-form__page-title': 'Список категорий',
@@ -71,6 +80,8 @@ export const ru: typeof en = {
   'features__category-list-form__search-placeholder': 'найти',
   'features__category-list-form__action-column-title': 'Действия',
   'features__category-list-form__search-not-found-msg': 'Ничего не найдено',
+  'features__category-list-form__msg-successfully-deleted-category':
+    'Вы успешно удалили товар категорию',
   //categoryForm
   'features__category-form__input-label-title': 'Наименование',
   'features__category-form__input-label-description': 'Описание',
@@ -80,4 +91,8 @@ export const ru: typeof en = {
   'features__category-form__page-edit-title':
     'Редактируется категория с ИД="{{id}}"',
   'features__category-form__page-new-title': 'Добавить новую категорию',
+  'features__category-form__msg-category-update':
+    'Вы успешно обновили данные по категории c ИД="{{id}}"',
+  'features__category-form__msg-category-add':
+    'Вы успешно добавили новую категорию',
 };

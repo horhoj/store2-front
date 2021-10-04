@@ -123,9 +123,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ id }) => {
       </StyledFieldSet>
       <CategorySubformWrap>
         <Typography component={'h3'}>
-          {t(
-            'features__product-form__category-list-subform__category-subform-title',
-          )}
+          {t('features__product-form__category-list-subform__title')}
         </Typography>
         <CategorySubformWrap>{categoryListSubformRender}</CategorySubformWrap>
       </CategorySubformWrap>
