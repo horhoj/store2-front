@@ -1,6 +1,7 @@
 export type RouterPathNames =
   | 'home'
   | 'signIn'
+  | 'signUp'
   | 'routeNotFound'
   | 'productList'
   | 'product'

@@ -5,6 +5,7 @@ import { ProductListPage } from '../pages/ProductListPage';
 import { ProductPage } from '../pages/ProductPage';
 import { CategoryListPage } from '../pages/CategoryListPage';
 import { CategoryPage } from '../pages/CategoryPage';
+import { SignUpPage } from '../pages/SignUpPage';
 import { RouteItem } from './types';
 
 export const routes: RouteItem[] = [
@@ -23,6 +24,14 @@ export const routes: RouteItem[] = [
     private: false,
     always: false,
     component: SignInPage,
+  },
+  {
+    name: 'signIn',
+    path: '/sign-up',
+    exact: true,
+    private: false,
+    always: true,
+    component: SignUpPage,
   },
   {
     name: 'productList',
