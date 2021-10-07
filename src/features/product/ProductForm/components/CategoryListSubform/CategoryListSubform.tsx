@@ -58,10 +58,10 @@ export const CategoryListSubform: React.FC<CategoryListSubformProps> = ({
         fields={categoryListSubformFields}
         defaultSortFieldName={'id'}
         searchPlaceholder={t(
-          'features__product-form__category-list-subform__action-column-title',
+          'features__product-form__category-list-subform__search-placeholder',
         )}
         actionColumnTitle={t(
-          'features__product-form__category-list-subform__search-placeholder',
+          'features__product-form__category-list-subform__action-column-title',
         )}
         changeCb={changeCb}
         isLoading={isLoading}
