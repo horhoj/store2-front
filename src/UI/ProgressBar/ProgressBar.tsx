@@ -7,6 +7,7 @@ import { productListSelectors } from '../../features/productList/ProductListRedu
 import { productSelectors } from '../../features/product/productReducer';
 import { categoryListSelectors } from '../../features/categoryList/categoryListReducer';
 import { categorySelectors } from '../../features/category/categoryReducer';
+import { signUpSelectors } from '../../features/signUp/signUpReducer';
 
 const StyledLinearProgress = styled(LinearProgress)`
   position: fixed;
@@ -26,6 +27,7 @@ export const ProgressBar: React.FC = () => {
   const product = useAppSelector(productSelectors.getIsLoading);
   const categoryList = useAppSelector(categoryListSelectors.getIsLoading);
   const category = useAppSelector(categorySelectors.getIsLoading);
+  const signUp = useAppSelector(signUpSelectors.getIsLoading);
 
   const isProgress =
     authIsLoading ||
@@ -33,7 +35,8 @@ export const ProgressBar: React.FC = () => {
     productList ||
     product ||
     categoryList ||
-    category;
+    category ||
+    signUp;
 
   return isProgress ? <StyledLinearProgress /> : null;
 };

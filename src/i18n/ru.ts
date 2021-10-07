@@ -39,7 +39,24 @@ export const ru: typeof en = {
   'page__sign-in__form-label__submit-btn': 'ВОЙТИ',
   'page__sign-in__msg__successfully-logged-in': 'Вы успешно вошли в систему',
   'page__sign-in__msg__login-failed': 'Не удалось войти в систему',
-  //productListForm
+  //sign-up
+  'page__sign-up__page-title': 'Регистрация',
+  'page__sign-up__form-label__name': 'имя',
+  'page__sign-up__form-label__email': 'почта',
+  'page__sign-up__form-label__password': 'пароль',
+  'page__sign-up__form-label__password-confirm': 'подтверждение пароля',
+  'page__sign-up__form-label__submit-btn': 'ЗАРЕГИСТРИРОВАТЬ',
+  'page__sign-up__sign-in-link': 'Войти',
+  'page__sign-up__validation-name': 'Имя должно содержать только буквы',
+  'page__sign-up__validation-password-confirm':
+    'Пароль и подтверждение пароля должны совпадать',
+  'page__sign-up__request-error-status-422':
+    'Не удалось создать пользователя с указанными данными',
+  'page__sign-up__add-user-success':
+    'Вы успешно добавили пользователя: {{name}}!',
+  'page__sign-up__add-user-error':
+    'Не удалось добавить пользователя: {{name}}!',
+  // productListForm
   'features__product-list-form__data-grid-column__id': 'ИД',
   'features__product-list-form__data-grid-column__title': 'Наименование',
   'features__product-list-form__data-grid-column__description': 'Описание',
@@ -71,6 +88,7 @@ export const ru: typeof en = {
   'features__product-form__msg-product-update':
     'Вы успешно обновили данные по товару c ИД="{{id}}"',
   'features__product-form__msg-product-add': 'Вы успешно добавили новый товар',
+  'page__sign-in__sign-up-link': 'Зарегистрироваться',
 
   //categoryListForm
   'features__category-list-form__page-title': 'Список категорий',

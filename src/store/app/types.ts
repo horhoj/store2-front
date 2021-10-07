@@ -1,5 +1,6 @@
 import { VariantType } from 'notistack';
 import { en } from '../../i18n/en';
+import { TranslationMessageKeys } from '../../i18n/types';
 
 export interface AppState {
   isDarkMode: boolean;
@@ -14,7 +15,7 @@ export interface AppRedirectUrl {
 }
 
 export interface FlashMessage {
-  msg: keyof typeof en;
+  msg: TranslationMessageKeys;
   type: VariantType;
   data?: FlashMessageData;
 }

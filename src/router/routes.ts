@@ -26,7 +26,7 @@ export const routes: RouteItem[] = [
     component: SignInPage,
   },
   {
-    name: 'signIn',
+    name: 'signUp',
     path: '/sign-up',
     exact: true,
     private: false,

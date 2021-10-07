@@ -4,7 +4,7 @@ export const en = {
   test: 'TEST',
   //nav-link
   'nav-link__home': 'Home',
-  'nav-link__product-list': 'product list',
+  'nav-link__product-list': 'Product list',
   'nav-link__category-list': 'Category list',
   //app__user
   'app__user__user-id': 'ID',
@@ -39,6 +39,23 @@ export const en = {
   'page__sign-in__msg__successfully-logged-in':
     'You are successfully logged in',
   'page__sign-in__msg__login-failed': 'Login failed',
+  'page__sign-in__sign-up-link': 'Sign-up',
+  //sign-up
+  'page__sign-up__page-title': 'Sign-up',
+  'page__sign-up__form-label__name': 'name',
+  'page__sign-up__form-label__email': 'email',
+  'page__sign-up__form-label__password': 'password',
+  'page__sign-up__form-label__password-confirm': 'password confirm',
+  'page__sign-up__form-label__submit-btn': 'SIGN UP',
+  'page__sign-up__sign-in-link': 'Sign in',
+  'page__sign-up__validation-name': 'The name must contain only letters',
+  'page__sign-up__validation-password-confirm':
+    'Password and password confirmation must match',
+  'page__sign-up__request-error-status-422':
+    'Failed to create user with specified data',
+  'page__sign-up__add-user-success':
+    'You have successfully added a user: {{name}}!',
+  'page__sign-up__add-user-error': 'You have failed added a user: {{name}}!',
   //productListForm
   'features__product-list-form__data-grid-column__id': 'ID',
   'features__product-list-form__data-grid-column__title': 'Title',

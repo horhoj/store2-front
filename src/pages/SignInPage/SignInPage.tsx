@@ -4,11 +4,11 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import styled from 'styled-components';
 import { FormikConfig, useFormik } from 'formik';
-import { FormHelperText } from '@material-ui/core';
+import { FormHelperText, Typography } from '@material-ui/core';
+import Link from '@material-ui/core/Link';
 import { UserCredentials } from '../../types/userData';
 import {
   DEFAULT_SIGN_IN_EMAIL,
@@ -16,10 +16,11 @@ import {
 } from '../../config/config';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { authSelectors, authWorkers } from '../../store/auth';
-import { User } from '../../components/User';
 import { StyledFieldSet } from '../../theme/styled';
 import { useAppTranslation } from '../../i18n/useAppTranslation';
 import { RequestErrorView } from '../../components/RequestErrorView';
+import { getPathByName } from '../../router';
+import { appActions } from '../../store/app';
 import { useSignInValidationSchema } from './hooks';
 
 const initialValues: UserCredentials = {
@@ -46,6 +47,12 @@ export const SignInPage: React.FC = () => {
 
   const formik = useFormik<UserCredentials>(formikConfig);
 
+  const handleSignUpLinkClk = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const path = getPathByName('signUp');
+    dispatch(appActions.redirect(path));
+  };
+
   const requestErrorRender = requestError ? (
     <RequestErrorView requestError={requestError} />
   ) : null;
@@ -53,7 +60,6 @@ export const SignInPage: React.FC = () => {
   return (
     <Container component="main" maxWidth="xs">
       <Wrap>
-        <User />
         <StyledAvatar>
           <LockOutlinedIcon />
         </StyledAvatar>
@@ -70,7 +76,6 @@ export const SignInPage: React.FC = () => {
               fullWidth
               autoComplete="email"
               type="email"
-              autoFocus
               label={t('page__sign-in__form-label__email')}
               {...formik.getFieldProps('email')}
             />
@@ -99,6 +104,11 @@ export const SignInPage: React.FC = () => {
             </StyledButton>
           </Form>
         </StyledFieldSet>
+        <Typography>
+          <Link href="#" onClick={handleSignUpLinkClk}>
+            {t('page__sign-in__sign-up-link')}
+          </Link>
+        </Typography>
       </Wrap>
     </Container>
   );

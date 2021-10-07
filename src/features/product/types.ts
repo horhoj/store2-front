@@ -33,25 +33,3 @@ export const ProductRequestSchema = ProductResponseSchema.shape({
 
 export interface ProductRequestType
   extends yup.Asserts<typeof ProductRequestSchema> {}
-
-// const x: ProductResponseType = {
-//   id: 1,
-//   title: 'product title 1',
-//   description: 'product description 1',
-//   options: 'product options 1',
-//   categories: [
-//     {
-//       id: 1,
-//       title: 'category title 1',
-//       description: 'category description 1',
-//     },
-//   ],
-// };
-//
-// const y: ProductRequestType = {
-//   id: 1,
-//   title: 'product title 1',
-//   description: 'product description 1',
-//   options: 'product options 1',
-//   categories: [],
-// };
