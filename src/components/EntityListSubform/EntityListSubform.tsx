@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { EntityListForm } from '../EntityListForm';
 import { ActionRowPanelDefault } from '../ActionRowPanelDefault';
 import { EntityListSubformProps } from './types';
@@ -78,16 +78,27 @@ export const EntityListSubform: React.FC<EntityListSubformProps> = ({
     );
   };
 
+  const currentRows = getRows();
+
+  useEffect(() => {
+    const isEmpty = currentRows.rows.length === 0;
+    const ifNotLastPage = page > currentRows.pageCount;
+    if (isEmpty && ifNotLastPage) {
+      const currentPage = currentRows.pageCount > 1 ? currentRows.pageCount : 1;
+      setPage(currentPage);
+    }
+  }, [currentRows]);
+
   return (
     <>
       <EntityListForm
         fields={fields}
-        rows={getRows().rows}
+        rows={currentRows.rows}
         page={page}
         sortAsc={sortAsc}
         perPage={perPage}
         sortField={sortField}
-        pageCount={getRows().pageCount}
+        pageCount={currentRows.pageCount}
         actionRowPanelRender={actionRowPanelRender}
         addCb={addCb}
         actionColumnTitle={actionColumnTitle}
@@ -101,6 +112,7 @@ export const EntityListSubform: React.FC<EntityListSubformProps> = ({
         searchClearCb={searchClearCb}
         updateCb={() => {}}
         searchNotFoundMsg={searchNotFoundMsg}
+        isEmpty={currentRows.rows.length === 0}
       />
     </>
   );

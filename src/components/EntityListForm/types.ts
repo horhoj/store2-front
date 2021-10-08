@@ -21,4 +21,5 @@ export interface EntityListFormProps {
   actionColumnTitle: string;
   actionRowPanelRender(id: number): JSX.Element;
   addCb(): void;
+  isEmpty: boolean;
 }

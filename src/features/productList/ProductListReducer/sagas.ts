@@ -98,6 +98,25 @@ export function* deleteProductWorker(
       yield call(getDeleteProductRequestConfig, action.payload);
     yield call(requestExecutor, requestConfig, null);
     yield call(fetchDataWorker);
+
+    const productListResponse: ReturnType<
+      typeof productListSelectors.getProductListResponse
+    > = yield select(productListSelectors.getProductListResponse);
+
+    if (productListResponse) {
+      const isEmpty = productListResponse.data.length === 0;
+      const isNotLastPage =
+        productListResponse.current_page > productListResponse.last_page;
+      if (isEmpty && isNotLastPage) {
+        yield put(
+          productListActions.setRequestOptions({
+            page: productListResponse.last_page,
+          }),
+        );
+        yield call(fetchDataWorker);
+      }
+    }
+
     const msg: FlashMessage = {
       msg: 'features__product-list-form__msg-successfully-deleted-product',
       type: 'success',

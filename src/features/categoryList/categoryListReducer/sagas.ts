@@ -103,6 +103,24 @@ export function* deleteCategoryWorker(
       yield call(getDeleteCategoryRequestConfig, action.payload);
     yield call(requestExecutor, requestConfig, null);
     yield call(fetchDataWorker);
+
+    const categoryListResponse: ReturnType<
+      typeof categoryListSelectors.getCategoryListResponse
+    > = yield select(categoryListSelectors.getCategoryListResponse);
+    if (categoryListResponse) {
+      const isEmpty = categoryListResponse.data.length === 0;
+      const isNotLastPage =
+        categoryListResponse.current_page > categoryListResponse.last_page;
+      if (isEmpty && isNotLastPage) {
+        yield put(
+          categoryListActions.setRequestOptions({
+            page: categoryListResponse.last_page,
+          }),
+        );
+        yield call(fetchDataWorker);
+      }
+    }
+
     const msg: FlashMessage = {
       msg: 'features__category-list-form__msg-successfully-deleted-category',
       type: 'success',

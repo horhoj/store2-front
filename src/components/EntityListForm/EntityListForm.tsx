@@ -41,8 +41,14 @@ export const EntityListForm: React.FC<EntityListFormProps> = ({
   actionRowPanelRender,
   addCb,
   searchNotFoundMsg,
+  isEmpty,
 }) => {
-  const isEmpty = rows.length === 0;
+  const handleChangeSearchStr = (newSearchStr: string) => {
+    if (searchStr.trim() !== newSearchStr.trim()) {
+      searchCb(newSearchStr.trim());
+    }
+  };
+
   return (
     <Wrap>
       <SearchWrap>
@@ -60,7 +66,7 @@ export const EntityListForm: React.FC<EntityListFormProps> = ({
             <DebouncedInput
               placeholder={searchPlaceholder}
               disabled={disabled}
-              handleSearchCb={searchCb}
+              handleSearchCb={handleChangeSearchStr}
               value={searchStr}
               delay={DEFAULT_DEBOUNCED_INPUT_DELAY}
             />

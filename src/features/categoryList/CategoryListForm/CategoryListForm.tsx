@@ -129,6 +129,7 @@ export const CategoryListForm: React.FC<CategoryListFormProps> = ({
       searchNotFoundMsg={t(
         'features__category-list-form__search-not-found-msg',
       )}
+      isEmpty={categoryList.total === 0}
     />
   ) : null;
 

@@ -106,6 +106,7 @@ export const ProductListForm: React.FC = () => {
       actionRowPanelRender={actionRowPanelRenderCb}
       addCb={handleAdd}
       searchNotFoundMsg={t('features__product-list-form__search-not-found-msg')}
+      isEmpty={productList.total === 0}
     />
   ) : null;
 
