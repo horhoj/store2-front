@@ -130,6 +130,7 @@ export const CategoryListForm: React.FC<CategoryListFormProps> = ({
         'features__category-list-form__search-not-found-msg',
       )}
       isEmpty={categoryList.total === 0}
+      isShowAddBtn={!isModal}
     />
   ) : null;
 

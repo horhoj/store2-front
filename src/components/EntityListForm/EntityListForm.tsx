@@ -42,6 +42,7 @@ export const EntityListForm: React.FC<EntityListFormProps> = ({
   addCb,
   searchNotFoundMsg,
   isEmpty,
+  isShowAddBtn,
 }) => {
   const handleChangeSearchStr = (newSearchStr: string) => {
     if (searchStr.trim() !== newSearchStr.trim()) {
@@ -52,9 +53,11 @@ export const EntityListForm: React.FC<EntityListFormProps> = ({
   return (
     <Wrap>
       <SearchWrap>
-        <StyledBtn disabled={disabled} onClick={addCb}>
-          <AddIcon />
-        </StyledBtn>
+        {isShowAddBtn ? (
+          <StyledBtn disabled={disabled} onClick={addCb}>
+            <AddIcon />
+          </StyledBtn>
+        ) : null}
         <StyledBtn onClick={updateCb} disabled={disabled}>
           <UpdateIcon />
         </StyledBtn>

@@ -22,4 +22,5 @@ export interface EntityListFormProps {
   actionRowPanelRender(id: number): JSX.Element;
   addCb(): void;
   isEmpty: boolean;
+  isShowAddBtn: boolean;
 }

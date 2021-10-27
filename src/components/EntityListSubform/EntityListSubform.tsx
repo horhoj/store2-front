@@ -113,6 +113,7 @@ export const EntityListSubform: React.FC<EntityListSubformProps> = ({
         updateCb={() => {}}
         searchNotFoundMsg={searchNotFoundMsg}
         isEmpty={currentRows.rows.length === 0}
+        isShowAddBtn={true}
       />
     </>
   );
