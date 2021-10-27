@@ -1,10 +1,10 @@
-import axios, { AxiosPromise, AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { logger } from '../../utils/logger';
 import { AjaxWorkReport } from './types';
 
 export const ajax = async (
   requestConfig: AxiosRequestConfig,
-): Promise<AxiosPromise> => {
+): Promise<AxiosResponse> => {
   const ajaxWorkReport: AjaxWorkReport = {
     config: requestConfig,
     response: null,
